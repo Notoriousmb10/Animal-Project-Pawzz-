@@ -1,10 +1,12 @@
-import Image from "next/image";
-import LandingPage from "./Pages/LandingPage";
 
-export default function Home() {
+import LandingPage from "./pawzz/page";
+import Home from "./home/page";
+
+export default function Application() {
   return (
     <div>
       <LandingPage />
+      <Home />
     </div>
   );
 }
