@@ -6,7 +6,7 @@ export default function Application() {
   return (
     <div>
       <LandingPage />
-      <Home />
+      {/* <Home /> */}
     </div>
   );
 }
