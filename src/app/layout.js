@@ -3,6 +3,7 @@ import "./globals.css";
 import { AppSidebar } from "../components/uicomponents/HomePage/Sidebar";
 import { SidebarProvider } from "../components/ui/sidebar";
 import { SidebarTrigger } from "../components/ui/sidebar";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,12 +23,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <UserProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </UserProvider>
   );
 }
