@@ -17,13 +17,13 @@ const HomeDrawer = ({label, className, selectedOption}) => {
     
 
 
-    if (selectedOption === 'Report Injured Animal') {
-        return (
-            <div>
-                <p>Report Injured Animal selected</p>
-            </div>
-        );
-    }
+    // if (selectedOption === 'Report Injured Animal') {
+    //     return (
+    //         <div>
+    //             <p>Report Injured Animal selected</p>
+    //         </div>
+    //     );
+    // }
   return (
     <Drawer>
       <DrawerTrigger className={className}>{label}</DrawerTrigger>

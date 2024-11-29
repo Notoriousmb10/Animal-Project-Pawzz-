@@ -1,6 +1,11 @@
-import React from "react";
+'use client'
 
+
+import React from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 const HomeHeader = () => {
+  const { user } = useUser();
+
   return (
     <div className="px-20 py-10 flex flex-row gap-6">
       <div
@@ -10,7 +15,7 @@ const HomeHeader = () => {
         }}
       >
         <h1 className="relative top-10 left-10 text-4xl font-semibold">
-          Welcome Yash!
+          Welcome { user? user.given_name : 'Guest'}!
         </h1>
       </div>
 
