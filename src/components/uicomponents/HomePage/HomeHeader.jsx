@@ -25,6 +25,7 @@ const HomeHeader = () => {
           style={{
             backgroundImage: `url('/HomeMyPets.jpg')`,
           }}
+          onClick={()=> window.location.href = '/mypets'}
         >
           <h1 className="relative top-24 left-10 text-3xl font-semibold">
             My Pets
