@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MyPets from "../../../../public/MyPets.jpg";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -7,24 +7,21 @@ import { ImageUp } from "lucide-react";
 import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
 
-const AddPets = ({addPet}) => {
+const AddPets = ({ addPet }) => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
   const [isPhoto, setIsPhoto] = React.useState(false);
   const [petName, setPetName] = React.useState("");
 
   const handleAddPet = () => {
-    console.log("Pet Name: ", petName);
-    console.log("Photo: ", photo);
     const newPet = { name: petName, photo: photo };
-    console.log("New Pet: ", newPet);
     addPet(newPet);
-    setPetName(""); 
-    setPhoto(null); 
-    setIsPhoto(false); 
+    setPetName("");
+    setPhoto(null);
+    setIsPhoto(false);
+
+    console.log(newPet);
   };
-
-
 
   const handleDivClick = () => {
     fileInputRef.current.click();
