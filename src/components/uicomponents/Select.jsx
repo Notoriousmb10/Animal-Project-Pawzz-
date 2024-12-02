@@ -12,20 +12,22 @@ import {
 } from "../ui/select";
 
 
-const DropDown = ({placeholder}) => (
-    <Select>
+const DropDown = ({placeholder, onChange, className, data}) => (
+    <Select onValueChange={onChange}  className={className}>
+
         <SelectTrigger aria-label="Animal">
             <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
-            <SelectGroup>
-                <SelectLabel>Animals</SelectLabel>
-                <SelectItem value="dog">Dog</SelectItem>
-                <SelectItem value="cat">Cat</SelectItem>
-                <SelectItem value="bird">Bird</SelectItem>
-                <SelectItem value="fish">Fish</SelectItem>
-                <SelectSeparator />
-                <SelectItem value="other">Other</SelectItem>
+            <SelectGroup >
+                
+            {data.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                    {item.label}
+                </SelectItem>
+            ))}
+            <SelectSeparator />
+            <SelectItem value="other">Other</SelectItem>
             </SelectGroup>
         </SelectContent>
     </Select>

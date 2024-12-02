@@ -36,6 +36,7 @@ const HomeHeader = () => {
           style={{
             backgroundImage: `url('/HomeAppointment.jpg')`,
           }}
+          onClick={()=> window.location.href = '/schedules'}
         >
           <h1 className="relative top-24 left-10 text-3xl font-semibold">
             Schedules

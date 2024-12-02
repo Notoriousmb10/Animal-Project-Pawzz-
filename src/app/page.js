@@ -1,7 +1,6 @@
 
 import LandingPage from "./pawzz/page";
-import Home from "./home/page";
-
+import { Sidebar } from "@/components/ui/sidebar";
 export default function Application() {
   return (
     <div>

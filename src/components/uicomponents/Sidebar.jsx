@@ -1,5 +1,7 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+'use client'
 
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -15,47 +17,29 @@ import {
 
 
 import Image from 'next/image'
-import paw from '../../../../public/paw.png'
+import paw from '../../../public/paw.png'
 
 // Menu items.
 const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "My Pets",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Appointments",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Emengency Assistance", 
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Ngo Listings",
-    url: "#",
-    icon: Settings,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  { title: "Home", url: "/home", icon: Home },
+  { title: "My Pets", url: "/mypets", icon: Inbox },
+  { title: "Appointments", url: "/schedules", icon: Calendar },
+  { title: "Emergency Assistance", url: "/mergency", icon: Search },
+  { title: "Ngo Listings", url: "/ngolistings", icon: Settings },
+  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({onToggle}) {
+  const [isOpen, setIsOpen] = useState(true);
+ 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+    onToggle(!isOpen);
+  };
   return (
     <SidebarProvider>
       <div className="relative">
-        <Sidebar>
+        <Sidebar isOpen={isOpen}>
         <div className="flex items-center gap-2  p-4">
           <Image src={paw} height={48} width={48} alt="" />
           <h1 className="text-2xl font-bold">Pawzz</h1>
@@ -81,7 +65,7 @@ export function AppSidebar() {
           </SidebarContent>
         </Sidebar>
       </div>
-      <SidebarTrigger className="relative top-2 left-2" />
+      <SidebarTrigger className="relative top-2 left-2"  onClick={handleToggle}/>
     </SidebarProvider>
   );
 }

@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Pencil } from "lucide-react";
 
-const MyPets = ({ petArray }) => {
-  const [petDetails, setPetDetails] = useState(petArray);
-  const[petInfo, setPetInfo] = useState([]);
-  useEffect(() => {
-    localStorage.setItem("petArray", JSON.stringify(petDetails));
-  }, [petArray]);
-
-  useEffect(() => {
-    const petInfos = JSON.parse(localStorage.getItem("petArray")) || [];
-    setPetInfo(petInfos);
-  }, []);
+const MyPets = ({}) => {
+  const [petInfo, setPetInfo] = useState(JSON.parse(localStorage.getItem("petDetails")));
+  
   return (
     <div className="flex flex-col items-center justify-center mb-40">
       <h2 className="text-2xl font-semibold text-left px-52 py-4">Your Paws</h2>

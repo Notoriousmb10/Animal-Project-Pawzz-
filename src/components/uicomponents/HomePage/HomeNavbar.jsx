@@ -8,7 +8,9 @@ import Image from "next/image";
 import { UiButton } from "../Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 const HomeNavbar = () => {
+  const router = useRouter();
   const { user } = useUser();
   const [userr, setUser] = useState(null);
 
@@ -18,8 +20,9 @@ const HomeNavbar = () => {
   }, [user]);
   return (
     <div className="flex flex-row justify-between items-center px-20 py-6">
-      <div className="flex items-center gap-2 ">
+      <div className="flex items-center gap-2 cursor-pointer"  onClick={()=> router.push("/home")}>
         <Image src={paw} height={48} width={48} alt="" />
+
         <h1 className="text-2xl font-bold">Pawzz</h1>
       </div>
       <div>

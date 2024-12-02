@@ -7,20 +7,34 @@ import { ImageUp } from "lucide-react";
 import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
 
-const AddPets = ({ addPet }) => {
+const AddPets = ({}) => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
-  const [isPhoto, setIsPhoto] = React.useState(false);
+  const [animal, setAnimal] = React.useState("");
+  const [breed, setBreed] = React.useState("");
   const [petName, setPetName] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [isPhoto, setIsPhoto] = React.useState(false);
+
+  const data = [
+    { value: "Dog", label: "Dog" },
+    { value: "Cat", label: "Cat" },
+    { value: "Bird", label: "Bird" },
+    { value: "Fish", label: "Fish" }
+  ]
 
   const handleAddPet = () => {
-    const newPet = { name: petName, photo: photo };
-    addPet(newPet);
-    setPetName("");
-    setPhoto(null);
-    setIsPhoto(false);
+    const petExist = localStorage.getItem("petDetails");
+    if (!petExist) {
+      const petData = [{ photo, petName, animal, breed, description }];
+      localStorage.setItem("petDetails", JSON.stringify(petData));
+    } else {
+      let petData = JSON.parse(petExist);
+      petData.push({ photo, petName, animal, breed, description});
 
-    console.log(newPet);
+      localStorage.setItem("petDetails", JSON.stringify(petData));
+      console.log("Pet Data : ", localStorage.getItem("petDetails"));
+    }
   };
 
   const handleDivClick = () => {
@@ -39,6 +53,11 @@ const AddPets = ({ addPet }) => {
       reader.readAsDataURL(file);
     }
   };
+
+  useEffect(() => {
+    console.log("Animal : ", animal);
+    console.log("Breed : ", breed);
+  }, [animal, breed]);
 
   return (
     <div className="p-20">
@@ -66,12 +85,21 @@ const AddPets = ({ addPet }) => {
               }}
             />
 
-            <DropDown placeholder={"Select Animal"} />
-            <DropDown placeholder={"Select Breed"} />
+            <DropDown
+              placeholder={"Select Animal"}
+              onChange={(value) => setAnimal(value)}
+              data={data}
+            />
+            <DropDown
+              placeholder={"Select Breed"}
+              onChange={(value) => setBreed(value)}
+              data={data}
+            />
             <textarea
               placeholder="Short And Sweet Description"
               className="border p-2 text-sm rounded-lg  resize-none"
               rows="3"
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="">

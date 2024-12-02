@@ -11,7 +11,7 @@ const HomeEmergency = () => {
     const [selectedOption, setSelectedOption] = useState(false);
     
 return (
-<div className=" px-20 py-6 ">
+<div className=" px-20 py-6 flex  ">
 <div
   className="h-[400px] w-[1320px] bg-[#ffffff] border rounded-[50px] 
 flex flex-row justify-between  hover:shadow-lg cursor-pointer"
