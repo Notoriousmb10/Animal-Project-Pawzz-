@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
           <div className="fixed z-20">
             <AppSidebar onToggle={handleSidebarToggle} />
           </div>
-          <div className={`relative z-10 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>{children}</div>
+          <div className={`relative z-10 transition-all duration-300 ${!isSidebarOpen ? 'ml-64' : 'ml-0'}`}>{children}</div>
         </body>
       </html>
     </UserProvider>

@@ -9,7 +9,7 @@ const MyPets = ({}) => {
       <h2 className="text-2xl font-semibold text-left px-52 py-4">Your Paws</h2>
       <div className="flex flex-col px-12 rounded-[50px] py-10 bg-slate-50 w-max">
         <div className="grid grid-cols-3 gap-32 mt-4">
-          {petInfo.map((pet, index) => (
+          {petInfo?.map((pet, index) => (
             <div
               key={index}
               className="h-[200px] w-[200px] border rounded-[50px]"

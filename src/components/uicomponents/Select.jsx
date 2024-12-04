@@ -11,23 +11,20 @@ import {
     SelectScrollDownButton,
 } from "../ui/select";
 
-
-const DropDown = ({placeholder, onChange, className, data}) => (
-    <Select onValueChange={onChange}  className={className}>
-
+const DropDown = ({ placeholder, onChange, className, data, value }) => (
+    <Select onValueChange={onChange} className={className}>
         <SelectTrigger aria-label="Animal">
-            <SelectValue placeholder={placeholder} />
+            <SelectValue placeholder={placeholder} value={value || ""} />
         </SelectTrigger>
         <SelectContent>
-            <SelectGroup >
-                
-            {data.map((item) => (
-                <SelectItem key={item.value} value={item.value}>
-                    {item.label}
-                </SelectItem>
-            ))}
-            <SelectSeparator />
-            <SelectItem value="other">Other</SelectItem>
+            <SelectGroup>
+                {data.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                    </SelectItem>
+                ))}
+                <SelectSeparator />
+                <SelectItem value="other">Other</SelectItem>
             </SelectGroup>
         </SelectContent>
     </Select>

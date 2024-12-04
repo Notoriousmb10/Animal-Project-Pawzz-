@@ -30,7 +30,7 @@ const items = [
 ];
 
 export function AppSidebar({onToggle}) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
  
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -39,7 +39,7 @@ export function AppSidebar({onToggle}) {
   return (
     <SidebarProvider>
       <div className="relative">
-        <Sidebar isOpen={isOpen}>
+        <Sidebar isOpen={isOpen.toString()}>
         <div className="flex items-center gap-2  p-4">
           <Image src={paw} height={48} width={48} alt="" />
           <h1 className="text-2xl font-bold">Pawzz</h1>

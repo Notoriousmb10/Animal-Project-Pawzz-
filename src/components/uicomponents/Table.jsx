@@ -16,8 +16,9 @@ export default function DataTable({data}) {
         <TableCaption>A list of your recent appointments.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Pet Name</TableHead>
+            <TableHead>Pet Name</TableHead>
             <TableHead>Clinic Name</TableHead>
+            <TableHead>Reason</TableHead>
             <TableHead>Date</TableHead>
             <TableHead>Approval</TableHead>
           </TableRow>
@@ -26,10 +27,10 @@ export default function DataTable({data}) {
           {data.map((appointment, index) => (
             <TableRow key={index}>
               <TableCell className="font-medium">{appointment.petName}</TableCell>
-              <TableCell>{appointment.clinicName}</TableCell>
+              <TableCell>{appointment.clinicName.slice(0,16)}</TableCell>
+              <TableCell>{appointment.reason}</TableCell>
               <TableCell>{appointment.date}</TableCell>
-              <TableCell className={appointment.approval === "Approved" ? "text-green-500" : appointment.approval === "Pending" ? "text-yellow-500" :appointment.approval === "Rejected" ? "text-red-500" : ""}>
-                {appointment.approval}
+              <TableCell className="text-yellow-500 w-[100px]">{appointment.approval}
               </TableCell>
             </TableRow>
           ))}

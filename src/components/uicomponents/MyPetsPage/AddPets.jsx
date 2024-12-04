@@ -6,8 +6,9 @@ import DropDown from "../../../components/uicomponents/Select";
 import { ImageUp } from "lucide-react";
 import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
+import { dogList, catList, birdList, animalList } from "@/app/dataArray";
 
-const AddPets = ({}) => {
+const AddPets = () => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
   const [animal, setAnimal] = React.useState("");
@@ -16,12 +17,36 @@ const AddPets = ({}) => {
   const [description, setDescription] = React.useState("");
   const [isPhoto, setIsPhoto] = React.useState(false);
 
-  const data = [
-    { value: "Dog", label: "Dog" },
-    { value: "Cat", label: "Cat" },
-    { value: "Bird", label: "Bird" },
-    { value: "Fish", label: "Fish" }
-  ]
+  const createPet = async () => {
+    if (!petName || !animal || !breed || !description || !photo) {
+      alert("Please fill all the fields");
+      return;
+    } else {
+      try {
+        const resp = await fetch("/api/create-Pet", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ photo, petName, animal, breed, description }),
+        });
+        const data = await resp.json();
+        console.log(data);
+        if (resp.ok) {
+          alert("Pet Added Successfully");
+          setPhoto(null);
+          setAnimal("");
+          setBreed("");
+          setPetName("");
+          setDescription("");
+          setIsPhoto(false);
+          fileInputRef.current.value = "";
+        } else {
+          console.error("Failed to create appointment: ", data);
+        }
+      } catch (error) {
+        console.error("Failed to create appointment: ", error);
+      }
+    }
+  };
 
   const handleAddPet = () => {
     const petExist = localStorage.getItem("petDetails");
@@ -30,7 +55,7 @@ const AddPets = ({}) => {
       localStorage.setItem("petDetails", JSON.stringify(petData));
     } else {
       let petData = JSON.parse(petExist);
-      petData.push({ photo, petName, animal, breed, description});
+      petData.push({ photo, petName, animal, breed, description });
 
       localStorage.setItem("petDetails", JSON.stringify(petData));
       console.log("Pet Data : ", localStorage.getItem("petDetails"));
@@ -88,12 +113,18 @@ const AddPets = ({}) => {
             <DropDown
               placeholder={"Select Animal"}
               onChange={(value) => setAnimal(value)}
-              data={data}
+              data={animalList}
             />
             <DropDown
               placeholder={"Select Breed"}
               onChange={(value) => setBreed(value)}
-              data={data}
+              data={
+                animal === "Dog"
+                  ? dogList
+                  : animal === "Cat"
+                  ? catList
+                  : birdList
+              }
             />
             <textarea
               placeholder="Short And Sweet Description"
