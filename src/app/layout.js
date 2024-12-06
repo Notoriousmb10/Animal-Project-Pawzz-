@@ -5,6 +5,7 @@ import { useState } from "react";
 import "./globals.css";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { AppSidebar } from "@/components/uicomponents/Sidebar";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +21,14 @@ const geistMono = localFont({
 
 
 export default function RootLayout({ children }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentHref, setCurrentHref] = useState('/'); // Default value for SSR safety
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentHref(window.location.pathname); // Get the path (e.g., '/about')
+    }
+  }, []);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(currentHref === '/' ? false : true);
   const handleSidebarToggle = (isOpen) => {
     setIsSidebarOpen(isOpen);
   };
@@ -30,7 +38,7 @@ export default function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className="fixed z-20">
+          <div className={`fixed z-20 ${currentHref === '/'? 'hidden': null}`}>
             <AppSidebar onToggle={handleSidebarToggle} />
           </div>
           <div className={`relative z-10 transition-all duration-300 ${!isSidebarOpen ? 'ml-64' : 'ml-0'}`}>{children}</div>

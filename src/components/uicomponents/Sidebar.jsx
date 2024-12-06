@@ -1,4 +1,5 @@
 "use client";
+const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import { useState } from "react";
@@ -23,8 +24,7 @@ const items = [
   { title: "Home", url: "/home", icon: Home },
   { title: "My Pets", url: "/mypets", icon: Inbox },
   { title: "Appointments", url: "/schedules", icon: Calendar },
-  { title: "Emergency Assistance", url: "/mergency", icon: Search },
-  { title: "Ngo Listings", url: "/ngolistings", icon: Settings },
+  { title: "Ngo Listings", url: "/ngolistings", icon: Search },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
@@ -38,7 +38,7 @@ export function AppSidebar({ onToggle }) {
   return (
     <SidebarProvider>
       <div className="relative">
-        <Sidebar isOpen={isOpen.toString()}>
+        <Sidebar isOpen={isOpen.toString()} >
           <div className="flex items-center gap-2 bg-[#F0F8FF] p-4">
             <Image src={paw} height={48} width={48} alt="" />
             <h1 className="text-2xl font-bold">Pawzz</h1>
@@ -63,7 +63,9 @@ export function AppSidebar({ onToggle }) {
                   ))}
                 </SidebarMenu>
               </SidebarGroupContent>
+              
             </SidebarGroup>
+
           </SidebarContent>
         </Sidebar>
       </div>
