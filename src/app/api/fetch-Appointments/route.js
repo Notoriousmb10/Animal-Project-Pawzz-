@@ -1,8 +1,7 @@
 const connectToDatabase = require("../../database");
-const Appointment = require("../../model");
+const {Appointment} = require("../../model");
 
-
-export const GET = async (req) => {
+const handler = async (req, res) => {
   if (req.method === "GET") {
     try {
       console.log("Connecting to database...");
@@ -12,21 +11,14 @@ export const GET = async (req) => {
       const appointments = await Appointment.find();
       console.log("Appointments found:", appointments);
 
-      return new Response(JSON.stringify(appointments), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
+      res.status(200).json(appointments);
     } catch (err) {
       console.error("Failed to fetch appointments:", err);
-      return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   } else {
-    return new Response(JSON.stringify({ message: "Method not allowed" }), {
-      status: 405,
-      headers: { "Content-Type": "application/json" },
-    });
+    res.status(405).json({ message: "Method not allowed" });
   }
-}
+};
+
+module.exports = handler;

@@ -12,7 +12,7 @@ import {
   
 export default function DataTable({data}) {
     return (
-      <Table>
+      <Table className="bg-[#f0f8ff]">
         <TableCaption>A list of your recent appointments.</TableCaption>
         <TableHeader>
           <TableRow>

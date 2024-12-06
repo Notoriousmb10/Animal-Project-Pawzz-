@@ -12,8 +12,29 @@ const appointmentSchema = new mongoose.Schema({
 });
 
 
+const petSchema = new mongoose.Schema({
+  petName: {
+    type: String,
+    required: true,
+  },
+  animal: {
+    type: String,
+    required: true,
+  },
+  breed: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  }
+});
+
+const Pet = mongoose.models.Pet || mongoose.model("Pet", petSchema);
+
 const Appointment =
   mongoose.models.Appointment ||
   mongoose.model("Appointment", appointmentSchema);
 
-module.exports = Appointment;
+module.exports = { Appointment, Pet };

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import { useState } from "react";
@@ -15,9 +15,8 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar";
 
-
-import Image from 'next/image'
-import paw from '../../../public/paw.png'
+import Image from "next/image";
+import paw from "../../../public/paw.png";
 
 // Menu items.
 const items = [
@@ -29,9 +28,9 @@ const items = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export function AppSidebar({onToggle}) {
+export function AppSidebar({ onToggle }) {
   const [isOpen, setIsOpen] = useState(false);
- 
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
     onToggle(!isOpen);
@@ -40,18 +39,21 @@ export function AppSidebar({onToggle}) {
     <SidebarProvider>
       <div className="relative">
         <Sidebar isOpen={isOpen.toString()}>
-        <div className="flex items-center gap-2  p-4">
-          <Image src={paw} height={48} width={48} alt="" />
-          <h1 className="text-2xl font-bold">Pawzz</h1>
-        </div>
-          <SidebarContent>
+          <div className="flex items-center gap-2 bg-[#F0F8FF] p-4">
+            <Image src={paw} height={48} width={48} alt="" />
+            <h1 className="text-2xl font-bold">Pawzz</h1>
+          </div>
+          <SidebarContent className="bg-[#F0F8FF] ">
             <SidebarGroup>
-              <SidebarGroupLabel>Application</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
+              <SidebarGroupLabel>Content</SidebarGroupLabel>
+              <SidebarGroupContent className="">
+                <SidebarMenu className="gap-6">
                   {items.map((item) => (
                     <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton
+                        asChild
+                        className="  hover:bg-white py-4"
+                      >
                         <a href={item.url}>
                           <item.icon />
                           <span>{item.title}</span>
@@ -65,7 +67,10 @@ export function AppSidebar({onToggle}) {
           </SidebarContent>
         </Sidebar>
       </div>
-      <SidebarTrigger className="relative top-2 left-2"  onClick={handleToggle}/>
+      <SidebarTrigger
+        className="relative top-2 left-2"
+        onClick={handleToggle}
+      />
     </SidebarProvider>
   );
 }

@@ -8,7 +8,7 @@ import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
 import { dogList, catList, birdList, animalList } from "@/app/dataArray";
 
-const AddPets = () => {
+const AddPets = ({loadPets}) => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
   const [animal, setAnimal] = React.useState("");
@@ -26,8 +26,11 @@ const AddPets = () => {
         const resp = await fetch("/api/create-Pet", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ photo, petName, animal, breed, description }),
+          body: JSON.stringify({ petName, animal, breed, description }),
         });
+
+        localStorage.setItem(`${petName}`, JSON.stringify(photo));
+
         const data = await resp.json();
         console.log(data);
         if (resp.ok) {
@@ -39,26 +42,13 @@ const AddPets = () => {
           setDescription("");
           setIsPhoto(false);
           fileInputRef.current.value = "";
+          loadPets();
         } else {
           console.error("Failed to create appointment: ", data);
         }
       } catch (error) {
         console.error("Failed to create appointment: ", error);
       }
-    }
-  };
-
-  const handleAddPet = () => {
-    const petExist = localStorage.getItem("petDetails");
-    if (!petExist) {
-      const petData = [{ photo, petName, animal, breed, description }];
-      localStorage.setItem("petDetails", JSON.stringify(petData));
-    } else {
-      let petData = JSON.parse(petExist);
-      petData.push({ photo, petName, animal, breed, description });
-
-      localStorage.setItem("petDetails", JSON.stringify(petData));
-      console.log("Pet Data : ", localStorage.getItem("petDetails"));
     }
   };
 
@@ -85,7 +75,7 @@ const AddPets = () => {
   }, [animal, breed]);
 
   return (
-    <div className="p-20">
+    <div className="p-20 ">
       <div className="flex flex-row gap-16  justify-center items-center">
         {/* Image */}
         <div className="relative flex-shrink-0">
@@ -99,12 +89,12 @@ const AddPets = () => {
             <h1 className="text-white z-10 font-bold text-3xl">My Pets</h1>
           </div>
         </div>
-        <div className="flex flex-row bg-gray-100 justify-between p-6 rounded-[50] shadow-md  max-w-lg w-full">
+        <div className="flex flex-row shadow-lg justify-between p-6 bg-[#f0f8ff] rounded-[50]  max-w-lg w-full">
           {/* Form */}
-          <div className="flex flex-col gap-2 max-w-lg">
+          <div className="flex flex-col gap-2 max-w-lg ">
             <Input
               placeholder="Name"
-              className="bg-white"
+              className="bg-white border-2 border-slate-300"
               onChange={(e) => {
                 setPetName(e.target.value);
               }}
@@ -114,6 +104,7 @@ const AddPets = () => {
               placeholder={"Select Animal"}
               onChange={(value) => setAnimal(value)}
               data={animalList}
+              className={"border-2 border-slate-300"}
             />
             <DropDown
               placeholder={"Select Breed"}
@@ -128,7 +119,7 @@ const AddPets = () => {
             />
             <textarea
               placeholder="Short And Sweet Description"
-              className="border p-2 text-sm rounded-lg  resize-none"
+              className=" p-2 text-sm rounded-lg border-2 border-slate-300 resize-none"
               rows="3"
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
@@ -165,7 +156,7 @@ const AddPets = () => {
               <UiButton
                 className="bg-blue-500 text-white px-16 py-2 rounded-[40] hover:bg-blue-600"
                 label={"Add"}
-                onClick={handleAddPet}
+                onClick={createPet}
               />
             </div>
           </div>
