@@ -6,7 +6,9 @@ import { Search } from "lucide-react";
 import React from "react";
 import DropDown from "../../../components/uicomponents/Select";
 import { reasons } from "../../../app/dataArray";
-const Schedules = ({ loadAppointments }) => {
+import {CalendarForm} from "../../../components/uicomponents/Calendar";
+import {fetchPets} from "../../../app/serverfetching";
+const Schedules = ({ loadAppointments, loadPets }) => {
   const [petNames, setPetNames] = useState([]);
   const [petDetails, setPetDetails] = useState({
     petName: "",
@@ -15,20 +17,9 @@ const Schedules = ({ loadAppointments }) => {
     reason: "",
   });
   useEffect(() => {
-    const storedPetData = localStorage.getItem("petDetails");
-    if (storedPetData) {
-      const parsedData = JSON.parse(storedPetData);
-      const names = parsedData
-        .map((data) => {
-          if (data.petName) {
-            return { value: data.petName, label: data.petName };
-          }
-          return null;
-        })
-        .filter(Boolean);
-      setPetNames(names);
-    }
-  }, []);
+    const petNames = loadPets.map((pet) => pet.petName);
+  }, [loadPets]);
+
 
   useEffect(() => {
     console.log(petDetails);
@@ -132,19 +123,9 @@ const Schedules = ({ loadAppointments }) => {
               </button>
             </div>
 
-            <div>
-              <label htmlFor="date" className="block text-sm font-medium">
-                Select Date
-              </label>
-              <input
-                type="date"
-                id="date"
-                className="w-full md:w-64 p-2 border rounded focus:outline-none"
-                onChange={(e) =>
-                  setPetDetails({ ...petDetails, date: e.target.value })
-                }
-                value={petDetails.date}
-              />
+            <div className="">
+              
+              <CalendarForm/>
             </div>
           </div>
         </div>

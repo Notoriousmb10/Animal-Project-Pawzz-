@@ -34,7 +34,6 @@ const AddPets = ({loadPets}) => {
         const data = await resp.json();
         console.log(data);
         if (resp.ok) {
-          alert("Pet Added Successfully");
           setPhoto(null);
           setAnimal("");
           setBreed("");
