@@ -29,7 +29,7 @@ const items = [
 ];
 
 export function AppSidebar({ onToggle }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);

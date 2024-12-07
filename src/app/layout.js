@@ -21,10 +21,11 @@ const geistMono = localFont({
 
 
 export default function RootLayout({ children }) {
-  const [currentHref, setCurrentHref] = useState('/'); // Default value for SSR safety
+  const [currentHref, setCurrentHref] = useState(null); // Default value for SSR safety
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+
       setCurrentHref(window.location.pathname); // Get the path (e.g., '/about')
     }
   }, []);
@@ -38,10 +39,10 @@ export default function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className={`fixed z-20 ${currentHref === '/'? 'hidden': null}`}>
+          <div className={`fixed z-20 ${currentHref === '/'? 'hidden': "block"}`}>
             <AppSidebar onToggle={handleSidebarToggle} />
           </div>
-          <div className={`relative z-10 transition-all duration-300 ${!isSidebarOpen ? 'ml-64' : 'ml-0'}`}>{children}</div>
+          <div className={`relative z-10 transition-all duration-300 ${!isSidebarOpen ? 'ml-0' : 'ml-60'}`}>{children}</div>
         </body>
       </html>
     </UserProvider>
