@@ -90,3 +90,17 @@ body {
   }
 }
 
+
+
+@keyframes progress {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg); /* 70% of 360 degrees */
+  }
+}
+
+.animate-progress {
+  animation: progress 2s ease-out forwards;
+}

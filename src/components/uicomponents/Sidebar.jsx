@@ -39,13 +39,13 @@ export function AppSidebar({ onToggle }) {
     <SidebarProvider>
       <div className="relative">
         <Sidebar isOpen={isOpen.toString()} >
-          <div className="flex items-center gap-2 bg-[#F0F8FF] p-4">
+          <div className="flex items-center gap-2 bg-white p-4">
             <Image src={paw} height={48} width={48} alt="" />
             <h1 className="text-2xl font-bold">Pawzz</h1>
           </div>
-          <SidebarContent className="bg-[#F0F8FF] ">
+          <SidebarContent className="bg-white shadow-2xl shadow-blue-300">
             <SidebarGroup>
-              <SidebarGroupLabel>Content</SidebarGroupLabel>
+              <SidebarGroupLabel></SidebarGroupLabel>
               <SidebarGroupContent className="">
                 <SidebarMenu className="gap-6">
                   {items.map((item) => (

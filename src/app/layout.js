@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
           <div className={`fixed z-20 ${currentHref === '/'? 'hidden': "block"}`}>
             <AppSidebar onToggle={handleSidebarToggle} />
           </div>
-          <div className={`relative z-10 transition-all duration-300 ${!isSidebarOpen ? 'ml-0' : 'ml-60'}`}>{children}</div>
+          <div className={`relative z-10 transition-all overflow-x-hidden duration-300 ${!isSidebarOpen ? 'ml-0' : 'ml-60'}`}>{children}</div>
         </body>
       </html>
     </UserProvider>

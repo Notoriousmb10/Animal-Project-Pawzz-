@@ -14,9 +14,17 @@ const HomeHeader = () => {
           backgroundImage: `url('/HomeDogHeader.jpg')`,
         }}
       >
+        <div>
+
         <h1 className="relative top-10 left-10 text-4xl font-semibold">
           Welcome { user? user.given_name : 'Guest'}!
         </h1>
+
+        <div>
+          
+        </div>
+        </div>
+
       </div>
 
       <div className="flex flex-col gap-2">
