@@ -1,90 +1,70 @@
-'use client'
-
-import { useState } from "react";
-import HomeCarousel from "../../../components/uicomponents/HomePage/Carousel";
-import HomeDrawer from "@/components/uicomponents/HomePage/Drawer";
+import React from "react";
+import DogEmergency from "../../../../public/DogEmergency.png";
+import DogAdoption from "../../../../public/DogAdoption.png";
+import Image from "next/image";
+import { UiButton } from "../Button";
 import { MoveRight } from "lucide-react";
-
-
-
+import Select from "../Select";
+import { ImageUp } from "lucide-react";
+import {adoptionReasons} from "../../../app/dataArray"
 const HomeEmergency = () => {
-    const [selectedOption, setSelectedOption] = useState(false);
-    
-return (
-<div className=" px-20 py-6 flex  ">
-<div
-  className="h-[400px] w-[1320px] bg-[#ffffff] border rounded-[50px] 
-flex flex-row justify-between  hover:shadow-lg cursor-pointer"
->
-  <div className="flex flex-col  justify-between items-center p-4 ">
-    <h1 className="relative  text-3xl font-semibold">
-      Emergency Assistance
-    </h1>
-    <div className="flex flex-row gap-16">
-      <div className="flex flex-col gap-6">
-        <button
-          className={`px-4 py-2 rounded-lg ${
-            selectedOption === "Report Injured Animal"
-              ? `bg-black text-white`
-              : `bg-slate-200 text-slate-500`
-          } `}
-          onClick={() => setSelectedOption("Report Injured Animal")}
-        >
-          Report Injured Animal
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg ${
-            selectedOption === "Find Nearby Help"
-              ? `bg-black text-white`
-              : `bg-slate-200 text-slate-500`
-          } `}
-          onClick={() => setSelectedOption("Find Nearby Help")}
-        >
-          Find Nearby Help
-        </button>
+  return (
+    <div className="flex gap-20 justify-center">
+      <div className="h-[400] w-[600] border overflow-hidden bg-[#EFF6FF] rounded-[50]">
+        <div className="relative z-20 ml-10 pt-2">
+          <div>
+            <h1 className="font-bold text-2xl text-left pt-2">
+              Emergency Assistance
+            </h1>
+            <p className=" italic text-left pt-2  text-md ">
+              Immediate Assistance for Animals in Need
+            </p>
+          </div>
+          <div className="flex flex-col w-max gap-4 relative top-32">
+            <UiButton
+              label={"Report Injured Animal"}
+              className="rounded-sm"
+            />
+            <UiButton
+              label={"First Aid Instructions"}
+              icon={<MoveRight size={32} color="#ffffff" />}
+              className="rounded-sm"
+            />
+          </div>
+        </div>
+        <div className="flex flex-shrink-0 h-[300] w-[400] left-48 bottom-[111] relative z-10">
+          <Image src={DogEmergency} />
+        </div>
       </div>
-      <div className="flex flex-col gap-6">
-        <button
-          className={`px-4 py-2 rounded-lg ${
-            selectedOption === "Request Emergency Help"
-              ? `bg-black text-white`
-              : `bg-slate-200 text-slate-500`
-          } `}
-          onClick={() => setSelectedOption("Request Emergency Help")}
-        >
-          Request Emergency Help
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg ${
-            selectedOption === "First Aid Instructions"
-              ? `bg-black text-white`
-              : `bg-slate-200 text-slate-500`
-          } `}
-          onClick={() => setSelectedOption("First Aid Instructions")}
-        >
-          First Aid Instructions
-        </button>
+
+      <div className="h-[400] w-[600] border rounded-[50] bg-[#fafaf6] overflow-hidden flex justify-center items-center flex-col">
+        <div className="relative bottom-10">
+          <h1 className="font-bold text-2xl text-center">
+            Help a Lost Soul Find a Loving Home
+          </h1>
+        </div>
+        <div className="flex justify-center items-center px-10 gap-6 mt-4">
+          <div className="h-[200] w-[200] bg-white rounded-lg border flex justify-center items-center">
+            <ImageUp size={50} />
+          </div>
+          <div className="flex-grow flex gap-2 flex-col">
+            <p className="text-[14px]">Looking For?</p>
+            {/* Allow this div to grow */}
+            <Select
+              data={adoptionReasons}
+              placeholder={"Select An Option.."}
+              className="w-full" // Ensure the Select takes full width of its container
+            />
+            <UiButton label={"Proceed "} className="w-full rounded-sm"/>
+          </div>
+        </div>
+        {/* <div className="flex flex-shrink-0 h-[200] w-[350] left-28 bottom-[50] relative z-10">
+          <Image src={DogAdoption} />
+        </div> */}
       </div>
+
     </div>
-    <div>
-      <HomeDrawer
-        selectedOption={selectedOption}
-        label={<MoveRight />}
-        className={
-          "border w-max px-3 py-2 rounded-full bg-blue-200 text-slate-500"
-        }
-      />
-    </div>
-  </div>
-  <div className="max-w-lg rounded-[50px]">
-    <HomeCarousel />
-  </div>
-</div>
-</div>
-)
+  );
 };
-
-
-
 
 export default HomeEmergency;

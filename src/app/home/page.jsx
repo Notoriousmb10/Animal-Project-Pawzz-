@@ -13,8 +13,8 @@ const Home = () => {
       
       <HomeNavbar/>
       <HomeHeader/>
-      <HomeAdoption/>
       <HomeEmergency/>
+      <HomeAdoption/>
       <HomeNgo/>
     </div>
   );

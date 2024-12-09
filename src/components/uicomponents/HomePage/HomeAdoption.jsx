@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import GoofyDog from "../../../../public/GoofyDog.png";
+import GoofyDog from "../../../../public/GoofyDog1.png";
 import { MoveRight } from "lucide-react";
 
 import { UiButton } from "../../uicomponents/Button";
@@ -35,11 +35,11 @@ const HomeAdoption = () => {
             icon={<MoveRight size={32} color="#ffffff" />}
           />
         </div>
-        <div className="h-[600] absolute left-[82] bottom-0">
+        <div className="h-[600] absolute left-[300] bottom-0">
           <Image src={GoofyDog} alt="" className="h-full w-full object-cover" />
         </div>
       </div>
-      <div className="h-[700px] w-[650px]  bg-red-50  rounded-md shadow-md">
+      <div className="h-[700px] w-[650px]   bg-gradient-to-bl from-white to-red-100  rounded-md shadow-md">
         <div>
           <h1 className="italic font-bold text-4xl right-16 relative text-right top-10 text-black">
             Together for Their <br /> Tomorrow
