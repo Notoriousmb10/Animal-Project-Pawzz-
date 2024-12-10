@@ -25,14 +25,9 @@ const reasons = [
 const adoptionReasons = [
   { value: "Put the Pet Up for Adoption", label: "Put the Pet Up for Adoption" },
   { value: "Found a Stray Pet", label: "Found a Stray Pet" },
-  { value: "Unable to Care for Pet Anymore", label: "Unable to Care for Pet Anymore" },
   { value: "Pet Needs Medical Attention", label: "Pet Needs Medical Attention" },
   { value: "Pet Requires a Specialized Home", label: "Pet Requires a Specialized Home" },
-  { value: "Relocating and Cannot Take Pet", label: "Relocating and Cannot Take Pet" },
-  { value: "Pet Has Behavioral Issues", label: "Pet Has Behavioral Issues" },
   { value: "Pet's Owner Passed Away", label: "Pet's Owner Passed Away" },
-  { value: "Pet No Longer Fits Lifestyle", label: "Pet No Longer Fits Lifestyle" },
-  { value: "Pet Needs More Attention/Space", label: "Pet Needs More Attention/Space" },
 ];
 
 

@@ -6,6 +6,7 @@ import { UiButton } from "../Button";
 import { MoveRight } from "lucide-react";
 import Select from "../Select";
 import { ImageUp } from "lucide-react";
+import DogAdoptionBg from "../../../../public/DogAdoptionBg.jpg";
 import {adoptionReasons} from "../../../app/dataArray"
 const HomeEmergency = () => {
   return (
@@ -20,7 +21,7 @@ const HomeEmergency = () => {
               Immediate Assistance for Animals in Need
             </p>
           </div>
-          <div className="flex flex-col w-max gap-4 relative top-32">
+          <div className="flex flex-col w-max gap-4 relative top-[130]">
             <UiButton
               label={"Report Injured Animal"}
               className="rounded-sm"
@@ -37,25 +38,27 @@ const HomeEmergency = () => {
         </div>
       </div>
 
-      <div className="h-[400] w-[600] border rounded-[50] bg-[#fafaf6] overflow-hidden flex justify-center items-center flex-col">
-        <div className="relative bottom-10">
-          <h1 className="font-bold text-2xl text-center">
-            Help a Lost Soul Find a Loving Home
+      <div
+        className="h-[400] w-[600] border rounded-[50] bg-[#fafaf6] flex justify-start gap-10  flex-col"
+        style={{ backgroundImage: `url(${DogAdoptionBg.src})`, backgroundSize: 'cover' }}
+      >
+        <div className="relative left-10 top-4">
+          <h1 className="font-bold text-2xl text-left">
+            Help a Lost Soul <br/> Find a Loving Home
           </h1>
         </div>
-        <div className="flex justify-center items-center px-10 gap-6 mt-4">
-          <div className="h-[200] w-[200] bg-white rounded-lg border flex justify-center items-center">
-            <ImageUp size={50} />
-          </div>
-          <div className="flex-grow flex gap-2 flex-col">
+        <div className="flex justify-start items-center px-10 gap-6 mt-4">
+          
+          <div className="flex gap-2 flex-col w-max">
             <p className="text-[14px]">Looking For?</p>
             {/* Allow this div to grow */}
             <Select
               data={adoptionReasons}
               placeholder={"Select An Option.."}
-              className="w-full" // Ensure the Select takes full width of its container
+              className="" // Ensure the Select takes full width of its container
             />
             <UiButton label={"Proceed "} className="w-full rounded-sm"/>
+            <UiButton label={"Resources "} link="https://www.humanesociety.org/resources/how-help-stray-pet#:~:text=If%20you%20are%20able%20to,a%20veterinary%20hospital%20for%20treatment." className="w-full rounded-sm bg-white text-black hover:bg-slate-100"/>
           </div>
         </div>
         {/* <div className="flex flex-shrink-0 h-[200] w-[350] left-28 bottom-[50] relative z-10">

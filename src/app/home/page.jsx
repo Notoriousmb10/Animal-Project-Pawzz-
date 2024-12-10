@@ -15,7 +15,6 @@ const Home = () => {
       <HomeHeader/>
       <HomeEmergency/>
       <HomeAdoption/>
-      <HomeNgo/>
     </div>
   );
 };

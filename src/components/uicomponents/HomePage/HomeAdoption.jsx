@@ -7,7 +7,7 @@ import { UiButton } from "../../uicomponents/Button";
 const HomeAdoption = () => {
   return (
     <div className="flex justify-left items-center relative my-20 mx-20 gap-20">
-      <div className="h-[700px] w-[600px] shadow-md bg-gradient-to-br from-white to-blue-100 rounded-md">
+      <div className="h-[700px] w-[600px] shadow-md bg-gradient-to-br from-white to-blue-50 rounded-md">
         <div>
           <h1 className="italic font-bold text-4xl relative left-10 top-10">
             A New Beginning
@@ -39,7 +39,7 @@ const HomeAdoption = () => {
           <Image src={GoofyDog} alt="" className="h-full w-full object-cover" />
         </div>
       </div>
-      <div className="h-[700px] w-[650px]   bg-gradient-to-bl from-white to-red-100  rounded-md shadow-md">
+      <div className="h-[700px] w-[650px]   bg-gradient-to-bl from-white to-red-50  rounded-md shadow-md">
         <div>
           <h1 className="italic font-bold text-4xl right-16 relative text-right top-10 text-black">
             Together for Their <br /> Tomorrow
