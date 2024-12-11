@@ -18,6 +18,8 @@ const Schedules = ({ loadAppointments, loadPets }) => {
   });
   useEffect(() => {
     const petNames = loadPets.map((pet) => pet.petName);
+    const petNameAsObj = petNames.map((name) => ({ label: name, value: name }));
+    setPetNames(petNameAsObj);
   }, [loadPets]);
 
 

@@ -10,6 +10,7 @@ const MyPetsPage = () => {
 
   const loadPets = async () => {
     const petDetails = await fetchPets();
+    console.log(petDetails); // Log the pet details
     const petArray = petDetails.map((pet) => {
       const photo = localStorage.getItem(`${pet.petName}`);
       console.log(`Pet Name: ${pet.petName}, Photo: ${photo}`); // Log the photo

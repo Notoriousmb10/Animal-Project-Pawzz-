@@ -11,13 +11,19 @@ export const GET = async (req, res) => {
       console.log("Appointments found:", appointments);
 
       console.log("Response object:", res); // Debug log
-      res.status(200).json(appointments);
+      return new Response(JSON.stringify(appointments), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (err) {
       console.error("Failed to fetch appointments:", err);
       console.log("Response object:", res); // Debug log
       res.status(500).json({ error: "Internal Server Error" });
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    return new Response(JSON.stringify({ message: "Method not allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
