@@ -3,20 +3,21 @@
 import paw from "../../../../public/paw.png";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { UiButton } from "../Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import DropDownOptions from "../DropDownMenu";
+import { User } from "lucide-react";
 const HomeNavbar = () => {
   const router = useRouter();
   const { user } = useUser();
-  const [userr, setUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect( () => {
-    console.log(user);
-    setUser(user);
+    setLoggedInUser(user);
   }, [user]);
   return (
     <div className="flex flex-row justify-between items-center px-20 py-6">
@@ -39,13 +40,8 @@ const HomeNavbar = () => {
           link="/api/auth/logout"
         />
 
-        <Avatar>
-          {userr && userr.picture ? (
-            <AvatarImage src={userr.picture} />
-          ) : (
-            <AvatarFallback>CN</AvatarFallback>
-          )}
-        </Avatar>
+       
+        <DropDownOptions user={loggedInUser} />
       </div>
     </div>
   );
