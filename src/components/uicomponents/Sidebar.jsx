@@ -2,7 +2,7 @@
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -28,8 +28,14 @@ const items = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export function AppSidebar({ onToggle }) {
-  const [isOpen, setIsOpen] = useState(true);
+export default function AppSidebar({ onToggle }) {
+  const [isOpen, setIsOpen] = useState(JSON.parse(localStorage.getItem("sidebar")));
+
+
+  useEffect(() => {
+    const sideBarStatus = JSON.parse(localStorage.getItem("sidebar"));
+    setIsOpen(sideBarStatus);
+  }, []);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -38,7 +44,7 @@ export function AppSidebar({ onToggle }) {
   return (
     <SidebarProvider>
       <div className="relative">
-        <Sidebar isOpen={isOpen.toString()} >
+        <Sidebar isOpen={isOpen} >
           <div className="flex items-center gap-2 bg-white p-4">
             <Image src={paw} height={48} width={48} alt="" />
             <h1 className="text-2xl font-bold">Pawzz</h1>

@@ -1,20 +1,28 @@
+'use client'
 
-
-import React from "react";
+import React, {useState} from "react";
 import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
 import HomeHeader from "@/components/uicomponents/HomePage/HomeHeader";
 import HomeEmergency from "@/components/uicomponents/HomePage/HomeEmergency";
 import HomeNgo from "@/components/uicomponents/HomePage/HomeNgo";
 import HomeAdoption from "@/components/uicomponents/HomePage/HomeAdoption";
+import AppSidebar from "@/components/uicomponents/Sidebar";
 const Home = () => {
-  
+  const [isOpen, setIsOpen] = useState(localStorage.getItem("sidebar"));
+  const handleToggle = (value) => {
+    setIsOpen(value);
+  };
+
+
   return (
-    <div className="">
-      
-      <HomeNavbar/>
-      <HomeHeader/>
-      <HomeEmergency/>
-      <HomeAdoption/>
+    <div className="relative z-30">
+      <div className={`fixed z-40 `}>
+        <AppSidebar onToggle={handleToggle}/>
+      </div>
+      <HomeNavbar />
+      <HomeHeader />
+      <HomeEmergency />
+      <HomeAdoption />
     </div>
   );
 };

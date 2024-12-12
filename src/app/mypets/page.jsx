@@ -5,6 +5,7 @@ import AddPets from "../../components/uicomponents/MyPetsPage/AddPets";
 import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
 import { fetchPets } from "../serverfetching";
 import DogFallBack from '../../../public/DogFallBack.jpg'
+import AppSidebar from "@/components/uicomponents/Sidebar";
 const MyPetsPage = () => {
   const [pets, setPets] = useState([]);
 
@@ -26,8 +27,17 @@ const MyPetsPage = () => {
   useEffect(() => {
     loadPets();
   }, []);
+
+  const [isOpen, setIsOpen] = useState(localStorage.getItem("sidebar"));
+  const handleToggle = (value) => {
+    setIsOpen(value);
+  }
+
   return (
     <>
+    <div className={`fixed z-40 `}>
+        <AppSidebar onToggle={handleToggle}/>
+      </div>
       <HomeNavbar />
       <AddPets loadPets={loadPets} />
 

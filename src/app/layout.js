@@ -21,28 +21,24 @@ const geistMono = localFont({
 
 
 export default function RootLayout({ children }) {
-  const [currentHref, setCurrentHref] = useState(null); // Default value for SSR safety
+  // const [currentHref, setCurrentHref] = useState(null); // Default value for SSR safety
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
 
-      setCurrentHref(window.location.pathname); // Get the path (e.g., '/about')
-    }
-  }, []);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(currentHref === '/' ? false : true);
-  const handleSidebarToggle = (isOpen) => {
-    setIsSidebarOpen(isOpen);
-  };
+  //     setCurrentHref(window.location.pathname); // Get the path (e.g., '/about')
+  //   }
+  // }, []);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(currentHref === '/' ? false : true);
+  
   return (
     <UserProvider>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className={`fixed z-20 ${currentHref === '/'? 'hidden': "block"}`}>
-            <AppSidebar onToggle={handleSidebarToggle} />
-          </div>
-          <div className={`relative z-10 transition-all overflow-x-hidden duration-300 ${!isSidebarOpen ? 'ml-0' : 'ml-60'}`}>{children}</div>
+          
+          <div className={`relative z-10 transition-all overflow-x-hidden duration-300 `}>{children}</div>
         </body>
       </html>
     </UserProvider>
