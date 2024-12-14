@@ -25,6 +25,7 @@ const HomeEmergency = () => {
             <UiButton
               label={"Report Injured Animal"}
               className="rounded-sm"
+              link="/emergency/report"
             />
             <UiButton
               label={"First Aid Instructions"}

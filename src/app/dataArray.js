@@ -1,3 +1,9 @@
+import { Text, ImageUp, MapPin, NotebookTabs, CalendarCheck2, ListFilter, SendHorizontal } from "lucide-react";
+
+
+
+
+
 const reasons = [
   { value: "Vaccination", label: "Vaccination" },
   { value: "Injury", label: "Injury" },
@@ -146,4 +152,37 @@ const birdList = [
   { value: "Indian Ringneck Parakeet", label: "Indian Ringneck Parakeet" },
 ];
 
-export { reasons, appointments, animalList, dogList, catList, birdList, adoptionReasons };
+
+const tabs = [
+  {
+    label: "Report Details",
+    icon: <Text />, // Use JSX element instead of component
+  },
+  {
+    label: "Upload Images",
+    icon: <ImageUp />, // Use JSX element instead of component
+  },
+  {
+    label: "Location Information",
+    icon: <MapPin />, // Use JSX element instead of component
+  },
+  {
+    label: "Emergency Contacts",
+    icon: <NotebookTabs />, // Use JSX element instead of component
+  },
+  {
+    label: "Schedule Pickup",
+    icon: <CalendarCheck2 />, // Use JSX element instead of component
+  },
+  {
+    label: "Advanced Options",
+    icon: <ListFilter />, // Use JSX element instead of component
+  },
+  {
+    label: "Submit Report",
+    icon: <SendHorizontal />, // Use JSX element instead of component
+  },
+];
+
+
+export { tabs, reasons, appointments, animalList, dogList, catList, birdList, adoptionReasons };

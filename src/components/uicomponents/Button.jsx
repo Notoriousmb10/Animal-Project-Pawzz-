@@ -5,7 +5,7 @@ export function UiButton({ className, label, link = "#", onClick, icon }) {
     
     return (
         <Button asChild className={className} onClick={onClick}>
-            <Link href={link}>{label} {icon}</Link>
+            <Link href={link}>{icon} {label} </Link>
         </Button>
     )
 }
