@@ -12,8 +12,8 @@ import {
 } from "../ui/select";
 
 const DropDown = ({ placeholder, onChange, className, data, value }) => (
-    <Select onValueChange={onChange} className={className}>
-        <SelectTrigger aria-label="Animal">
+    <Select onValueChange={onChange}>
+        <SelectTrigger aria-label="Animal"  className={className}>
             <SelectValue placeholder={placeholder} value={value || ""} />
         </SelectTrigger>
         <SelectContent>

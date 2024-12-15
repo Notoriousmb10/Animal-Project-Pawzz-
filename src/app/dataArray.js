@@ -1,8 +1,12 @@
-import { Text, ImageUp, MapPin, NotebookTabs, CalendarCheck2, ListFilter, SendHorizontal } from "lucide-react";
-
-
-
-
+import {
+  Text,
+  ImageUp,
+  MapPin,
+  NotebookTabs,
+  CalendarCheck2,
+  ListFilter,
+  SendHorizontal,
+} from "lucide-react";
 
 const reasons = [
   { value: "Vaccination", label: "Vaccination" },
@@ -27,15 +31,22 @@ const reasons = [
   { value: "Eye Problems", label: "Eye Problems" },
 ];
 
-
 const adoptionReasons = [
-  { value: "Put the Pet Up for Adoption", label: "Put the Pet Up for Adoption" },
+  {
+    value: "Put the Pet Up for Adoption",
+    label: "Put the Pet Up for Adoption",
+  },
   { value: "Found a Stray Pet", label: "Found a Stray Pet" },
-  { value: "Pet Needs Medical Attention", label: "Pet Needs Medical Attention" },
-  { value: "Pet Requires a Specialized Home", label: "Pet Requires a Specialized Home" },
+  {
+    value: "Pet Needs Medical Attention",
+    label: "Pet Needs Medical Attention",
+  },
+  {
+    value: "Pet Requires a Specialized Home",
+    label: "Pet Requires a Specialized Home",
+  },
   { value: "Pet's Owner Passed Away", label: "Pet's Owner Passed Away" },
 ];
-
 
 const appointments = [
   {
@@ -86,6 +97,13 @@ const animalList = [
   { value: "Dog", label: "Dog" },
   { value: "Cat", label: "Cat" },
   { value: "Bird", label: "Bird" },
+];
+
+const emergencyAnimalList = [
+  { value: "Dog", label: "Dog" },
+  { value: "Cat", label: "Cat" },
+  { value: "Bird", label: "Bird" },
+  { value: "Wild Animal", label: "Wild Animal" },
 ];
 
 const dogList = [
@@ -152,37 +170,45 @@ const birdList = [
   { value: "Indian Ringneck Parakeet", label: "Indian Ringneck Parakeet" },
 ];
 
-
 const tabs = [
   {
     label: "Report Details",
-    icon: <Text />, // Use JSX element instead of component
+    icon: <Text />, 
   },
   {
     label: "Upload Images",
-    icon: <ImageUp />, // Use JSX element instead of component
+    icon: <ImageUp />, 
   },
   {
     label: "Location Information",
-    icon: <MapPin />, // Use JSX element instead of component
+    icon: <MapPin />, 
   },
   {
     label: "Emergency Contacts",
-    icon: <NotebookTabs />, // Use JSX element instead of component
+    icon: <NotebookTabs />, 
   },
   {
     label: "Schedule Pickup",
-    icon: <CalendarCheck2 />, // Use JSX element instead of component
+    icon: <CalendarCheck2 />, 
   },
   {
     label: "Advanced Options",
-    icon: <ListFilter />, // Use JSX element instead of component
+    icon: <ListFilter />, 
   },
   {
     label: "Submit Report",
-    icon: <SendHorizontal />, // Use JSX element instead of component
+    icon: <SendHorizontal />, 
   },
 ];
 
-
-export { tabs, reasons, appointments, animalList, dogList, catList, birdList, adoptionReasons };
+export {
+  tabs,
+  reasons,
+  appointments,
+  animalList,
+  dogList,
+  catList,
+  birdList,
+  adoptionReasons,
+  emergencyAnimalList
+};
