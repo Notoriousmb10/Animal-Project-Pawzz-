@@ -106,6 +106,14 @@ const emergencyAnimalList = [
   { value: "Wild Animal", label: "Wild Animal" },
 ];
 
+const injurySeverityScale = [
+  { value: 1, label: "Minor" },
+  { value: 2, label: "Moderate" },
+  { value: 3, label: "Severe" },
+  { value: 4, label: "Critical" },
+];
+
+
 const dogList = [
   { value: "Labrador Retriever", label: "Labrador Retriever" },
   { value: "Golden Retriever", label: "Golden Retriever" },
@@ -210,5 +218,6 @@ export {
   catList,
   birdList,
   adoptionReasons,
-  emergencyAnimalList
+  emergencyAnimalList,
+  injurySeverityScale
 };

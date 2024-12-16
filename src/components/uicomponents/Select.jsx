@@ -11,7 +11,7 @@ import {
     SelectScrollDownButton,
 } from "../ui/select";
 
-const DropDown = ({ placeholder, onChange, className, data, value }) => (
+const DropDown = ({ placeholder, onChange, className, data, value, other }) => (
     <Select onValueChange={onChange}>
         <SelectTrigger aria-label="Animal"  className={className}>
             <SelectValue placeholder={placeholder} value={value || ""} />
@@ -24,7 +24,7 @@ const DropDown = ({ placeholder, onChange, className, data, value }) => (
                     </SelectItem>
                 ))}
                 <SelectSeparator />
-                <SelectItem value="other">Other</SelectItem>
+                {other && <SelectItem value="other">Other</SelectItem>}
             </SelectGroup>
         </SelectContent>
     </Select>
