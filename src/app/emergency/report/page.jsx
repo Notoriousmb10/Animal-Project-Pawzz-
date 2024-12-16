@@ -14,12 +14,17 @@ import GetLocation from "@/components/uicomponents/LocationFetch";
 import imageicon from "../../../../public/imageicon.png";
 import DragAndDropUpload from "@/components/uicomponents/DragAndDrop";
 import Image from "next/image";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarForm } from "@/components/uicomponents/Calendar";
 const Page = () => {
-  const [selectedTab, setSelectedTab] = React.useState("Report Details");
+  const [selectedTab, setSelectedTab] = React.useState(
+    localStorage.getItem("tab")
+  );
   const [photoRemoval, setPhotoRemoval] = React.useState(false);
-  const [images, setImages] = React.useState(localStorage.getItem('images')); 
+  const [images, setImages] = React.useState(localStorage.getItem("images"));
   const handleClick = (label) => {
     setSelectedTab(label);
+    localStorage.setItem("tab", label);
   };
 
   const deletePhotos = () => {
@@ -27,13 +32,12 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if(localStorage.getItem('images') === null) {
-     setPhotoRemoval(false);
-    }else {
+    if (localStorage.getItem("images") === null) {
+      setPhotoRemoval(false);
+    } else {
       return;
     }
   }, []);
-
 
   return (
     <div className="flex justify-center items-center min-h-screen min-w-screen">
@@ -66,8 +70,8 @@ const Page = () => {
             ))}
           </div>
           <div className=" max-w-[200px] flex flex-col gap-2">
-            <p className="text-[12px]">Step 1 of 7</p>
-            <Progress value={33} />
+            <p className="text-[12px]">Step 1 of 5</p>
+            <Progress value={20} />
           </div>
         </div>
         <div className="h-[680px] w-[510px] border-2 rounded-[20] flex flex-col gap-20">
@@ -134,7 +138,7 @@ const Page = () => {
               </div>
             </div>
           ) : selectedTab === "Upload Images" ? (
-            <div>
+            <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4 px-4 py-3">
                 <h1 className="text-sm font-medium text-left flex items-center gap-2 ">
                   Upload Images
@@ -145,7 +149,10 @@ const Page = () => {
                   situation accurately and take appropriate actions.
                 </p>
               </div>
-              <div className="flex items-center justify-center flex-col gap-4">
+              <div
+                className="flex items-center justify-center flex-col gap-4"
+                title="Upload from device"
+              >
                 <NormalButton
                   icon={<ImageUp />}
                   className={
@@ -154,20 +161,61 @@ const Page = () => {
                   label={"Supporting Images"}
                 />
               </div>
-              <DragAndDropUpload photoRemovalStatus={photoRemoval}  />
-
               <div>
+                <DragAndDropUpload photoRemovalStatus={photoRemoval} />
+              </div>
+
+              <div className="flex flex-row justify-between items-center gap-4 mt-10 px-4">
                 <NormalButton
                   label={"Delete Photos"}
                   className="text-[14px] rounded-[5] h-8"
                   onClick={() => deletePhotos()}
                 />
-              </div>
-              <div className="relative left-[400px] top-4">
                 <NormalButton
                   label={"Next"}
                   className="text-[14px] rounded-[5] h-8"
                 />
+              </div>
+            </div>
+          ) : selectedTab === "Schedule Pickup" ? (
+            <div className="px-4 py-3 flex flex-col gap-4 justify-evenly">
+              <div className="flex flex-col gap-4 ">
+                <h1 className="text-sm font-medium text-left flex items-center gap-2 ">
+                  Schedule Pickup
+                </h1>
+
+                <p className="font-bold text-left text-[12px]  flex items-center text-slate-400 ">
+                  Share your current location to help responders reach the site
+                  quickly. <br /> You can also manually add the location where
+                  the animal was found
+                </p>
+              </div>
+
+              <div className="text-[16px] text-slate-500 flex flex-col gap-8">
+                <h3 className="text-black">
+                  Choose when responders can arrive.
+                </h3>
+                <div className="max-w-[250px] flex flex-col gap-4 ">
+                  <CalendarForm label={"Schedule Date"} />
+                  <div className="flex flex-col gap-2" >
+                    <label htmlFor="time" className="block text-[16px] font-medium text-slate-500">
+                      Select Time
+                    </label>
+                    <input
+                      type="time"
+                      id="time"
+                      name="time"
+                      className="mt-1  block w-full px-3 hover:bg-gray-100 cursor-pointer    py-2 border border-gray-300 h-9 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="text-[12px] text-red-500">
+                  <p>A rescue team will contact you shortly. Please remain available to guide them upon arrival.</p>
+                </div>
+                <div className="relative left-[380px] top-28"> 
+
+                <NormalButton label={"Next"} className="text-[14px] rounded-[5] w-16 h-8" />
+                </div>
               </div>
             </div>
           ) : null}

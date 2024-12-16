@@ -48,50 +48,7 @@ const adoptionReasons = [
   { value: "Pet's Owner Passed Away", label: "Pet's Owner Passed Away" },
 ];
 
-const appointments = [
-  {
-    petName: "Buddy",
-    clinicName: "Happy Pets Clinic",
-    date: "2023-01-15",
-    approval: "Approved",
-  },
-  {
-    petName: "Mittens",
-    clinicName: "Healthy Paws Clinic",
-    date: "2023-02-20",
-    approval: "Pending",
-  },
-  {
-    petName: "Rex",
-    clinicName: "VetCare Clinic",
-    date: "2023-03-10",
-    approval: "Rejected",
-  },
-  {
-    petName: "Whiskers",
-    clinicName: "Pet Wellness Center",
-    date: "2023-04-05",
-    approval: "Approved",
-  },
-  {
-    petName: "Bella",
-    clinicName: "Animal Health Clinic",
-    date: "2023-05-18",
-    approval: "Approved",
-  },
-  {
-    petName: "Max",
-    clinicName: "Pet Health Clinic",
-    date: "2023-06-22",
-    approval: "Pending",
-  },
-  {
-    petName: "Luna",
-    clinicName: "Happy Tails Clinic",
-    date: "2023-07-30",
-    approval: "Rejected",
-  },
-];
+
 
 const animalList = [
   { value: "Dog", label: "Dog" },
@@ -112,7 +69,6 @@ const injurySeverityScale = [
   { value: 3, label: "Severe" },
   { value: 4, label: "Critical" },
 ];
-
 
 const dogList = [
   { value: "Labrador Retriever", label: "Labrador Retriever" },
@@ -181,31 +137,24 @@ const birdList = [
 const tabs = [
   {
     label: "Report Details",
-    icon: <Text />, 
+    icon: <Text />,
   },
   {
     label: "Upload Images",
-    icon: <ImageUp />, 
+    icon: <ImageUp />,
   },
-  {
-    label: "Location Information",
-    icon: <MapPin />, 
-  },
-  {
-    label: "Emergency Contacts",
-    icon: <NotebookTabs />, 
-  },
+
   {
     label: "Schedule Pickup",
-    icon: <CalendarCheck2 />, 
+    icon: <CalendarCheck2 />,
   },
   {
     label: "Advanced Options",
-    icon: <ListFilter />, 
+    icon: <ListFilter />,
   },
   {
     label: "Submit Report",
-    icon: <SendHorizontal />, 
+    icon: <SendHorizontal />,
   },
 ];
 
@@ -219,5 +168,5 @@ export {
   birdList,
   adoptionReasons,
   emergencyAnimalList,
-  injurySeverityScale
+  injurySeverityScale,
 };

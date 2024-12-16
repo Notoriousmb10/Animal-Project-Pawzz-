@@ -31,7 +31,7 @@ const FormSchema = z.object({
   }),
 })
 
-export function CalendarForm() {
+export function CalendarForm({label}) {
   const form = useForm({
     resolver: zodResolver(FormSchema),
   })
@@ -55,7 +55,7 @@ export function CalendarForm() {
           name="dob"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Date</FormLabel>
+              <FormLabel>{label}</FormLabel>
               <Popover c>
                 <PopoverTrigger asChild>
                   <FormControl>

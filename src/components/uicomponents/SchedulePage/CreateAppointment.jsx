@@ -6,8 +6,8 @@ import { Search } from "lucide-react";
 import React from "react";
 import DropDown from "../../../components/uicomponents/Select";
 import { reasons } from "../../../app/dataArray";
-import {CalendarForm} from "../../../components/uicomponents/Calendar";
-import {fetchPets} from "../../../app/serverfetching";
+import { CalendarForm } from "../../../components/uicomponents/Calendar";
+import { fetchPets } from "../../../app/serverfetching";
 const Schedules = ({ loadAppointments, loadPets }) => {
   const [petNames, setPetNames] = useState([]);
   const [petDetails, setPetDetails] = useState({
@@ -21,7 +21,6 @@ const Schedules = ({ loadAppointments, loadPets }) => {
     const petNameAsObj = petNames.map((name) => ({ label: name, value: name }));
     setPetNames(petNameAsObj);
   }, [loadPets]);
-
 
   useEffect(() => {
     console.log(petDetails);
@@ -63,9 +62,7 @@ const Schedules = ({ loadAppointments, loadPets }) => {
     <div className="p-8 flex flex-col items-center ">
       <h1 className="text-3xl font-bold mb-6">Create Appointment</h1>
       <div className="flex flex-row justify-center items-center gap-4 ">
-        <div
-          className="bg-[#f0f8ff] shadow-md p-6 flex flex-col md:flex-row gap-6  items-center justify-center rounded-[50]"
-        >
+        <div className="bg-[#f0f8ff] shadow-md p-6 flex flex-col md:flex-row gap-6  items-center justify-center rounded-[50]">
           <div className="flex flex-col gap-4 w-full md:w-auto">
             <div>
               <label htmlFor="pet" className="block text-sm font-medium">
@@ -125,9 +122,8 @@ const Schedules = ({ loadAppointments, loadPets }) => {
               </button>
             </div>
 
-            <div className="">
-              
-              <CalendarForm/>
+            <div>
+              <CalendarForm label={"Date"}/>
             </div>
           </div>
         </div>
