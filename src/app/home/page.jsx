@@ -8,11 +8,16 @@ import HomeNgo from "@/components/uicomponents/HomePage/HomeNgo";
 import HomeAdoption from "@/components/uicomponents/HomePage/HomeAdoption";
 import AppSidebar from "@/components/uicomponents/Sidebar";
 const Home = () => {
-  const [isOpen, setIsOpen] = useState(localStorage.getItem("sidebar"));
-  const handleToggle = (value) => {
-    setIsOpen(value);
+  const [isOpen, setIsOpen] = useState(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("sidebar")) || false;
+    }
+    return false;
+  });
+  const handleToggle = (newState) => {
+    setIsOpen(newState);
+    localStorage.setItem("sidebar", JSON.stringify(newState));
   };
-
 
   return (
     <div className="relative z-30">
@@ -22,7 +27,6 @@ const Home = () => {
       <HomeNavbar />
       <HomeHeader />
       <HomeEmergency />
-      <HomeAdoption />
     </div>
   );
 };
