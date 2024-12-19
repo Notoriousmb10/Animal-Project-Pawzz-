@@ -9,4 +9,8 @@ const useSidebarStore = create((set) => ({
 }));
 
 
+const useReportDetailsStore = create((set)=> ({
+    
+}))
+
 export default useSidebarStore;

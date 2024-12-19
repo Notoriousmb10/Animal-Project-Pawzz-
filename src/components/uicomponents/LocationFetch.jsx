@@ -2,19 +2,21 @@
 
 import { useState } from "react";
 
-export default function GetLocation() {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
+export default function GetLocation({ onLocationChange }) {
+  const [currentLocation, setCurrentLocation] = useState({ latitude: null, longitude: null });
   const [error, setError] = useState("");
 
   const fetchLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
+          const newLocation = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
+          };
+          setCurrentLocation(newLocation);
           setError("");
+          onLocationChange(newLocation); // Call the callback with the new location
         },
         (error) => {
           switch (error.code) {
@@ -38,15 +40,15 @@ export default function GetLocation() {
   };
 
   return (
-    <div className="text-center flex flex-row gap-4  justify-between ml-1">
+    <div className="text-center flex flex-row gap-4 justify-between ml-1">
       <h2 className="text-[12px] mt-2">Fetch Your Current Location</h2>
       <div>
         <button onClick={fetchLocation} className="border rounded-[10] bg-[#F5F5F5] h-8" style={{ padding: "10px 20px" }}>
           Get Location
         </button>
-        {location.latitude && location.longitude && (
+        {currentLocation.latitude && currentLocation.longitude && (
           <p className="text-[12px] mt-2">
-            Latitude: {location.latitude} <br/> Longitude: {location.longitude}
+            Latitude: {currentLocation.latitude} <br /> Longitude: {currentLocation.longitude}
           </p>
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}
