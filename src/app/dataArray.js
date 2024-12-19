@@ -56,6 +56,12 @@ const animalList = [
   { value: "Bird", label: "Bird" },
 ];
 
+const contactMethods = [
+  { value: "Phone Call", label: "Phone Call" },
+  { value: "Email", label: "Email" },
+  { value: "SMS", label: "SMS" },
+  ];
+
 const emergencyAnimalList = [
   { value: "Dog", label: "Dog" },
   { value: "Cat", label: "Cat" },
@@ -169,4 +175,5 @@ export {
   adoptionReasons,
   emergencyAnimalList,
   injurySeverityScale,
+  contactMethods
 };

@@ -18,7 +18,7 @@ import {
 
 import Image from "next/image";
 import paw from "../../../public/paw.png";
-
+import useSidebarStore from "@/app/Store/useStore";
 // Menu items.
 const items = [
   { title: "Home", url: "/home", icon: Home },
@@ -28,22 +28,10 @@ const items = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export default function AppSidebar({ onToggle }) {
-  const [isOpen, setIsOpen] = useState(() => {
-    if (typeof window !== "undefined") {
-      return JSON.parse(localStorage.getItem("sidebar")) || false;
-    }
-    return false;
-  });
+export default function AppSidebar({onToggle}) {
+  const { isOpen, toggleSidebar } = useSidebarStore(); 
 
-  useEffect(() => {
-    localStorage.setItem("sidebar", JSON.stringify(isOpen));
-  }, [isOpen]);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-    onToggle(!isOpen);
-  };
+ 
   return (
     <SidebarProvider>
       <div className="relative">
@@ -78,7 +66,7 @@ export default function AppSidebar({ onToggle }) {
       </div>
       <SidebarTrigger
         className="relative top-2 left-2"
-        onClick={handleToggle}
+        onClick={toggleSidebar}
       />
     </SidebarProvider>
   );

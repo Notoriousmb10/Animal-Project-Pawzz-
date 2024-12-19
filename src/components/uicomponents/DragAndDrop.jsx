@@ -1,14 +1,19 @@
 import { use, useState } from "react";
-import Image from "next/image"; // Assuming you're using Next.js's Image component
+import Image from "next/image";
 import { ImageUp } from "lucide-react";
 import { useEffect } from "react";
 import { set } from "mongoose";
-const DragAndDropUpload = ({ photoRemovalStatus }) => {
-  const [images, setImages] = useState([]); // State to hold multiple images
-  const [allPhotos, setAllPhotos] = useState(localStorage.getItem('images'));
+const DragAndDropUpload = ({ photoRemovalStatus, setPhotoRemovalStatus  }) => {
+  const [savedImages, setSavedImages] = useState(JSON.parse(localStorage.getItem("images")) || []);
   useEffect(() => {
-    localStorage.setItem('images', JSON.stringify(images));
-  }, [images]);
+    if(photoRemovalStatus){
+      setSavedImages([]);
+      localStorage.removeItem("images");
+      setPhotoRemovalStatus(false);
+    }
+  }, [photoRemovalStatus]);
+
+
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -26,23 +31,25 @@ const DragAndDropUpload = ({ photoRemovalStatus }) => {
     event.preventDefault();
     event.stopPropagation();
     event.target.style.border = "2px dashed #aaa";
-
+  
     const files = event.dataTransfer.files;
     const newImages = [];
-
+    const existingImages = JSON.parse(localStorage.getItem("images")) || [];
+  
     if (files) {
+      let filesProcessed = 0; 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (file.type.startsWith("image/")) {
           const reader = new FileReader();
           reader.onloadend = () => {
             newImages.push(reader.result);
-            if (newImages.length === files.length) {
-              setImages((prevImages) =>
-                [...prevImages, ...newImages].slice(0, 6)
-
-              ); // Limit to 6 images
-              localStorage.setItem('images', JSON.stringify(images));
+            filesProcessed++;
+  
+            if (filesProcessed === files.length) {
+              const allImages = [...existingImages, ...newImages].slice(0, 6); 
+              setSavedImages(allImages);
+              localStorage.setItem("images", JSON.stringify(allImages)); 
             }
           };
           reader.readAsDataURL(file);
@@ -69,7 +76,7 @@ const DragAndDropUpload = ({ photoRemovalStatus }) => {
         maxHeight: "300px",
       }}
     >
-      {images.length === 0  && (
+      {savedImages.length === 0 && (
         <div className="flex flex-col items-center gap-4">
           <h3 className="italic font-thin text-center">
             Drag and Drop Images Here
@@ -80,7 +87,7 @@ const DragAndDropUpload = ({ photoRemovalStatus }) => {
 
       {/* Display images inside the grid */}
       <div className="grid grid-cols-3 gap-10 w-full relative">
-        {images.slice(0, 6).map((img, index) => (
+        {savedImages.slice(0, 6).map((img, index) => (
           <div
             key={index}
             className="w-[80px] h-[80px] bg-white flex items-center justify-center"
@@ -112,7 +119,7 @@ const DragAndDropUpload = ({ photoRemovalStatus }) => {
                 reader.onloadend = () => {
                   newImages.push(reader.result);
                   if (newImages.length === files.length) {
-                    setImages((prevImages) =>
+                    savedImages((prevImages) =>
                       [...prevImages, ...newImages].slice(0, 6)
                     ); // Limit to 6 images
                   }
