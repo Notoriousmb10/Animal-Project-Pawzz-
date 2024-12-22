@@ -1,3 +1,14 @@
+import React from 'react';
+import DropDown from '@/components/uicomponents/Select';
+import { contactMethods } from '@/app/dataArray';
+
+const AdvanceOptions = () => {
+  const [advancedOptions, setAdvancedOptions] = React.useState({
+    methodOfContact: "",
+    team: "",
+  });
+  
+  return (
 <div className="px-4 py-3 flex flex-col gap-12 justify-evenly">
 <div className="flex flex-col gap-4 ">
   <h1 className="text-sm font-medium text-left flex items-center gap-2 ">
@@ -53,3 +64,8 @@
     </div> */}
 </div>
 </div>
+  );
+}
+
+
+export default AdvanceOptions;

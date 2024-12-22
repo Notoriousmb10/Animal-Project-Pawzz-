@@ -1,3 +1,41 @@
+import React,  {useEffect } from 'react';
+import DropDown from '@/components/uicomponents/Select';
+import { emergencyAnimalList, injurySeverityScale } from '@/app/dataArray';
+import Tab from '../Tabs';
+import GetLocation from '../LocationFetch';
+import NormalButton from '../NormalButton';
+
+
+
+
+
+
+const ReportDetails = () => {
+  const [reportDetails, setReportDetails] = React.useState({
+    description: "",
+    animal: "",
+    severity: "",
+    location: "",
+    contact: null,
+  });
+
+  useEffect(() => {
+    console.log(reportDetails.location);
+  }, [reportDetails]);
+
+  const handleAnimalChange = (value) => {
+    setReportDetails({ ...reportDetails, animal: value });
+  };
+
+  const handleSeverityChange = (value) => {
+    setReportDetails({ ...reportDetails, severity: value });
+  }
+
+
+
+
+
+  return (
 <div className="flex flex-col justify-evenly items-start gap-4 px-4 py-4">
 <div className="text-sm font-medium text-left flex items-center gap-2">
   <h2>Report Details & Injury Description</h2>
@@ -73,3 +111,8 @@
   />
 </div>
 </div>
+
+  );
+}
+
+export default ReportDetails;
