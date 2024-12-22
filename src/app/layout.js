@@ -6,7 +6,7 @@ import "./globals.css";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
 import AppSidebar from "@/components/uicomponents/Sidebar";
-import useSidebarStore from "./Store/useStore";
+import {useSidebarStore} from "./Store/useStore";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import AppDrawer from "@/components/uicomponents/Drawer";
-
+import { useDetailsStore } from "@/app/Store/useStore";
+import { sections } from "@/app/dataArray";
 const SubmitReport = () => {
+  const { details } = useDetailsStore();
   const [drawerState, setDrawerState] = React.useState(false);
+  const [displayData, setDisplayData] = React.useState({});
+  const handleDetailsClick = (section) => {
+    if (section === "Report Details") {
+      setDisplayData(details.reportDetails);
+    } else if (section === "Uploaded Images") {
+      setDisplayData(details.uploadedImages);
+    } else if (section === "Scheduled Pickup") {
+      setDisplayData(details.scheduledPickup);
+    } else if (section === "Advanced Options") {
+      setDisplayData(details.advancedOptions);
+    }
 
-  const handleDetailsClick = () => {
     setDrawerState(true);
   };
+
+  useEffect(() => {
+    console.log(details);
+
+  }, []);
 
   const handleCloseDrawer = () => {
     setDrawerState(false);
   };
+
   return (
     <div className="flex flex-col gap-32 p-4 justify-between items-start">
       <div className="flex flex-col gap-4">
@@ -23,26 +41,19 @@ const SubmitReport = () => {
         </h1>
       </div>
       <div className="flex flex-col gap-4 w-[300px] italic text-[16px]">
-        <div className="flex flex-row gap-4 justify-between items-center">
-          <h1>Report Details</h1>
-          <NormalButton
-            label={"Details"}
-            className={"rounded-[2] h-7"}
-            onClick={handleDetailsClick}
-          />
-        </div>
-        <div className="flex flex-row gap-4 justify-between items-center">
-          <h1>Uploaded Images</h1>
-          <NormalButton label={"Details"} className={"rounded-[2] h-7"} />
-        </div>
-        <div className="flex flex-row gap-4 justify-between items-center">
-          <h1>Scheduled Pickup</h1>
-          <NormalButton label={"Details"} className={"rounded-[2] h-7"} />
-        </div>
-        <div className="flex flex-row gap-4 justify-between items-center">
-          <h1>Advanced Options</h1>
-          <NormalButton label={"Details"} className={"rounded-[2] h-7"} />
-        </div>
+        {sections.map((section, index) => (
+          <div
+            key={index}
+            className="flex flex-row gap-4 justify-between items-center"
+          >
+            <h1>{section}</h1>
+            <NormalButton
+              label={"Details"}
+              className={"rounded-[2] h-7"}
+              onClick={() => handleDetailsClick(section)}
+            />
+          </div>
+        ))}
       </div>
 
       <div>
@@ -52,7 +63,7 @@ const SubmitReport = () => {
         </h1>
       </div>
 
-      <AppDrawer isOpen={drawerState} onClose={handleCloseDrawer} />
+      <AppDrawer isOpen={drawerState} onClose={handleCloseDrawer} displayData={displayData}/>
     </div>
   );
 };

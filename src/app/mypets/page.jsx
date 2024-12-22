@@ -5,7 +5,7 @@ import AddPets from "../../components/uicomponents/MyPetsPage/AddPets";
 import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
 import { fetchPets } from "../serverfetching";
 import DogFallBack from "../../../public/DogFallBack.jpg";
-import useSidebarStore from "../Store/useStore";
+import {useSidebarStore} from "../Store/useStore";
 
 const MyPetsPage = () => {
   const { setSidebarState } = useSidebarStore(); // Access Zustand store action

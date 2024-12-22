@@ -70,10 +70,10 @@ const emergencyAnimalList = [
 ];
 
 const injurySeverityScale = [
-  { value: 1, label: "Minor" },
-  { value: 2, label: "Moderate" },
-  { value: 3, label: "Severe" },
-  { value: 4, label: "Critical" },
+  { value: "Minor", label: "Minor" },
+  { value: "Moderate", label: "Moderate" },
+  { value: "Severe", label: "Severe" },
+  { value: "Critical", label: "Critical" },
 ];
 
 const dogList = [
@@ -164,6 +164,14 @@ const tabs = [
   },
 ];
 
+
+const sections = [
+  "Report Details",
+  "Uploaded Images",
+  "Scheduled Pickup",
+  "Advanced Options",
+];
+
 export {
   tabs,
   reasons,
@@ -175,5 +183,6 @@ export {
   adoptionReasons,
   emergencyAnimalList,
   injurySeverityScale,
-  contactMethods
+  contactMethods,
+  sections,
 };

@@ -7,7 +7,7 @@ import HomeEmergency from "@/components/uicomponents/HomePage/HomeEmergency";
 import HomeNgo from "@/components/uicomponents/HomePage/HomeNgo";
 import HomeAdoption from "@/components/uicomponents/HomePage/HomeAdoption";
 import AppSidebar from "@/components/uicomponents/Sidebar";
-import useSidebarStore from "../Store/useStore";
+import {useSidebarStore} from "../Store/useStore";
 const Home = () => {
   
   const {isOpen} = useSidebarStore();

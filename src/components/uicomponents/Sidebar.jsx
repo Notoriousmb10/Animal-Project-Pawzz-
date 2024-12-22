@@ -18,7 +18,7 @@ import {
 
 import Image from "next/image";
 import paw from "../../../public/paw.png";
-import useSidebarStore from "@/app/Store/useStore";
+import { useSidebarStore } from "@/app/Store/useStore";
 // Menu items.
 const items = [
   { title: "Home", url: "/home", icon: Home },
