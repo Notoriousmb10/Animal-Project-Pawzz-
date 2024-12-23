@@ -20,7 +20,7 @@ export const useDetailsStore = create((set) => ({
       date: "",
       time: "",
     },
-    advancedOptions: {
+    advanceOptions: {
       methodOfContact: "",
       shelterPref: "",
     },

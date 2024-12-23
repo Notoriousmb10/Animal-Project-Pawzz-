@@ -22,7 +22,7 @@ const Page = () => {
             <UploadImages />
           ) : selectedTab === "Schedule Pickup" ? (
             <SchedulePickup />
-          ) : selectedTab === "Advanced Options" ? (
+          ) : selectedTab === "Advance Options" ? (
             <AdvanceOptions />
           ) : selectedTab === "Submit Report" ? (
             <SubmitReport />

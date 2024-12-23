@@ -9,25 +9,12 @@ const SubmitReport = () => {
   const [drawerState, setDrawerState] = React.useState(false);
   const [displayData, setDisplayData] = React.useState({});
 
-  const handleDetailsClick = (section) => {
-    let dataToDisplay = {};
-    if (section === "Report Details") {
-      dataToDisplay = details.reportDetails;
-    } else if (section === "Uploaded Images") {
-      dataToDisplay = details.uploadedImages;
-    } else if (section === "Scheduled Pickup") {
-      dataToDisplay = details.scheduledPickup;
-    } else if (section === "Advanced Options") {
-      dataToDisplay = details.advancedOptions;
-    }
-
-    setDisplayData(dataToDisplay);
+  const handleDetailsClick = () => {
+    setDisplayData(details);
     setDrawerState(true);
+    console.log(displayData);
   };
 
-  useEffect(() => {
-    console.log("Report Details:", details.reportDetails);
-  }, [details]);
 
   const handleCloseDrawer = () => {
     setDrawerState(false);
@@ -44,7 +31,7 @@ const SubmitReport = () => {
         </h1>
       </div>
       <div className="flex flex-col gap-4 w-[300px] italic text-[16px]">
-        {sections.map((section, index) => (
+        {/* {sections.map((section, index) => (
           <div
             key={index}
             className="flex flex-row gap-4 justify-between items-center"
@@ -56,7 +43,12 @@ const SubmitReport = () => {
               onClick={() => handleDetailsClick(section)}
             />
           </div>
-        ))}
+        ))} */}
+        <NormalButton
+          label={"Details"}
+          className={"rounded-[2] h-7"}
+          onClick={() => handleDetailsClick()}
+        />
       </div>
 
       <div>
@@ -66,7 +58,11 @@ const SubmitReport = () => {
         </h1>
       </div>
 
-      <AppDrawer isOpen={drawerState} onClose={handleCloseDrawer} displayData={displayData} />
+      <AppDrawer
+        isOpen={drawerState}
+        onClose={handleCloseDrawer}
+        displayData={displayData}
+      />
     </div>
   );
 };

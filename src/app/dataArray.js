@@ -155,7 +155,7 @@ const tabs = [
     icon: <CalendarCheck2 />,
   },
   {
-    label: "Advanced Options",
+    label: "Advance Options",
     icon: <ListFilter />,
   },
   {
@@ -169,8 +169,9 @@ const sections = [
   "Report Details",
   "Uploaded Images",
   "Scheduled Pickup",
-  "Advanced Options",
+  "Advance Options",
 ];
+
 
 export {
   tabs,

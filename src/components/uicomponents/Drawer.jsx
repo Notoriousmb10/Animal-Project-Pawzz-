@@ -8,12 +8,16 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import ReportDetailsTable from "./ReportPage/Table";
 
-const AppDrawer = ({ isOpen, onClose, children, displayData }) => {
-  const [animalDetails, setAnimalDetails] = React.useState({});
-  useEffect(() => {
-    setAnimalDetails(JSON.stringify(displayData, null, 2));
+const AppDrawer = ({ isOpen, onClose,displayData }) => {
+  const [animalDetails, setAnimalDetails] = React.useState([]);
+  useEffect( () => {
+    console.log(displayData)
+   const dataAsArray = Object.entries(displayData)
+   setAnimalDetails(dataAsArray);
+   console.log(dataAsArray);
   }, [displayData]);
   return (
     <Drawer open={isOpen} onOpenChange={onClose}>
@@ -21,7 +25,7 @@ const AppDrawer = ({ isOpen, onClose, children, displayData }) => {
         <DrawerHeader>
           <DrawerTitle>The Details You Have Filled</DrawerTitle>
           <DrawerDescription>
-            {JSON.stringify(displayData, null, 2)}
+            <ReportDetailsTable data={animalDetails} />
           </DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="flex flex-row justify-end">
