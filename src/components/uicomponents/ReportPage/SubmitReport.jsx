@@ -3,28 +3,31 @@ import NormalButton from "@/components/uicomponents/NormalButton";
 import AppDrawer from "@/components/uicomponents/Drawer";
 import { useDetailsStore } from "@/app/Store/useStore";
 import { sections } from "@/app/dataArray";
+
 const SubmitReport = () => {
   const { details } = useDetailsStore();
   const [drawerState, setDrawerState] = React.useState(false);
   const [displayData, setDisplayData] = React.useState({});
+
   const handleDetailsClick = (section) => {
+    let dataToDisplay = {};
     if (section === "Report Details") {
-      setDisplayData(details.reportDetails);
+      dataToDisplay = details.reportDetails;
     } else if (section === "Uploaded Images") {
-      setDisplayData(details.uploadedImages);
+      dataToDisplay = details.uploadedImages;
     } else if (section === "Scheduled Pickup") {
-      setDisplayData(details.scheduledPickup);
+      dataToDisplay = details.scheduledPickup;
     } else if (section === "Advanced Options") {
-      setDisplayData(details.advancedOptions);
+      dataToDisplay = details.advancedOptions;
     }
 
+    setDisplayData(dataToDisplay);
     setDrawerState(true);
   };
 
   useEffect(() => {
-    console.log(details);
-
-  }, []);
+    console.log("Report Details:", details.reportDetails);
+  }, [details]);
 
   const handleCloseDrawer = () => {
     setDrawerState(false);
@@ -63,7 +66,7 @@ const SubmitReport = () => {
         </h1>
       </div>
 
-      <AppDrawer isOpen={drawerState} onClose={handleCloseDrawer} displayData={displayData}/>
+      <AppDrawer isOpen={drawerState} onClose={handleCloseDrawer} displayData={displayData} />
     </div>
   );
 };

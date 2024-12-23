@@ -11,17 +11,20 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
 const AppDrawer = ({ isOpen, onClose, children, displayData }) => {
+  const [animalDetails, setAnimalDetails] = React.useState({});
   useEffect(() => {
-    console.log(displayData);
+    setAnimalDetails(JSON.stringify(displayData, null, 2));
   }, [displayData]);
   return (
     <Drawer open={isOpen} onOpenChange={onClose}>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>The Details You Have Filled</DrawerTitle>
-          <DrawerDescription>{displayData}</DrawerDescription>
+          <DrawerDescription>
+            {JSON.stringify(displayData, null, 2)}
+          </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter className='flex flex-row justify-end'>
+        <DrawerFooter className="flex flex-row justify-end">
           <Button className="w-[100px]">OK</Button>
           <DrawerClose>
             <Button variant="outline" onClick={onClose} className="w-[100px]">
