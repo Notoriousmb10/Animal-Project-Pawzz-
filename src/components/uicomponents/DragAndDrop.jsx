@@ -3,17 +3,28 @@ import Image from "next/image";
 import { ImageUp } from "lucide-react";
 import { useEffect } from "react";
 import { set } from "mongoose";
-const DragAndDropUpload = ({ photoRemovalStatus, setPhotoRemovalStatus  }) => {
-  const [savedImages, setSavedImages] = useState(JSON.parse(localStorage.getItem("images")) || []);
+const DragAndDropUpload = ({
+  photoRemovalStatus,
+  setPhotoRemovalStatus,
+  images,
+}) => {
+  const [savedImages, setSavedImages] = useState(
+    JSON.parse(localStorage.getItem("images")) || []
+  );
   useEffect(() => {
-    if(photoRemovalStatus){
+    if (photoRemovalStatus) {
       setSavedImages([]);
       localStorage.removeItem("images");
       setPhotoRemovalStatus(false);
     }
   }, [photoRemovalStatus]);
 
-
+  useEffect(() => {
+    if (images) {
+      setSavedImages(images);
+      localStorage.setItem("images", JSON.stringify(images));
+    }
+  }, [images]);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -31,13 +42,13 @@ const DragAndDropUpload = ({ photoRemovalStatus, setPhotoRemovalStatus  }) => {
     event.preventDefault();
     event.stopPropagation();
     event.target.style.border = "2px dashed #aaa";
-  
+
     const files = event.dataTransfer.files;
     const newImages = [];
     const existingImages = JSON.parse(localStorage.getItem("images")) || [];
-  
+
     if (files) {
-      let filesProcessed = 0; 
+      let filesProcessed = 0;
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (file.type.startsWith("image/")) {
@@ -45,11 +56,11 @@ const DragAndDropUpload = ({ photoRemovalStatus, setPhotoRemovalStatus  }) => {
           reader.onloadend = () => {
             newImages.push(reader.result);
             filesProcessed++;
-  
+
             if (filesProcessed === files.length) {
-              const allImages = [...existingImages, ...newImages].slice(0, 6); 
+              const allImages = [...existingImages, ...newImages].slice(0, 6);
               setSavedImages(allImages);
-              localStorage.setItem("images", JSON.stringify(allImages)); 
+              localStorage.setItem("images", JSON.stringify(allImages));
             }
           };
           reader.readAsDataURL(file);

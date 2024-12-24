@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { cn } from "@/lib/utils"
-import { toast } from "@/components/hooks/use-toast"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { toast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
@@ -18,23 +18,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 const FormSchema = z.object({
   dob: z.date({
     required_error: "A date of birth is required.",
   }),
-})
+});
 
-export function CalendarForm({label}) {
+export function CalendarForm({ label, onDateChange }) {
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
-  })
+  });
 
   function onSubmit(data) {
     toast({
@@ -44,7 +46,7 @@ export function CalendarForm({label}) {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -79,20 +81,21 @@ export function CalendarForm({label}) {
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date < new Date() 
-                    }
+                    onSelect={(date) => {
+                      field.onChange(date);
+                      onDateChange(date);
+                    }}
+                    disabled={(date) => date < new Date()}
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
-              
+
               <FormMessage />
             </FormItem>
           )}
         />
       </form>
     </Form>
-  )
+  );
 }

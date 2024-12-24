@@ -1,14 +1,19 @@
 import React from "react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { CalendarForm } from "@/components/uicomponents/Calendar";
+import { useDetailsStore } from "@/app/Store/useStore";
+import { format, parseISO } from "date-fns";
 
 const SchedulePickup = () => {
-  const [schedulePickup, setSchedulePickup] = React.useState({
-    date: "",
-    time: "",
-  });
-
-
+  const { details, setDetails } = useDetailsStore();
+  const handleDateChange = (date) => {
+    setDetails({
+      scheduledPickup: {
+        ...details.scheduledPickup,
+        date: format(date, "PPP"),
+      },
+    });
+  };
   return (
     <div className="px-4 py-3 flex flex-col gap-4 justify-evenly">
       <div className="flex flex-col gap-4 ">
@@ -26,7 +31,10 @@ const SchedulePickup = () => {
       <div className="text-[16px] text-slate-500 flex flex-col gap-8">
         <h3 className="text-black">Choose when responders can arrive.</h3>
         <div className="max-w-[250px] flex flex-col gap-4 ">
-          <CalendarForm label={"Schedule Date"} />
+          <CalendarForm
+            label={"Schedule Date"}
+            onDateChange={handleDateChange}
+          />
           <div className="flex flex-col gap-2">
             <label
               htmlFor="time"
@@ -39,6 +47,14 @@ const SchedulePickup = () => {
               id="time"
               name="time"
               className="mt-1  block w-full px-3 hover:bg-gray-100 cursor-pointer    py-2 border border-gray-300 h-9 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              onChange={(e) =>
+                setDetails({
+                  scheduledPickup: {
+                    ...details.scheduledPickup,
+                    time: e.target.value,
+                  },
+                })
+              }
             />
           </div>
         </div>

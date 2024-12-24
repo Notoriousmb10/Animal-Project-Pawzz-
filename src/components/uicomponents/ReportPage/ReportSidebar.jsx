@@ -3,16 +3,8 @@ import { HeartHandshake } from "lucide-react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { Progress } from "@/components/ui/progress";
 import { tabs } from "@/app/dataArray";
-const ReportSidebar = ({currTab}) => {
-  const [selectedTab, setSelectedTab] = React.useState(
-    localStorage.getItem("tab")
-  );
-  const handleClick = (label) => {
-    setSelectedTab(label);
-    
-    localStorage.setItem("tab", label);
-    currTab(label);
-  };
+const ReportSidebar = ({handleClick, selectedTab}) => {
+  
 
   return (
     <div className="flex flex-col m-10 max-w-[220px] justify-evenly itmes-center gap-16">
@@ -35,7 +27,7 @@ const ReportSidebar = ({currTab}) => {
               tab.label === selectedTab ? "bg-[#EFF0F1]" : "bg-white"
             } text-[#3B3B3B]
          border-[#D9D9D9] text-[14px] flex justify-start pl-4 shadow-none`}
-            onClick={() => handleClick(tab.label)} // Pass function reference
+            onClick={() => handleClick(tab.label)}
           >
             {tab.label}
           </NormalButton>

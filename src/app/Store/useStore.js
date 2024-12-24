@@ -15,7 +15,6 @@ export const useDetailsStore = create((set) => ({
       location: "",
       contact: null,
     },
-    uploadedImages: [],
     scheduledPickup: {
       date: "",
       time: "",
