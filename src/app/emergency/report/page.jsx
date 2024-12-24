@@ -42,7 +42,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-    s</>
+    </>
   );
 };
 

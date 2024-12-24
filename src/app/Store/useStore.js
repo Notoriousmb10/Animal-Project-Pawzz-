@@ -29,3 +29,8 @@ export const useDetailsStore = create((set) => ({
       details: { ...state.details, ...newDetails },
     })),
 }));
+
+export const useProgressStore = create((set) => ({
+  progress: 25,
+  setProgress: (value) => set({ progress: value }),
+}));

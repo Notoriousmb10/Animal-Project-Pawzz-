@@ -3,8 +3,9 @@ import { HeartHandshake } from "lucide-react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { Progress } from "@/components/ui/progress";
 import { tabs } from "@/app/dataArray";
-const ReportSidebar = ({handleClick, selectedTab}) => {
-  
+import { useProgressStore } from "@/app/Store/useStore";
+const ReportSidebar = ({ handleClick, selectedTab }) => {
+  const { progress } = useProgressStore();
 
   return (
     <div className="flex flex-col m-10 max-w-[220px] justify-evenly itmes-center gap-16">
@@ -35,7 +36,7 @@ const ReportSidebar = ({handleClick, selectedTab}) => {
       </div>
       <div className=" max-w-[200px] flex flex-col gap-2">
         <p className="text-[12px]">Step 1 of 5</p>
-        <Progress value={20} />
+        <Progress value={progress} />
       </div>
     </div>
   );
