@@ -1,27 +1,25 @@
 "use client";
 
 import paw from "../../../../public/paw.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { UiButton } from "../Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import DropDownOptions from "../DropDownMenu";
-import { User } from "lucide-react";
 const HomeNavbar = () => {
-  const router = useRouter();
   const { user } = useUser();
-  const [loggedInUser, setLoggedInUser] = useState();
-  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect( () => {
-    setLoggedInUser(user);
+  useEffect(() => {
+    console.log(user);
   }, [user]);
+
   return (
     <div className="flex flex-row justify-between items-center px-20 py-6">
-      <div className="flex items-center gap-2 cursor-pointer"  onClick={()=> router.push("/home")}>
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => router.push("/home")}
+      >
         <Image src={paw} height={48} width={48} alt="" />
 
         <h1 className="text-2xl font-bold">Pawzz</h1>
@@ -40,8 +38,7 @@ const HomeNavbar = () => {
           link="/api/auth/logout"
         />
 
-       
-        <DropDownOptions user={loggedInUser} />
+        <DropDownOptions user={user} />
       </div>
     </div>
   );

@@ -5,10 +5,13 @@ import Tab from "../Tabs";
 import GetLocation from "../LocationFetch";
 import NormalButton from "../NormalButton";
 import { useDetailsStore, useProgressStore } from "@/app/Store/useStore";
-
 const details = () => {
+  const { progress, setProgress } = useProgressStore();
+  useEffect(() => {
+    setProgress(25);
+  }, []);
+
   const { details, setDetails } = useDetailsStore();
-  const { setProgress } = useProgressStore();
   const handleAnimalChange = (value) => {
     setDetails({
       reportDetails: {
@@ -34,9 +37,9 @@ const details = () => {
       details.reportDetails.animal !== "" ||
       details.reportDetails.severity !== ""
     ) {
-      localStorage.setItem("selectedTab", "Upload Images");
-      setProgress(50);ī
+      sessionStorage.setItem("selectedTab", "Upload Images");
       window.location.reload();
+      setProgress(50);
     } else {
       alert("Please fill in all the details");
     }
@@ -56,6 +59,7 @@ const details = () => {
             <textarea
               className="focus:outline-none border-[#94A3B8] text-[16px] rounded-[10] px-2 w-[480px] max-h-[80px] h-[100px]  shadow-md border resize-y"
               placeholder="Describe"
+              value={details.reportDetails.description}
               onChange={(e) =>
                 setDetails({
                   reportDetails: {
@@ -73,7 +77,7 @@ const details = () => {
                 data={emergencyAnimalList}
                 other={true}
                 onChange={handleAnimalChange}
-                value={details.animal}
+                defaultValue={details.reportDetails.animal}
               />
               <div className="h-[40px] w-[320px] rounded-[10] flex flex-row gap-4  items-center pl-2 justify-between">
                 <DropDown
@@ -81,7 +85,7 @@ const details = () => {
                   className={"text-[14px] w-[320px]"}
                   data={injurySeverityScale}
                   onChange={handleSeverityChange}
-                  value={details.severity}
+                  defaultValue={details.reportDetails.severity}
                 />
               </div>
             </div>
@@ -114,6 +118,7 @@ const details = () => {
                         },
                       })
                     }
+                    value={details.reportDetails.location}
                   />
                 </div>
               }
@@ -136,7 +141,7 @@ const details = () => {
       <div className="absolute bottom-14 right-[330px]">
         <NormalButton
           label={"Next"}
-          className="text-[14px] rounded-[5] w-16 h-8"
+          className="text-[14px] rounded-[5] w-16 h-8 bg-blue-500"
           onClick={handleNavigation}
         />
       </div>

@@ -3,11 +3,16 @@ import NormalButton from "@/components/uicomponents/NormalButton";
 import AppDrawer from "@/components/uicomponents/Drawer";
 import { useDetailsStore } from "@/app/Store/useStore";
 import { ArrowUpFromDot } from "lucide-react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const SubmitReport = () => {
-  const { details } = useDetailsStore();
+  const { user } = useUser();
+  const { details, setDetails } = useDetailsStore();
   const [drawerState, setDrawerState] = React.useState(false);
   const [displayData, setDisplayData] = React.useState({});
+  const [submitState, setSubmitState] = React.useState();
 
   const handleDetailsClick = () => {
     setDisplayData(details);
@@ -17,6 +22,38 @@ const SubmitReport = () => {
 
   const handleCloseDrawer = () => {
     setDrawerState(false);
+  };
+
+  useEffect(() => {
+    setDetails({
+      reportDetails: {
+        ...details.reportDetails,
+        contact: user?.email,
+      },
+    });
+  }, []);
+
+  const handleSubmission = async () => {
+    setSubmitState(true);
+    try {
+      const resp = await fetch(
+        "http://localhost:3000/api/create-EmergencyReport",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(displayData),
+        }
+      );
+      const data = await resp.json();
+      console.log(data);
+      setTimeout(() => {
+        setSubmitState(false);
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -32,17 +69,16 @@ const SubmitReport = () => {
       <div className="flex flex-col gap-4 w-full italic text-[16px] justify-center items-center">
         <p>Submit Once You Are Done Reviewing The Details</p>
 
-
         <NormalButton
           label={"Details"}
-          className={"rounded-[6] h-7 w"}
+          className={"rounded-[6] h-7 w bg-blue-500"}
           onClick={() => handleDetailsClick()}
           icon={<ArrowUpFromDot />}
         />
       </div>
 
       <div>
-        <h1 className="text-[16px] italic font-medium text-left flex items-center gap-2 ">
+        <h1 className="text-[16px] italic font-medium text-center flex items-center gap-2 ">
           Every report you submit brings hope and care to an animal in need.
           Thank you for making a difference!
         </h1>
@@ -53,6 +89,19 @@ const SubmitReport = () => {
         onClose={handleCloseDrawer}
         displayData={displayData}
       />
+      <div className="absolute bottom-14 right-[330px]">
+        {submitState ? (
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <NormalButton
+            label={"Submit"}
+            className="text-[14px] rounded-[5] w-16 h-8  bg-blue-500"
+            onClick={handleSubmission}
+          />
+        )}
+      </div>
     </div>
   );
 };

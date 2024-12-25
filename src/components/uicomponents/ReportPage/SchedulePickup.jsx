@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { CalendarForm } from "@/components/uicomponents/Calendar";
 import { useDetailsStore } from "@/app/Store/useStore";
 import { format, parseISO } from "date-fns";
-
+import { useProgressStore } from "@/app/Store/useStore";
 const SchedulePickup = () => {
+  const { setProgress } = useProgressStore();
   const { details, setDetails } = useDetailsStore();
   const handleDateChange = (date) => {
     setDetails({
@@ -15,17 +16,24 @@ const SchedulePickup = () => {
     });
   };
 
-  const handleNavigation = () => {
+  useEffect(() => {
+      setProgress(75);
+    }, []);
+
+  const handleNavigation = async () => {
     if (
       details.scheduledPickup.date !== "" ||
       details.scheduledPickup.time !== ""
     ) {
-      localStorage.setItem("selectedTab", "Advance Options");
-      window.location.reload();
+      sessionStorage.setItem("selectedTab", "Advance Options");
+      window.location.reload()
+      setProgress(90);
     } else {
       alert("Please fill in the date and time for the pickup");
     }
   };
+  
+
   return (
     <>
       <div className="px-4 py-3 flex flex-col gap-4 justify-evenly">
@@ -47,6 +55,7 @@ const SchedulePickup = () => {
             <CalendarForm
               label={"Schedule Date"}
               onDateChange={handleDateChange}
+              
             />
             <div className="flex flex-col gap-2">
               <label
@@ -82,7 +91,7 @@ const SchedulePickup = () => {
       <div className="absolute bottom-14 right-[330px] ">
         <NormalButton
           label={"Next"}
-          className="text-[14px] rounded-[5] w-16 h-8"
+          className="text-[14px] rounded-[5] w-16 h-8 bg-blue-500"
           onClick={handleNavigation}
         />
       </div>

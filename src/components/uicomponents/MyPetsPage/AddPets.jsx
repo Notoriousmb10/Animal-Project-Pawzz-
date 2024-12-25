@@ -29,7 +29,7 @@ const AddPets = ({loadPets}) => {
           body: JSON.stringify({ petName, animal, breed, description }),
         });
 
-        localStorage.setItem(`${petName}`, JSON.stringify(photo));
+        sessionStorage.setItem(`${petName}`, JSON.stringify(photo));
 
         const data = await resp.json();
         console.log(data);

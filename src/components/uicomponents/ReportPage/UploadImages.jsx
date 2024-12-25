@@ -1,22 +1,31 @@
 import React, { useEffect, useRef } from "react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { ImageUp } from "lucide-react";
+import { useRouter } from "next/router";
 import DragAndDropUpload from "@/components/uicomponents/DragAndDrop";
-
+import { useProgressStore } from "@/app/Store/useStore";
 const UploadImage = () => {
+  const { setProgress } = useProgressStore();
   const [images, setImages] = React.useState(
-    JSON.parse(localStorage.getItem("images")) || []
+    JSON.parse(sessionStorage.getItem("images")) || []
   );
   const [photoRemoval, setPhotoRemoval] = React.useState(false);
   const fileInputRef = useRef(null);
+
+
+  useEffect(() => {
+    setProgress(50);
+  }, []);
+
 
   const handleNavigation = () => {
     if (images.length === 0) {
       alert("Please upload at least one image.");
       return;
     }
-    localStorage.setItem("selectedTab", "Schedule Pickup");
+    sessionStorage.setItem("selectedTab", "Schedule Pickup");
     window.location.reload();
+    setProgress(75);
   };
 
   const handleUpload = (event) => {
@@ -41,14 +50,14 @@ const UploadImage = () => {
       const updatedImages = [...images, ...base64Images];
       const limitedImages = updatedImages.slice(0, 6); // Ensure no more than 6 images
       setImages(limitedImages);
-      // Save updated images to localStorage
-      localStorage.setItem("images", JSON.stringify(limitedImages));
+      // Save updated images to sessionStorage
+      sessionStorage.setItem("images", JSON.stringify(limitedImages));
     });
   };
 
   useEffect(() => {
-    // If no images exist in localStorage, set `photoRemoval` to false
-    if (!localStorage.getItem("images")) {
+    // If no images exist in sessionStorage, set `photoRemoval` to false
+    if (!sessionStorage.getItem("images")) {
       setPhotoRemoval(false);
     }
   }, []);
@@ -101,13 +110,13 @@ const UploadImage = () => {
           label={"Delete Photos"}
           onClick={() => {
             setImages([]);
-            localStorage.removeItem("images"); // Remove images from localStorage
+            sessionStorage.removeItem("images"); // Remove images from sessionStorage
           }}
-          className="text-[14px] rounded-[5] h-8"
+          className="text-[14px] rounded-[5] h-8 bg-blue-500"
         />
         <NormalButton
           label={"Next"}
-          className="text-[14px] rounded-[5] w-16 h-8"
+          className="text-[14px] rounded-[5] w-16 h-8 bg-blue-500"
           onClick={handleNavigation}
         />
       </div>

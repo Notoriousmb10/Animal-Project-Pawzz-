@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
+import {useDetailsStore} from "@/app/Store/useStore";
 export default function GetLocation({ onLocationChange }) {
+  const {details} = useDetailsStore();
   const [currentLocation, setCurrentLocation] = useState({ latitude: null, longitude: null });
   const [error, setError] = useState("");
 
@@ -48,7 +49,7 @@ export default function GetLocation({ onLocationChange }) {
         </button>
         {currentLocation.latitude && currentLocation.longitude && (
           <p className="text-[12px] mt-2">
-            Latitude: {currentLocation.latitude} <br /> Longitude: {currentLocation.longitude}
+            {details.reportDetails.location ? details.reportDetails.location : `Latitude: ${currentLocation.latitude} <br /> Longitude: ${currentLocation.longitude}`}
           </p>
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}

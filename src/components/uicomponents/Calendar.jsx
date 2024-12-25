@@ -33,9 +33,10 @@ const FormSchema = z.object({
 
 export function CalendarForm({ label, onDateChange }) {
   const [selectedDate, setSelectedDate] = useState(null);
-
+  
   const form = useForm({
     resolver: zodResolver(FormSchema),
+   
   });
 
   function onSubmit(data) {
@@ -51,7 +52,7 @@ export function CalendarForm({ label, onDateChange }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)}  className="space-y-8">
         <FormField
           control={form.control}
           name="dob"
@@ -87,6 +88,7 @@ export function CalendarForm({ label, onDateChange }) {
                     }}
                     disabled={(date) => date < new Date()}
                     initialFocus
+                   
                   />
                 </PopoverContent>
               </Popover>

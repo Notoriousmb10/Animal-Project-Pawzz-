@@ -9,12 +9,12 @@ const DragAndDropUpload = ({
   images,
 }) => {
   const [savedImages, setSavedImages] = useState(
-    JSON.parse(localStorage.getItem("images")) || []
+    JSON.parse(sessionStorage.getItem("images")) || []
   );
   useEffect(() => {
     if (photoRemovalStatus) {
       setSavedImages([]);
-      localStorage.removeItem("images");
+      sessionStorage.removeItem("images");
       setPhotoRemovalStatus(false);
     }
   }, [photoRemovalStatus]);
@@ -22,7 +22,7 @@ const DragAndDropUpload = ({
   useEffect(() => {
     if (images) {
       setSavedImages(images);
-      localStorage.setItem("images", JSON.stringify(images));
+      sessionStorage.setItem("images", JSON.stringify(images));
     }
   }, [images]);
 
@@ -45,7 +45,7 @@ const DragAndDropUpload = ({
 
     const files = event.dataTransfer.files;
     const newImages = [];
-    const existingImages = JSON.parse(localStorage.getItem("images")) || [];
+    const existingImages = JSON.parse(sessionStorage.getItem("images")) || [];
 
     if (files) {
       let filesProcessed = 0;
@@ -60,7 +60,7 @@ const DragAndDropUpload = ({
             if (filesProcessed === files.length) {
               const allImages = [...existingImages, ...newImages].slice(0, 6);
               setSavedImages(allImages);
-              localStorage.setItem("images", JSON.stringify(allImages));
+              sessionStorage.setItem("images", JSON.stringify(allImages));
             }
           };
           reader.readAsDataURL(file);

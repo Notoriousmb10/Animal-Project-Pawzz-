@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import DropDown from "@/components/uicomponents/Select";
 import { contactMethods } from "@/app/dataArray";
 import { useDetailsStore } from "../../../app/Store/useStore";
 import NormalButton from "../NormalButton";
+import { useProgressStore } from "../../../app/Store/useStore";
 
 const AdvanceOptions = () => {
   const { details, setDetails } = useDetailsStore();
+  const { setProgress } = useProgressStore();
+  useEffect(() => {
+    setProgress(90);
+  }, []);
 
   const handleMethodOfContactChange = (value) => {
     setDetails({
@@ -30,8 +35,9 @@ const AdvanceOptions = () => {
       alert("Please select a method of contact.");
       return;
     }
-    localStorage.setItem("selectedTab", "Submit Report");
+    sessionStorage.setItem("selectedTab", "Submit Report");
     window.location.reload();
+    setProgress(100);
   };
 
   return (
@@ -58,7 +64,7 @@ const AdvanceOptions = () => {
                 className={"text-[14px] w-[200px]"}
                 data={contactMethods}
                 onChange={handleMethodOfContactChange}
-                value={details.advanceOptions.methodOfContact}
+                defaultValue={details.advanceOptions.methodOfContact}
               />
             </div>
           </div>
@@ -88,7 +94,7 @@ const AdvanceOptions = () => {
       <div className="absolute bottom-14 right-[330px]">
         <NormalButton
           label={"Next"}
-          className="text-[14px] rounded-[5] w-16 h-8"
+          className="text-[14px] rounded-[5] w-16 h-8 bg-blue-500"
           onClick={handleNavigation}
         />
       </div>

@@ -11,9 +11,9 @@ import {
     SelectScrollDownButton,
 } from "../ui/select";
 
-const DropDown = ({ placeholder, onChange, className, data, value, other }) => (
-    <Select onValueChange={onChange}>
-        <SelectTrigger aria-label="Animal"  className={className}>
+const DropDown = ({ placeholder, onChange, className, data, value, other, defaultValue }) => (
+    <Select onValueChange={onChange} defaultValue={defaultValue}>
+        <SelectTrigger aria-label="Animal" className={className}>
             <SelectValue placeholder={placeholder} value={value || ""} />
         </SelectTrigger>
         <SelectContent>
