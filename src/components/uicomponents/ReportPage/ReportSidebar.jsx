@@ -8,7 +8,7 @@ const ReportSidebar = ({ handleClick, selectedTab }) => {
   const { progress } = useProgressStore();
 
   return (
-    <div className="flex flex-col m-10 max-w-[220px] justify-evenly itmes-center gap-16">
+    <div className="flex flex-col m-10 max-w-[220px] justify-evenly itmes-center gap-16 ">
       <div className=" flex flex-col gap-4 justify-between">
         <h1 className="text-sm font-medium text-left flex items-center gap-2">
           <HeartHandshake /> Report an Emergency
