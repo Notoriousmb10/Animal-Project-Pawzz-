@@ -2,29 +2,12 @@ import { use, useState } from "react";
 import Image from "next/image";
 import { ImageUp } from "lucide-react";
 import { useEffect } from "react";
-import { set } from "mongoose";
-const DragAndDropUpload = ({
-  photoRemovalStatus,
-  setPhotoRemovalStatus,
-  images,
-}) => {
+import { useImagesStore } from "@/app/Store/useStore";
+const DragAndDropUpload = () => {
+  const { images, setImages } = useImagesStore();
   const [savedImages, setSavedImages] = useState(
     JSON.parse(sessionStorage.getItem("images")) || []
   );
-  useEffect(() => {
-    if (photoRemovalStatus) {
-      setSavedImages([]);
-      sessionStorage.removeItem("images");
-      setPhotoRemovalStatus(false);
-    }
-  }, [photoRemovalStatus]);
-
-  useEffect(() => {
-    if (images) {
-      setSavedImages(images);
-      sessionStorage.setItem("images", JSON.stringify(images));
-    }
-  }, [images]);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -45,8 +28,6 @@ const DragAndDropUpload = ({
 
     const files = event.dataTransfer.files;
     const newImages = [];
-    const existingImages = JSON.parse(sessionStorage.getItem("images")) || [];
-
     if (files) {
       let filesProcessed = 0;
       for (let i = 0; i < files.length; i++) {
@@ -58,9 +39,7 @@ const DragAndDropUpload = ({
             filesProcessed++;
 
             if (filesProcessed === files.length) {
-              const allImages = [...existingImages, ...newImages].slice(0, 6);
-              setSavedImages(allImages);
-              sessionStorage.setItem("images", JSON.stringify(allImages));
+              setImages(newImages);
             }
           };
           reader.readAsDataURL(file);
@@ -87,7 +66,7 @@ const DragAndDropUpload = ({
         maxHeight: "300px",
       }}
     >
-      {savedImages.length === 0 && (
+      {images.length === 0 && (
         <div className="flex flex-col items-center gap-4">
           <h3 className="italic font-thin text-center">
             Drag and Drop Images Here
@@ -98,7 +77,7 @@ const DragAndDropUpload = ({
 
       {/* Display images inside the grid */}
       <div className="grid grid-cols-3 gap-10 w-full relative">
-        {savedImages.slice(0, 6).map((img, index) => (
+        {images.slice(0, 6).map((img, index) => (
           <div
             key={index}
             className="w-[80px] h-[80px] bg-white flex items-center justify-center"

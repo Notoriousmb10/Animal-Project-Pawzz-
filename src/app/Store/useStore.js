@@ -47,6 +47,19 @@ export const useDetailsStore = create(
   )
 );
 
+export const useImagesStore = create(
+  persist(
+    (set) => ({
+      images: [],
+      setImages: (images) => set({ images }),
+    }),
+    {
+      name: "images",
+      getStorage: () => sessionStorage,
+    }
+  )
+);
+
 export const useProgressStore = create(
   persist(
     (set) => ({
