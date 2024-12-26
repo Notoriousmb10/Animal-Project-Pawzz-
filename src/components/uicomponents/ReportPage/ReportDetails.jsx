@@ -5,7 +5,10 @@ import Tab from "../Tabs";
 import GetLocation from "../LocationFetch";
 import NormalButton from "../NormalButton";
 import { useDetailsStore, useProgressStore } from "@/app/Store/useStore";
+import { useRouter } from "next/navigation";
+
 const details = () => {
+  const router = useRouter();
   const { progress, setProgress } = useProgressStore();
   useEffect(() => {
     setProgress(25);

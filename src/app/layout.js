@@ -1,12 +1,11 @@
 "use client";
 
 import localFont from "next/font/local";
-import { useState } from "react";
-import "./globals.css";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { useEffect } from "react";
 import AppSidebar from "@/components/uicomponents/Sidebar";
-import {useSidebarStore} from "./Store/useStore";
+import { useSidebarStore } from "@/app/Store/useStore";
+import "./globals.css";
+import React, { useEffect } from "react";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -20,13 +19,13 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
-  const { isOpen, setSidebarState, toggleSidebar} = useSidebarStore();
+  const { setSidebarState, toggleSidebar } = useSidebarStore();
   
-    useEffect(() => {
-      setSidebarState(false);
-      toggleSidebar();
-    }, [setSidebarState]); 
-  
+  useEffect(()=> {
+    setSidebarState(false);
+    // toggleSidebar();
+  },[]);
+
   return (
     <UserProvider>
       <html lang="en">

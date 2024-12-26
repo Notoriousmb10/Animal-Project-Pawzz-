@@ -1,13 +1,15 @@
 "use client";
 
 import paw from "../../../../public/paw.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { UiButton } from "../Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import DropDownOptions from "../DropDownMenu";
+import { useRouter } from "next/navigation";
 const HomeNavbar = () => {
+  const router = useRouter();
   const { user } = useUser();
 
   useEffect(() => {

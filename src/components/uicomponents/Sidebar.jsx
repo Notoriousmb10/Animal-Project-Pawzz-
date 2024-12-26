@@ -28,10 +28,13 @@ const items = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export default function AppSidebar({onToggle}) {
-  const { isOpen, toggleSidebar } = useSidebarStore(); 
+export default function AppSidebar({ onToggle }) {
+  const { isOpen, setSidebarState, toggleSidebar } = useSidebarStore();
 
- 
+  useEffect(() => {
+    toggleSidebar();
+  }, []);
+
   return (
     <SidebarProvider>
       <div className="relative">
