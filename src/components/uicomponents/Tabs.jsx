@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 const Tab = ({ className, tab1, tab2, tab1Content, tab2Content }) => (
     <Tabs defaultValue="Manually enter location" className={className}>

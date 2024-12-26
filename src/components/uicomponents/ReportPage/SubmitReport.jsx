@@ -97,7 +97,7 @@ const SubmitReport = () => {
         ) : (
           <NormalButton
             label={"Submit"}
-            className="text-[14px] rounded-[5] w-16 h-8  bg-blue-500"
+            className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8  bg-blue-500"
             onClick={handleSubmission}
           />
         )}
