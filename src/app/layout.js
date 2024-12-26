@@ -1,37 +1,34 @@
 "use client";
 
-import localFont from "next/font/local";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation"; // Correctly import the router from "next/navigation"
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import AppSidebar from "@/components/uicomponents/Sidebar";
 import { useSidebarStore } from "@/app/Store/useStore";
 import "./globals.css";
-import React, { useEffect } from "react";
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export default function RootLayout({ children }) {
-  const { setSidebarState, toggleSidebar } = useSidebarStore();
-  
-  useEffect(()=> {
-    setSidebarState(false);
-    // toggleSidebar();
-  },[]);
+  // const { setSidebarState } = useSidebarStore();
+  // const router = useRouter();
+
+  // // Close the sidebar on route change
+  // useEffect(() => {
+  //   if (router && router.events && typeof router.events.on === "function") {
+  //     const handleRouteChange = () => {
+  //       setSidebarState(true);
+  //     };
+
+  //     router.events.on("routeChangeStart", handleRouteChange);
+  //     return () => {
+  //       router.events.off("routeChangeStart", handleRouteChange);
+  //     };
+  //   }
+  // }, [router, setSidebarState]);
 
   return (
     <UserProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body>
           <div className="flex">
             <div className="relative z-20">
               <AppSidebar />
