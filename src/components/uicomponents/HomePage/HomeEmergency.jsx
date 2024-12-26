@@ -1,14 +1,13 @@
 import React from "react";
 import DogEmergency from "../../../../public/DogEmergency.png";
-import DogAdoption from "../../../../public/DogAdoption.png";
 import Image from "next/image";
 import { UiButton } from "../Button";
 import { MoveRight } from "lucide-react";
-import Select from "../Select";
-import { ImageUp } from "lucide-react";
-import DogAdoptionBg from "../../../../public/DogAdoptionBg.jpg";
-import {adoptionReasons} from "../../../app/dataArray"
+import { MoveUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import DogDonation from "../../../../public/dogDonation.png";
 const HomeEmergency = () => {
+  const router = useRouter();
   return (
     <div className="flex gap-20 justify-center">
       <div className="h-[400] w-[600] border overflow-hidden bg-[#EFF6FF] rounded-[50]">
@@ -39,34 +38,65 @@ const HomeEmergency = () => {
         </div>
       </div>
 
-      <div
-        className="h-[400] w-[600] border rounded-[50] bg-[#fafaf6] flex justify-start gap-10  flex-col"
-        style={{ backgroundImage: `url(${DogAdoptionBg.src})`, backgroundSize: 'cover' }}
-      >
-        <div className="relative left-10 top-4">
-          <h1 className="font-bold text-2xl text-left">
-            Help a Lost Soul <br/> Find a Loving Home
+      <div className="h-[400] w-[600] relative border rounded-[50] bg-[#fafaf6] flex justify-start gap-10  flex-col overflow-hidden">
+        <div className="absolute h-60 w-56 -right-4 bottom-0">
+          <Image src={DogDonation}/>
+        </div>
+        <div className="relative left-4 top-4">
+          <h1 className="font-bold text-xl ml-7 text-left">
+            Animals for Adoption And Much More
           </h1>
         </div>
-        <div className="flex justify-start items-center px-10 gap-6 mt-4">
-          
-          <div className="flex gap-2 flex-col w-max">
-            <p className="text-[14px]">Looking For?</p>
-            {/* Allow this div to grow */}
-            <Select
-              data={adoptionReasons}
-              placeholder={"Select An Option.."}
-              className="" // Ensure the Select takes full width of its container
+        <div className="flex justify-start px-10 gap-6 mt-2 flex-col">
+          <div
+            className="w-[300] h-[40] relative bg-white shadow-lg hover:bg-slate-100 cursor-pointer rounded-[20]"
+            onClick={() => router.push("/post-animal")}
+          >
+            <MoveUpRight
+              size={20}
+              color="#000000"
+              className="absolute right-2 top-2 "
             />
-            <UiButton label={"Proceed "} className="w-full rounded-sm"/>
-            <UiButton label={"Resources "} link="https://www.humanesociety.org/resources/how-help-stray-pet#:~:text=If%20you%20are%20able%20to,a%20veterinary%20hospital%20for%20treatment." className="w-full rounded-sm bg-white text-black hover:bg-slate-100"/>
+            <p className="text-[24px] mx-4">Post Animals</p>
+          </div>
+          <div
+            className="w-[300] h-[40] relative bg-white shadow-lg hover:bg-slate-100 cursor-pointer rounded-[20] "
+            onClick={() => router.push("/browse-animal")}
+          >
+            <MoveUpRight
+              size={20}
+              color="#000000"
+              className="absolute right-2 top-2 "
+            />
+            <p className="text-[24px] mx-4">Browse Animals</p>
+          </div>
+          <div
+            className="w-[300] h-[40] relative bg-white shadow-lg hover:bg-slate-100 cursor-pointer rounded-[20]"
+            onClick={() => router.push("/adopt-animal")}
+          >
+            <MoveUpRight
+              size={20}
+              color="#000000"
+              className="absolute right-2 top-2 "
+            />
+            <p className="text-[24px] mx-4">Adopt</p>
+          </div>
+          <div
+            className="w-[300] h-[40] relative bg-white shadow-lg hover:bg-slate-100 cursor-pointer rounded-[20]"
+            onClick={() => router.push("/donate")}
+          >
+            <MoveUpRight
+              size={20}
+              color="#000000"
+              className="absolute right-2 top-2 "
+            />
+            <p className="text-[24px] mx-4">Donate</p>
           </div>
         </div>
         {/* <div className="flex flex-shrink-0 h-[200] w-[350] left-28 bottom-[50] relative z-10">
           <Image src={DogAdoption} />
         </div> */}
       </div>
-
     </div>
   );
 };

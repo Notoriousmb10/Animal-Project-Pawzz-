@@ -1,10 +1,14 @@
-'use client'
-
+"use client";
 
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import Noty from "@/components/ui/notification";
+import { useRouter } from "next/navigation";
+import { useScheduleCountStore } from "@/app/Store/useStore";
 const HomeHeader = () => {
   const { user } = useUser();
+  const router = useRouter();
+  const { scheduleCount } = useScheduleCountStore();
 
   return (
     <div className="px-20 py-10 flex flex-row gap-6">
@@ -15,16 +19,12 @@ const HomeHeader = () => {
         }}
       >
         <div>
+          <h1 className="relative top-10 left-10 text-4xl font-semibold">
+            Welcome {user ? user.given_name : "Guest"}!
+          </h1>
 
-        <h1 className="relative top-10 left-10 text-4xl font-semibold">
-          Welcome { user? user.given_name : 'Guest'}!
-        </h1>
-
-        <div>
-          
+          <div></div>
         </div>
-        </div>
-
       </div>
 
       <div className="flex flex-col gap-2">
@@ -33,19 +33,25 @@ const HomeHeader = () => {
           style={{
             backgroundImage: `url('/HomeMyPets.jpg')`,
           }}
-          onClick={()=> window.location.href = '/mypets'}
+          onClick={() => router.push("/mypets")}
         >
           <h1 className="relative top-24 left-10 text-3xl font-semibold">
             My Pets
           </h1>
         </div>
         <div
-          className="h-[194px] w-[400px] border rounded-[50px] bg-center bg-cover hover:shadow-lg cursor-pointer"
+          className="h-[194px] w-[400px] relative border rounded-[50px] bg-center bg-cover hover:shadow-lg cursor-pointer"
           style={{
             backgroundImage: `url('/HomeAppointment.jpg')`,
           }}
-          onClick={()=> window.location.href = '/schedules'}
+          onClick={() => router.push("/schedules")}
         >
+          <Noty
+            width="32"
+            color="rgb(29, 161, 242)"
+            count={scheduleCount}
+            className=" w-max absolute right-4 top-4"
+          />
           <h1 className="relative top-24 left-10 text-3xl font-semibold">
             Schedules
           </h1>

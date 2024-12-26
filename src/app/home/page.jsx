@@ -6,7 +6,7 @@ import HomeHeader from "@/components/uicomponents/HomePage/HomeHeader";
 import HomeEmergency from "@/components/uicomponents/HomePage/HomeEmergency";
 const Home = () => {
   return (
-    <div className="relative z-30">
+    <div className="relative z-30 my-4">
       <HomeNavbar />
       <HomeHeader />
       <HomeEmergency />
