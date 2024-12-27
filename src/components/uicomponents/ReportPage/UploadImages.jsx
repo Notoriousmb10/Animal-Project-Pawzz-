@@ -99,9 +99,8 @@ const UploadImage = () => {
         </div>
         <div>
           <DragAndDropUpload
-            photoRemovalStatus={photoRemoval}
-            setPhotoRemovalStatus={(value) => setPhotoRemoval(value)}
-            images={images}
+            route="/emergency/report"
+
           />
         </div>
       </div>

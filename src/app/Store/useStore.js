@@ -49,16 +49,21 @@ export const useDetailsStore = create(
 
 export const useImagesStore = create(
   persist(
-    (set) => ({
-      images: [],
-      setImages: (images) => set({ images }),
+    (set, get) => ({
+      routeImages: {}, 
+      setImages: (route, images) =>
+        set((state) => ({
+          routeImages: { ...state.routeImages, [route]: images },
+        })),
+      getImages: (route) => get().routeImages[route] || [],
     }),
     {
-      name: "images",
+      name: "route-images",
       getStorage: () => sessionStorage,
     }
   )
 );
+
 
 export const useProgressStore = create(
   persist(

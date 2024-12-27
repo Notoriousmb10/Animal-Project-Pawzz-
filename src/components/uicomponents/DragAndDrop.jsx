@@ -1,13 +1,11 @@
-import { use, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { ImageUp } from "lucide-react";
-import { useEffect } from "react";
 import { useImagesStore } from "@/app/Store/useStore";
-const DragAndDropUpload = () => {
-  const { images, setImages } = useImagesStore();
-  const [savedImages, setSavedImages] = useState(
-    JSON.parse(sessionStorage.getItem("images")) || []
-  );
+
+const DragAndDropUpload = ({ route }) => {
+  const { getImages, setImages } = useImagesStore(); // Access store functions
+  const images = getImages(route); // Get images for the current route
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -39,7 +37,7 @@ const DragAndDropUpload = () => {
             filesProcessed++;
 
             if (filesProcessed === files.length) {
-              setImages(newImages);
+              setImages(route, [...images, ...newImages].slice(0, 6)); // Limit to 6 images
             }
           };
           reader.readAsDataURL(file);
@@ -75,8 +73,7 @@ const DragAndDropUpload = () => {
         </div>
       )}
 
-      {/* Display images inside the grid */}
-      <div className="grid grid-cols-3 gap-10 w-full relative">
+      <div className="grid grid-cols-3 gap-4 w-full relative">
         {images.slice(0, 6).map((img, index) => (
           <div
             key={index}
@@ -85,43 +82,13 @@ const DragAndDropUpload = () => {
             <Image
               src={img}
               alt={`Uploaded Image ${index + 1}`}
-              className="object-cover h-full w-full opacity-30"
-              width={20} // Adjust width as necessary
-              height={20} // Adjust height as necessary
+              className="object-cover h-[80px] w-[80px]"
+              width={80}
+              height={80}
             />
           </div>
         ))}
       </div>
-
-      <input
-        type="file"
-        accept="image/*"
-        style={{ display: "none" }}
-        onChange={(e) => {
-          const files = e.target.files;
-          const newImages = [];
-
-          if (files) {
-            for (let i = 0; i < files.length; i++) {
-              const file = files[i];
-              if (file.type.startsWith("image/")) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  newImages.push(reader.result);
-                  if (newImages.length === files.length) {
-                    savedImages((prevImages) =>
-                      [...prevImages, ...newImages].slice(0, 6)
-                    ); // Limit to 6 images
-                  }
-                };
-                reader.readAsDataURL(file);
-              } else {
-                alert("Please upload only image files.");
-              }
-            }
-          }
-        }}
-      />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import AnimalUpload from '@/components/uicomponents/PostAnimal/AnimalUpload'
 const postAnimal = () => {
