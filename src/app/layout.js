@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation"; // Correctly import the router from "next/navigation"
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import AppSidebar from "@/components/uicomponents/Sidebar";
-import { useSidebarStore } from "@/app/Store/useStore";
 import "./globals.css";
 
 export default function RootLayout({ children }) {

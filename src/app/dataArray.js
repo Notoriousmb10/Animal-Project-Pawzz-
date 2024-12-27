@@ -56,6 +56,12 @@ const animalList = [
   { value: "Bird", label: "Bird" },
 ];
 
+const animalGender = [
+  { value:  "Male", label: "Male" },
+  { value:  "Female", label: "Female" },
+]
+
+
 const contactMethods = [
   { value: "Phone Call", label: "Phone Call" },
   { value: "Email", label: "Email" },
@@ -186,4 +192,5 @@ export {
   injurySeverityScale,
   contactMethods,
   sections,
+  animalGender
 };

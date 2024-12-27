@@ -100,6 +100,8 @@ const UploadImage = () => {
         <div>
           <DragAndDropUpload
             route="/emergency/report"
+            label="Drag and drop images here"
+            className="w-[450px] py-4"
 
           />
         </div>

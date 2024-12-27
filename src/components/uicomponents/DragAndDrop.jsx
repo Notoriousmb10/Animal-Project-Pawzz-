@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ImageUp } from "lucide-react";
 import { useImagesStore } from "@/app/Store/useStore";
 
-const DragAndDropUpload = ({ route }) => {
+const DragAndDropUpload = ({ route, className, label }) => {
   const { getImages, setImages } = useImagesStore(); // Access store functions
   const images = getImages(route); // Get images for the current route
 
@@ -53,13 +53,13 @@ const DragAndDropUpload = ({ route }) => {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
+      className={className}
       style={{
         border: "2px dashed #aaa",
         borderRadius: "10px",
-        padding: "40px",
         textAlign: "center",
-        width: "480px",
-        maxWidth: "500px",
+        
+       
         margin: "auto",
         maxHeight: "300px",
       }}
@@ -67,9 +67,9 @@ const DragAndDropUpload = ({ route }) => {
       {images.length === 0 && (
         <div className="flex flex-col items-center gap-4">
           <h3 className="italic font-thin text-center">
-            Drag and Drop Images Here
+            {label}
           </h3>
-          <ImageUp size={128} className="opacity-20" />
+          <ImageUp size={100} className="opacity-20" />
         </div>
       )}
 
