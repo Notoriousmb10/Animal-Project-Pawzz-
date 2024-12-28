@@ -48,8 +48,6 @@ const adoptionReasons = [
   { value: "Pet's Owner Passed Away", label: "Pet's Owner Passed Away" },
 ];
 
-
-
 const animalList = [
   { value: "Dog", label: "Dog" },
   { value: "Cat", label: "Cat" },
@@ -57,16 +55,15 @@ const animalList = [
 ];
 
 const animalGender = [
-  { value:  "Male", label: "Male" },
-  { value:  "Female", label: "Female" },
-]
-
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+];
 
 const contactMethods = [
   { value: "Phone Call", label: "Phone Call" },
   { value: "Email", label: "Email" },
   { value: "SMS", label: "SMS" },
-  ];
+];
 
 const emergencyAnimalList = [
   { value: "Dog", label: "Dog" },
@@ -170,7 +167,6 @@ const tabs = [
   },
 ];
 
-
 const sections = [
   "Report Details",
   "Uploaded Images",
@@ -178,6 +174,19 @@ const sections = [
   "Advance Options",
 ];
 
+const healthStatus = [
+  { value: "Healthy", label: "Healthy" },
+  { value: "Sick", label: "Sick" },
+  { value: "Injured", label: "Injured" },
+  { value: "Special Needs", label: "Special Needs" },
+  { value: "Pregnant", label: "Pregnant" },
+];
+
+const adoptionUrgency = [
+  { value: "Urgent", label: "Urgent" },
+  { value: "Moderate", label: "Moderate" },
+  { value: "Can Wait", label: "Can Wait" },
+];
 
 export {
   tabs,
@@ -192,5 +201,7 @@ export {
   injurySeverityScale,
   contactMethods,
   sections,
-  animalGender
+  animalGender,
+  healthStatus,
+  adoptionUrgency
 };

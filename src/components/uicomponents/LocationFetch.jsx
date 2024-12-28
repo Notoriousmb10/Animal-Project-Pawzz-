@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import {useDetailsStore} from "@/app/Store/useStore";
-export default function GetLocation({ onLocationChange }) {
-  const {details} = useDetailsStore();
-  const [currentLocation, setCurrentLocation] = useState({ latitude: null, longitude: null });
+import { useEffect, useState } from "react";
+import { useDetailsStore } from "@/app/Store/useStore";
+import { set } from "mongoose";
+export default function GetLocation({ onLocationChange, label }) {
+  const { details } = useDetailsStore();
+  const [currentLocation, setCurrentLocation] = useState({
+    latitude: null,
+    longitude: null,
+  });
   const [error, setError] = useState("");
+  const [fetching, setFetching] = useState("idle");
 
-  const fetchLocation = () => {
+  const fetchLocation = ({}) => {
+    setFetching("fetching");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -15,9 +21,11 @@ export default function GetLocation({ onLocationChange }) {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           };
+
           setCurrentLocation(newLocation);
+          setFetching("fetched");
           setError("");
-          onLocationChange(newLocation); // Call the callback with the new location
+          onLocationChange(newLocation);
         },
         (error) => {
           switch (error.code) {
@@ -40,16 +48,31 @@ export default function GetLocation({ onLocationChange }) {
     }
   };
 
+  useEffect(() => {
+    setFetching("idle");
+  }, []);
+
   return (
     <div className="text-center flex flex-row gap-4 justify-between ml-1">
-      <h2 className="text-[12px] mt-2">Fetch Your Current Location</h2>
+      <h2 className="text-[14px] font-semibold mt-2">{label}n</h2>
       <div>
-        <button onClick={fetchLocation} className="border rounded-[10] bg-[#F5F5F5] h-8" style={{ padding: "10px 20px" }}>
+        <button
+          onClick={fetchLocation}
+          className={`border rounded-[10]  h-8 text-[12px] p-2 ${
+            fetching === "fetching"
+              ? "bg-yellow-200"
+              : fetching === "fetched"
+              ? "bg-green-200"
+              : "bg-[#F5F5F5]"
+          }`}
+        >
           Get Location
         </button>
         {currentLocation.latitude && currentLocation.longitude && (
           <p className="text-[12px] mt-2">
-            {details.reportDetails.location ? details.reportDetails.location : `Latitude: ${currentLocation.latitude} <br /> Longitude: ${currentLocation.longitude}`}
+            {details.reportDetails.location
+              ? details.reportDetails.location
+              : `Latitude: ${currentLocation.latitude} Longitude: ${currentLocation.longitude}`}
           </p>
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}

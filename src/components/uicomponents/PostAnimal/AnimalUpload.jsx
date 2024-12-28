@@ -3,7 +3,8 @@ import DragAndDropUpload from "../DragAndDrop";
 import { Input } from "@/components/ui/input";
 import { animalList, animalGender } from "@/app/dataArray";
 import Select from "../../uicomponents/Select";
-
+import GetLocation from "../LocationFetch";
+import { healthStatus, adoptionUrgency } from "@/app/dataArray";
 const AnimalUpload = () => {
   const [tags, setTags] = useState([]);
   const [currentTag, setCurrentTag] = useState("");
@@ -21,7 +22,7 @@ const AnimalUpload = () => {
   };
 
   return (
-    <div className="h-[700px] w-[1400px] border-2 rounded-[20] shadow-lg mx-12 my-6">
+    <div className="h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6">
       <div className="flex flex-col relative ml-4 my-4 w-[350px]">
         <div>
           <h1 className="font-bold">Post An Adoptable Animal</h1>
@@ -81,6 +82,49 @@ const AnimalUpload = () => {
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="flex items-center mx-2 ">
+        <div className="h-[600px] border-dashed border-2 "></div>
+      </div>
+
+      <div className="flex flex-col gap-10">
+        <div className="mt-2">
+          <GetLocation label="Enter Animal Location" />
+        </div>
+        <div>
+          <p className="font-medium text-[14px] mb-2">Enter Age</p>
+
+          <Input
+            type="number"
+            className="border rounded-md p-2 text-[12px]"
+            placeholder="Enter a number"
+          />
+        </div>
+        <div>
+          <p className="font-medium text-[14px] mb-2">Health Status</p>
+          <Select
+            data={healthStatus}
+            placeholder="Enter  Health Status"
+            className="text-[12px]"
+          />
+        </div>
+
+        <div>
+          <p className="font-medium text-[14px] mb-2">Describe Shortly</p>
+          <textarea
+            className="focus:outline-none border-[#94A3B8] text-[16px] rounded-[10] px-2 w-[480px] max-h-[80px] h-[100px]  shadow-md border resize-y"
+            placeholder="Description"
+          />
+        </div>
+        <div>
+          <p className="font-medium text-[14px] mb-2">Adoption Urgency</p>
+          <Select
+            data={adoptionUrgency}
+            placeholder="Enter  Health Status"
+            className="text-[12px]"
+          />
         </div>
       </div>
     </div>

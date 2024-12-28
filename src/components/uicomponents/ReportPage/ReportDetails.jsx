@@ -127,6 +127,7 @@ const details = () => {
               }
               tab2Content={
                 <GetLocation
+                  label="Get Location"
                   onLocationChange={(value) =>
                     setDetails({
                       reportDetails: {
