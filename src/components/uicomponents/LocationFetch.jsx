@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useDetailsStore } from "@/app/Store/useStore";
-import { set } from "mongoose";
 export default function GetLocation({ onLocationChange, label }) {
   const { details } = useDetailsStore();
   const [currentLocation, setCurrentLocation] = useState({

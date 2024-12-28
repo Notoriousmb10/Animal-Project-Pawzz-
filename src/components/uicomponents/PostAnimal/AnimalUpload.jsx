@@ -22,8 +22,8 @@ const AnimalUpload = () => {
   };
 
   return (
-    <div className="h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6">
-      <div className="flex flex-col relative ml-4 my-4 w-[350px]">
+    <div className="h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6 justify-center ">
+      <div className="flex flex-col relative ml-4 my-4 w-[350px] ">
         <div>
           <h1 className="font-bold">Post An Adoptable Animal</h1>
           <p className="text-[16px] text-slate-500">

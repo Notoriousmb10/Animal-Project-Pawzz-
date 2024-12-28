@@ -48,6 +48,13 @@ const DragAndDropUpload = ({ route, className, label }) => {
     }
   };
 
+  const deleteImage = (index) => () => {
+    setImages(
+      route,
+      images.filter((_, i) => i !== index)
+    );
+  };
+
   return (
     <div
       onDragOver={handleDragOver}
@@ -58,17 +65,13 @@ const DragAndDropUpload = ({ route, className, label }) => {
         border: "2px dashed #aaa",
         borderRadius: "10px",
         textAlign: "center",
-        
-       
         margin: "auto",
         maxHeight: "300px",
       }}
     >
       {images.length === 0 && (
         <div className="flex flex-col items-center gap-4">
-          <h3 className="italic font-thin text-center">
-            {label}
-          </h3>
+          <h3 className="italic font-thin text-center">{label}</h3>
           <ImageUp size={100} className="opacity-20" />
         </div>
       )}
@@ -77,14 +80,15 @@ const DragAndDropUpload = ({ route, className, label }) => {
         {images.slice(0, 6).map((img, index) => (
           <div
             key={index}
-            className="w-[80px] h-[80px] bg-white flex items-center justify-center"
+            className="w-[80px] h-[80px] bg-white flex items-center m-auto justify-center"
           >
             <Image
               src={img}
               alt={`Uploaded Image ${index + 1}`}
-              className="object-cover h-[80px] w-[80px]"
+              className="object-cover h-[80px] w-[80px] hover:animate-pulse "
               width={80}
               height={80}
+              onClick={deleteImage(index)}
             />
           </div>
         ))}
