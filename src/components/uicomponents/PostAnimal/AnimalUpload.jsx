@@ -89,7 +89,7 @@ const AnimalUpload = () => {
         <div className="h-[600px] border-dashed border-2 "></div>
       </div>
 
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-10  mt-2">
         <div className="mt-2">
           <GetLocation label="Enter Animal Location" />
         </div>

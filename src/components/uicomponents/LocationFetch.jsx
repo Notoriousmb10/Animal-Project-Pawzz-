@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useDetailsStore } from "@/app/Store/useStore";
+import {Toaster} from '../ui/sonner'
+
 export default function GetLocation({ onLocationChange, label }) {
   const { details } = useDetailsStore();
   const [currentLocation, setCurrentLocation] = useState({
@@ -11,7 +13,7 @@ export default function GetLocation({ onLocationChange, label }) {
   const [error, setError] = useState("");
   const [fetching, setFetching] = useState("idle");
 
-  const fetchLocation = ({}) => {
+  const fetchLocation = () => {
     setFetching("fetching");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -25,6 +27,15 @@ export default function GetLocation({ onLocationChange, label }) {
           setFetching("fetched");
           setError("");
           onLocationChange(newLocation);
+
+          // Show toast notification
+          Toaster("Location fetched successfully", {
+            description: `Latitude: ${newLocation.latitude}, Longitude: ${newLocation.longitude}`,
+            action: {
+              label: "OK",
+              onClick: () => console.log("OK clicked"),
+            },
+          });
         },
         (error) => {
           switch (error.code) {
@@ -53,8 +64,8 @@ export default function GetLocation({ onLocationChange, label }) {
 
   return (
     <div className="text-center flex flex-row gap-4 justify-between ml-1">
-      <h2 className="text-[14px] font-semibold mt-2">{label}n</h2>
-      <div>
+      <h2 className="text-[14px] font-semibold mt-2">{label}</h2>
+      <div className="flex flex-col gap-2">
         <button
           onClick={fetchLocation}
           className={`border rounded-[10]  h-8 text-[12px] p-2 ${
@@ -67,14 +78,9 @@ export default function GetLocation({ onLocationChange, label }) {
         >
           Get Location
         </button>
-        {currentLocation.latitude && currentLocation.longitude && (
-          <p className="text-[12px] mt-2">
-            {details.reportDetails.location
-              ? details.reportDetails.location
-              : `Latitude: ${currentLocation.latitude} Longitude: ${currentLocation.longitude}`}
-          </p>
-        )}
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </div>
       </div>
     </div>
   );
