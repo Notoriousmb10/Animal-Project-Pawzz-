@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useDetailsStore } from "@/app/Store/useStore";
-import {Toaster} from '../ui/sonner'
-
+import { toast } from "sonner";
 export default function GetLocation({ onLocationChange, label }) {
   const { details } = useDetailsStore();
   const [currentLocation, setCurrentLocation] = useState({
@@ -26,16 +25,8 @@ export default function GetLocation({ onLocationChange, label }) {
           setCurrentLocation(newLocation);
           setFetching("fetched");
           setError("");
-          onLocationChange(newLocation);
-
-          // Show toast notification
-          Toaster("Location fetched successfully", {
-            description: `Latitude: ${newLocation.latitude}, Longitude: ${newLocation.longitude}`,
-            action: {
-              label: "OK",
-              onClick: () => console.log("OK clicked"),
-            },
-          });
+          onLocationChange ? onLocationChange(newLocation) : null;
+          Sonner();
         },
         (error) => {
           switch (error.code) {
@@ -55,6 +46,31 @@ export default function GetLocation({ onLocationChange, label }) {
       );
     } else {
       setError("Geolocation is not supported by this browser.");
+    }
+  };
+
+  const Sonner = async () => {
+    if (
+      currentLocation.latitude === null ||
+      currentLocation.longitude === null
+    ) {
+      toast("Location Not Fetched :(", {
+        className: "bg-Yellow-500",
+        description: `Try Again`,
+        action: {
+          label: "Okay",
+          onClick: () => console.log("Okay"),
+        },
+      });
+    } else {
+      toast("Location Fetched", {
+        className: "bg-green-500",
+        description: `lat: ${currentLocation.latitude}, long: ${currentLocation.longitude}`,
+        action: {
+          label: "Okay",
+          onClick: () => console.log("Okay"),
+        },
+      });
     }
   };
 
@@ -78,9 +94,7 @@ export default function GetLocation({ onLocationChange, label }) {
         >
           Get Location
         </button>
-        <div>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </div>
+        <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
       </div>
     </div>
   );

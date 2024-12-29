@@ -2,6 +2,7 @@
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import AppSidebar from "@/components/uicomponents/Sidebar";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 
 export default function RootLayout({ children }) {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
               className={`relative z-30 transition-all overflow-x-hidden duration-300 flex-grow`}
             >
               {children}
+              <Toaster />
             </div>
           </div>
         </body>
