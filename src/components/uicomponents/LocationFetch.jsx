@@ -25,7 +25,7 @@ export default function GetLocation({ onLocationChange, label }) {
           setCurrentLocation(newLocation);
           setFetching("fetched");
           setError("");
-          onLocationChange ? onLocationChange(newLocation) : null;
+          onLocationChange(newLocation) 
           Sonner(newLocation.latitude, newLocation.longitude);
         },
         (error) => {

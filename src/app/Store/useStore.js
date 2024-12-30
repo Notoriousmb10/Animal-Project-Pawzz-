@@ -1,5 +1,8 @@
+import details from "@/components/uicomponents/ReportPage/ReportDetails";
+import { set } from "mongoose";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { healthStatus } from "../dataArray";
 
 export const useSidebarStore = create(
   persist(
@@ -50,7 +53,7 @@ export const useDetailsStore = create(
 export const useImagesStore = create(
   persist(
     (set, get) => ({
-      routeImages: {}, 
+      routeImages: {},
       setImages: (route, images) =>
         set((state) => ({
           routeImages: { ...state.routeImages, [route]: images },
@@ -63,7 +66,6 @@ export const useImagesStore = create(
     }
   )
 );
-
 
 export const useProgressStore = create(
   persist(
@@ -86,6 +88,31 @@ export const useScheduleCountStore = create(
     }),
     {
       name: "scheduleCount",
+      getStorage: () => sessionStorage,
+    }
+  )
+);
+
+export const useAdoptionStore = create(
+  persist(
+    (set) => ({
+      adoptionDetails: {
+        type: "",
+        gender: "",
+        tags: [],
+        location: "",
+        age: "",
+        healthStatus: "",
+        description: "",
+        urgency: "",
+      },
+      setAdoptionDetails: (newDetails) =>
+        set((state) => ({
+          adoptionDetails: { ...state.adoptionDetails, ...newDetails },
+        })),
+    }),
+    {
+      name: "adoption-details",
       getStorage: () => sessionStorage,
     }
   )
