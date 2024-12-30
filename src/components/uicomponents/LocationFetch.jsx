@@ -26,7 +26,7 @@ export default function GetLocation({ onLocationChange, label }) {
           setFetching("fetched");
           setError("");
           onLocationChange ? onLocationChange(newLocation) : null;
-          Sonner();
+          Sonner(newLocation.latitude, newLocation.longitude);
         },
         (error) => {
           switch (error.code) {
@@ -49,11 +49,8 @@ export default function GetLocation({ onLocationChange, label }) {
     }
   };
 
-  const Sonner = async () => {
-    if (
-      currentLocation.latitude === null ||
-      currentLocation.longitude === null
-    ) {
+  const Sonner = async (latitude, longitude) => {
+    if (latitude === null || longitude === null) {
       toast("Location Not Fetched :(", {
         className: "bg-Yellow-500",
         description: `Try Again`,
@@ -65,7 +62,7 @@ export default function GetLocation({ onLocationChange, label }) {
     } else {
       toast("Location Fetched", {
         className: "bg-green-500",
-        description: `lat: ${currentLocation.latitude}, long: ${currentLocation.longitude}`,
+        description: `lat: ${latitude}, long: ${longitude}`,
         action: {
           label: "Okay",
           onClick: () => console.log("Okay"),
