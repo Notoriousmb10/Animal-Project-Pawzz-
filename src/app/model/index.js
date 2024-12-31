@@ -48,6 +48,17 @@ const emergencyReportSchema = new mongoose.Schema({
   },
 });
 
+const adoptionSchema = new mongoose.Schema({
+  type: { type: String, required: true },
+  gender: { type: String, required: true },
+  tags: { type: [String], required: true },
+  location: { type: String, required: true },
+  age: { type: String, required: true },
+  healthStatus: { type: String, required: true },
+  description: { type: String, required: true },
+  urgency: { type: String, required: true },
+});
+
 const Pet = mongoose.models.Pet || mongoose.model("Pet", petSchema);
 
 const Appointment =
@@ -58,4 +69,7 @@ const EmergencyReport =
   mongoose.models.EmergencyReport ||
   mongoose.model("EmergencyReport", emergencyReportSchema);
 
-module.exports = { Appointment, Pet, EmergencyReport };
+const Adoption =
+  mongoose.models.Adoption || mongoose.model("Adoption", adoptionSchema);
+
+module.exports = { Appointment, Pet, EmergencyReport, Adoption };

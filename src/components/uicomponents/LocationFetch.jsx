@@ -93,6 +93,7 @@ export default function GetLocation({ onLocationChange, label }) {
         </button>
         <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
       </div>
+      
     </div>
   );
 }

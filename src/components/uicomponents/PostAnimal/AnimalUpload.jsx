@@ -6,6 +6,8 @@ import Select from "../../uicomponents/Select";
 import GetLocation from "../LocationFetch";
 import { healthStatus, adoptionUrgency } from "@/app/dataArray";
 import { useAdoptionStore } from "@/app/Store/useStore";
+import NormalButton from "../NormalButton";
+import { toast } from "sonner";
 const AnimalUpload = () => {
   const { adoptionDetails, setAdoptionDetails } = useAdoptionStore();
   const [tags, setTags] = useState([]);
@@ -55,6 +57,37 @@ const AnimalUpload = () => {
     });
   };
 
+  const handleAdoptionSubmit = async () => {
+    try {
+      const resp = await fetch(
+        "http://localhost:5000/api/post-AnimalForAdoption",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(adoptionDetails),
+        }
+      );
+      const data = await resp.json();
+      console.log(data);
+      Sonner();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const Sonner = async () => {
+    toast("Animal Posted For Adoption", {
+      className: "bg-green-500",
+      description: `❤️`,
+      action: {
+        label: "Okay",
+        onClick: () => console.log("Okay"),
+      },
+    });
+  };
+
   return (
     <div className="h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6 justify-center ">
       <div className="flex flex-col relative ml-4 my-4 w-[350px] ">
@@ -82,7 +115,6 @@ const AnimalUpload = () => {
               other={true}
               className="w-[170px] text-[10px]"
               onChange={handleTypeChange}
-              defaultValue={adoptionDetails.type}
             />
             <Select
               label="Type"
@@ -91,7 +123,6 @@ const AnimalUpload = () => {
               other={true}
               className="w-[170px] text-[10px]"
               onChange={handleGenderChange}
-              defaultValue={adoptionDetails.gender}
             />
           </div>
           <div>
@@ -159,7 +190,6 @@ const AnimalUpload = () => {
                 age: e.target.value,
               })
             }
-            value={adoptionDetails.age}
           />
         </div>
         <div>
@@ -194,6 +224,13 @@ const AnimalUpload = () => {
             onChange={handleUrgencyChange}
           />
         </div>
+      </div>
+      <div className="absolute bottom-14 right-[300px]">
+        <NormalButton
+          label={"Submit"}
+          className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"
+          onClick={handleAdoptionSubmit}
+        />
       </div>
     </div>
   );
