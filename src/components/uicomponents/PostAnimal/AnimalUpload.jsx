@@ -144,7 +144,6 @@ const AnimalUpload = () => {
               })
             }
           />
-          <p>{adoptionDetails.location}</p>
         </div>
         <div>
           <p className="font-medium text-[14px] mb-2">Enter Age</p>
