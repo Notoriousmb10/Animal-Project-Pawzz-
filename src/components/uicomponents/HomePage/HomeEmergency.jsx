@@ -61,7 +61,7 @@ const HomeEmergency = () => {
           </div>
           <div
             className="w-[300] h-[40] relative bg-white shadow-lg hover:bg-slate-100 cursor-pointer rounded-[20] "
-            onClick={() => router.push("/browse-animal")}
+            onClick={() => router.push("/browse-animals")}
           >
             <MoveUpRight
               size={20}

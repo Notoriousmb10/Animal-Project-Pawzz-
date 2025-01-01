@@ -106,15 +106,8 @@ const UploadImage = () => {
           />
         </div>
       </div>
-      <div className="absolute bottom-14 right-[330px] flex gap-52  ">
-        <NormalButton
-          label={"Delete Photos"}
-          onClick={() => {
-            setImages([]);
-            sessionStorage.removeItem("images"); // Remove images from sessionStorage
-          }}
-          className="text-[14px] rounded-[5] h-8 bg-blue-300 hover:bg-blue-500"
-        />
+      <div className="absolute bottom-14 right-[360px] flex gap-48  ">
+        
         <NormalButton
           label={"Next"}
           className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"

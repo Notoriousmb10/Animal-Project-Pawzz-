@@ -91,7 +91,7 @@ const AdvanceOptions = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-14 right-[330px]">
+      <div className="absolute bottom-14 right-[360px]">
         <NormalButton
           label={"Next"}
           className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"
