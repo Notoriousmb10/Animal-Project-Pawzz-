@@ -188,6 +188,43 @@ const adoptionUrgency = [
   { value: "Can Wait", label: "Can Wait" },
 ];
 
+
+const vaccinationStatus = [
+  { value: "yes", label: "Yes, vaccinated" },
+  { value: "no", label: "No, not vaccinated" },
+  { value: "unknown", label: "Unknown" },
+];
+
+const spayNeuterStatus = [
+  { value: "yes", label: "Yes, spayed/neutered" },
+  { value: "no", label: "No, not spayed/neutered" },
+  { value: "unknown", label: "Unknown" },
+];
+
+const vetCheckStatus = [
+  { value: "yes", label: "Yes, vet-checked" },
+  { value: "no", label: "No, not checked" },
+];
+
+const identificationStatus = [
+  { value: "yes", label: "Yes" },
+  { value: "no", label: "No" },
+  { value: "unknown", label: "Unknown" },
+];
+
+const behaviorStatus = [
+  { value: "friendly", label: "Friendly and approachable" },
+  { value: "timid", label: "Timid or scared" },
+  { value: "aggressive", label: "Aggressive or fearful" },
+  { value: "not_sure", label: "Not sure" },
+];
+
+const injuryStatus = [
+  { value: "yes", label: "Yes, injured" },
+  { value: "no", label: "No, appears healthy" },
+  { value: "not_sure", label: "Not sure" },
+];
+
 export {
   tabs,
   reasons,
@@ -203,5 +240,11 @@ export {
   sections,
   animalGender,
   healthStatus,
-  adoptionUrgency
+  adoptionUrgency,
+  vaccinationStatus,
+  spayNeuterStatus,
+  vetCheckStatus,
+  identificationStatus,
+  behaviorStatus,
+  injuryStatus,
 };

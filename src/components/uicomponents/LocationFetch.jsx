@@ -76,7 +76,7 @@ export default function GetLocation({ onLocationChange, label }) {
   }, []);
 
   return (
-    <div className="text-center flex flex-row gap-4 justify-between ml-1">
+    <div className="text-center flex flex-row gap-4 justify-between">
       <h2 className="text-[14px] font-semibold mt-2">{label}</h2>
       <div className="flex flex-col gap-2">
         <button

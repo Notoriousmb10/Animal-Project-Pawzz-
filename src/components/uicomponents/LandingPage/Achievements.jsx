@@ -3,7 +3,7 @@ import AnimalFamily from '../../../../public/AnimalFamily.png'; // Update the pa
 
 const Achievements = () => {
     return (
-        <div className="mt-20 py-20 flex flex-row gap-32 items-center justify-between px-28 bg-slate-50">
+        <div className="mt-20 py-20 flex flex-row gap-32 items-center justify-between px-28 ">
             <div className="overflow-visible">
                 <Image
                     src={AnimalFamily}
