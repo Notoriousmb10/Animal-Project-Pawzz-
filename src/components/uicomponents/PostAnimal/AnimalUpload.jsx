@@ -1,23 +1,20 @@
-import React, { use, useState } from "react";
+import React, { useRef, useState } from "react";
 import DragAndDropUpload from "../DragAndDrop";
 import { Input } from "@/components/ui/input";
 import { animalList, animalGender } from "@/app/dataArray";
 import Select from "../../uicomponents/Select";
 import GetLocation from "../LocationFetch";
 import { healthStatus, adoptionUrgency } from "@/app/dataArray";
-import { useAdoptionStore } from "@/app/Store/useStore";
+import { useAdoptionStore, useImagesStore } from "@/app/Store/useStore";
 import NormalButton from "../NormalButton";
 import { toast } from "sonner";
-import { CheckboxWithText } from "../../uicomponents/CheckBox";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import StrayDetails from "./StrayDetails";
 
 const AnimalUpload = () => {
   const { adoptionDetails, setAdoptionDetails } = useAdoptionStore();
+  const { setImages, getImages } = useImagesStore();
   const [tags, setTags] = useState([]);
   const [currentTag, setCurrentTag] = useState("");
-  const [strayCheck, setStrayCheck] = useState(false);
-  const [strayDetails, setStrayDetails] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && currentTag.trim() !== "") {
@@ -63,8 +60,34 @@ const AnimalUpload = () => {
     });
   };
 
-  const handleStrayDetails = () => {
-    setStrayDetails(true);
+  const handleClick = () => {
+    const existingImages = getImages("/post-animal");
+    if (existingImages.length === 0) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleUpload = (event) => {
+    const uploadedFiles = Array.from(event.target.files);
+    const existingImages = getImages("/post-animal");
+
+    if (existingImages.length + uploadedFiles.length > 6) {
+      alert("You can upload a maximum of 6 photos.");
+      return;
+    }
+
+    const fileReaders = uploadedFiles.map((file) => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(fileReaders).then((base64Images) => {
+      const updatedImages = [...existingImages, ...base64Images];
+      setImages("/post-animal", updatedImages.slice(0, 6));
+    });
   };
 
   const handleAdoptionSubmit = async () => {
@@ -101,9 +124,7 @@ const AnimalUpload = () => {
   return (
     <div>
       <div
-        className={`${
-          strayDetails ? "hidden" : "block"
-        } h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6 justify-center`}
+        className={`h-[700px] w-[1000px] border-2 rounded-[20] shadow-lg mx-12 my-6 flex flex-row gap-6 justify-center`}
       >
         <div className="flex flex-col relative ml-4 my-4 w-[350px] ">
           <div>
@@ -117,6 +138,16 @@ const AnimalUpload = () => {
               route="/post-animal"
               className="w-[350px] h-[220px] pt-4"
               label="Upload An Image Or Video"
+              onClick={handleClick}
+            />
+            <input
+              type="file"
+              id="fileUpload"
+              style={{ display: "none" }}
+              multiple
+              ref={fileInputRef}
+              accept="image/*"
+              onChange={handleUpload}
             />
           </div>
 
@@ -242,32 +273,13 @@ const AnimalUpload = () => {
           </div>
         </div>
         <div className="absolute bottom-14 right-[300px] flex flex-row gap-32">
-          <div>
-            <CheckboxWithText
-              label="Check If The Animal Is A Stray?"
-              description="This will help us in further processing"
-              onChange={(checked) => {
-                setStrayCheck(checked);
-              }}
-            />
-          </div>
-          {!strayCheck ? (
-            <NormalButton
-              label={"Submit"}
-              className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"
-              onClick={handleAdoptionSubmit}
-            />
-          ) : (
-            <NormalButton
-              label={"Next"}
-              icon={<ArrowDown />}
-              className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"
-              onClick={handleStrayDetails}
-            />
-          )}
+          <NormalButton
+            label={"Submit"}
+            className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"
+            onClick={handleAdoptionSubmit}
+          />
         </div>
       </div>
-      {strayDetails ? ( <StrayDetails/> ) : null }
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ImageUp } from "lucide-react";
 import { useImagesStore } from "@/app/Store/useStore";
 
-const DragAndDropUpload = ({ route, className, label }) => {
+const DragAndDropUpload = ({ route, className, label, onClick }) => {
   const { getImages, setImages } = useImagesStore(); // Access store functions
   const images = getImages(route); // Get images for the current route
 
@@ -61,6 +61,7 @@ const DragAndDropUpload = ({ route, className, label }) => {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={className}
+      onClick={onClick}
       style={{
         border: "2px dashed #aaa",
         borderRadius: "10px",

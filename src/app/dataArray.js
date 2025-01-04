@@ -188,7 +188,6 @@ const adoptionUrgency = [
   { value: "Can Wait", label: "Can Wait" },
 ];
 
-
 const vaccinationStatus = [
   { value: "yes", label: "Yes, vaccinated" },
   { value: "no", label: "No, not vaccinated" },
@@ -225,6 +224,11 @@ const injuryStatus = [
   { value: "not_sure", label: "Not sure" },
 ];
 
+const careStatus = [
+  { value: "yes", label: "Yes" },
+  { value: "no", label: "No" },
+];
+
 export {
   tabs,
   reasons,
@@ -247,4 +251,5 @@ export {
   identificationStatus,
   behaviorStatus,
   injuryStatus,
+  careStatus
 };
