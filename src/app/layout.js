@@ -1,11 +1,22 @@
 "use client";
-
+import React, { useEffect } from "react";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import AppSidebar from "@/components/uicomponents/Sidebar";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.clear();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
   return (
     <UserProvider>
       <html lang="en">

@@ -137,7 +137,7 @@ const AnimalUpload = () => {
             <DragAndDropUpload
               route="/post-animal"
               className="w-[350px] h-[220px] pt-4"
-              label="Upload An Image Or Video"
+              label="Upload Images (Max 6)"
               onClick={handleClick}
             />
             <input

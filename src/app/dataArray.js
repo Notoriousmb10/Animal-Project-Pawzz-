@@ -8,6 +8,11 @@ import {
   SendHorizontal,
 } from "lucide-react";
 
+import SuccessStory1 from "../../public/SuccessStory1.jpg";
+import SuccessStory2 from "../../public/SuccessStory2.jpg";
+import SuccessStory3 from "../../public/SuccessStory3.jpg";
+import SuccessStory4 from "../../public/SuccessStory4.jpg";
+
 const reasons = [
   { value: "Vaccination", label: "Vaccination" },
   { value: "Injury", label: "Injury" },
@@ -229,6 +234,49 @@ const careStatus = [
   { value: "no", label: "No" },
 ];
 
+const successStories = [
+  {
+    id: 1,
+    title: "Luna Finds a New Home",
+    image: SuccessStory1,
+    description:
+      "Luna was found abandoned on the streets. She was adopted by a loving family and is now living a happy life.",
+    petName: "Luna",
+  },
+  {
+    id: 2,
+    title: "Max's Recovery Journey",
+    image: SuccessStory2,
+    description:
+      "Max was brought to the shelter with severe injuries. After receiving treatment, he is now healthy and happy.",
+    petName: "Max",
+  },
+  {
+    id: 3,
+    title: "Bella's Adoption Story",
+    image: SuccessStory3,
+    description:
+      "Bella was put up for adoption by her owner. She found a new family who loves her dearly.",
+    petName: "Bella",
+  },
+  {
+    id: 4,
+    title: "Rocky's Rescue",
+    image: SuccessStory4,
+    description:
+      "Rocky was rescued from a dangerous situation. He is now safe and sound in his forever home.",
+    petName: "Rocky",
+  },
+  {
+    id: 5,
+    title: "Happy Tails: A New Beginning",
+    image: SuccessStory1,
+    description:
+      "Charlie was adopted by a wonderful family who showers him with love and care. He is now enjoying a joyful life with his new owners.",
+    petName: "Charlie",
+  },
+];
+
 export {
   tabs,
   reasons,
@@ -251,5 +299,6 @@ export {
   identificationStatus,
   behaviorStatus,
   injuryStatus,
-  careStatus
+  careStatus,
+  successStories,
 };
