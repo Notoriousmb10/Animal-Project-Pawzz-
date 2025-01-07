@@ -1,32 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { successStories } from "../dataArray";
-
+import { successStories, upForAdoptions } from "../dataArray";
+import { browseAnimalSections, adoptedPets } from "@/app/dataArray";
+import NormalButton from "@/components/uicomponents/NormalButton";
+import AdoptedPets from "@/components/uicomponents/BrowseAnimals/AdoptedPets";
+import Adoption from "@/components/uicomponents/BrowseAnimals/Adoption";
+import SuccessStories from "@/components/uicomponents/BrowseAnimals/SuccessStories";
+import AdoptionSidebar from "@/components/uicomponents/BrowseAnimals/AdoptionSidebar";
 const page = () => {
-  return (
-    <div className="mx-20 my-20">
-      <div className="text-left font-bold text-lg ">
-        <h1>Success Stories</h1>
-      </div>
+  const [selectedTab, setSelectedTab] = useState("Adoptions");
 
-      <div className="flex flex-row gap-2">
-        {successStories.map((story) => (
-          <div
-            key={story.id}
-            className="w-[250px] h-[350px] border-2 relative rounded-[30] mt-10"
-          >
-            <Image
-              src={story.image}
-              alt={story.title}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-[30]"
-            />
+  return (
+    <div className="mx-20 my-20 flex flex-col gap-24">
+      <SuccessStories />
+      <div className="flex flex-row gap-12 border-2 p-6 rounded-lg">
+        <div className="sticky top-0">
+
+        <AdoptionSidebar currentTab={(value) => setSelectedTab(value)} /> 
+        </div>
+          <div>
+
+        {selectedTab === "Adoptions" && <Adoption />}
+        {selectedTab === "Adopted" && <AdoptedPets />}
           </div>
-        ))}
+
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import SuccessStory1 from "../../public/SuccessStory1.jpg";
 import SuccessStory2 from "../../public/SuccessStory2.jpg";
 import SuccessStory3 from "../../public/SuccessStory3.jpg";
 import SuccessStory4 from "../../public/SuccessStory4.jpg";
+import adoptedDog1 from "../../public/adoptedDog1.jpg";
 
 const reasons = [
   { value: "Vaccination", label: "Vaccination" },
@@ -277,6 +278,105 @@ const successStories = [
   },
 ];
 
+const browseAnimalSections = [
+  { value: "Adoptions", label: "Adoptions" },
+  { value: "Adopted", label: "Adopted" },
+  { value: "Success Stories", label: "Success Stories" },
+];
+
+const upForAdoptions = [
+  {
+    id: 1,
+    petName: "Charlie",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Charlie is a playful and friendly dog. He loves to play fetch and go on long walks.",
+  },
+  {
+    id: 2,
+    petName: "Buddy",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Buddy is a loyal and loving dog. He enjoys cuddles and is great with kids.",
+  },
+  {
+    id: 3,
+    petName: "Max",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Max is an energetic and curious dog. He loves exploring new places and meeting new friends.",
+  },
+  {
+    id: 4,
+    petName: "Bella",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Bella is a gentle and affectionate dog. She enjoys quiet time and is very well-behaved.",
+  },
+  {
+    id: 4,
+    petName: "Bella",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Bella is a gentle and affectionate dog. She enjoys quiet time and is very well-behaved.",
+  },
+  {
+    id: 4,
+    petName: "Bella",
+    petType: "Dog",
+    image: adoptedDog1,
+    description:
+      "Bella is a gentle and affectionate dog. She enjoys quiet time and is very well-behaved.",
+  },
+];
+const adoptedPets = [
+  {
+    id: 1,
+    petName: "Charlie",
+    petType: "Dog",
+    image: adoptedDog1,
+    description: "Charlie is a playful and friendly dog. He loves to play fetch and go on long walks.",
+    adoptionStory: "Charlie was found wandering the streets. He was taken in by a loving family who now gives him all the care and attention he needs."
+  },
+  {
+    id: 2,
+    petName: "Buddy",
+    petType: "Dog",
+    image: adoptedDog1,
+    description: "Buddy is a loyal and loving dog. He enjoys cuddles and is great with kids.",
+    adoptionStory: "Buddy was surrendered by his previous owner. He quickly found a new home where he is cherished and adored."
+  },
+  {
+    id: 3,
+    petName: "Max",
+    petType: "Dog",
+    image: adoptedDog1,
+    description: "Max is an energetic and curious dog. He loves exploring new places and meeting new friends.",
+    adoptionStory: "Max was rescued from a neglectful situation. He has since been adopted by a family who takes him on many adventures."
+  },
+  {
+    id: 4,
+    petName: "Bella",
+    petType: "Dog",
+    image: adoptedDog1,
+    description: "Bella is a gentle and affectionate dog. She enjoys quiet time and is very well-behaved.",
+    adoptionStory: "Bella was given up by her owner due to unforeseen circumstances. She now lives with a family who provides her with a peaceful and loving environment."
+  },
+  {
+    id: 5,
+    petName: "Rocky",
+    petType: "Dog",
+    image: adoptedDog1,
+    description: "Rocky is a brave and strong dog. He loves adventures and is very protective of his family.",
+    adoptionStory: "Rocky was rescued from a dangerous situation. He has been adopted by a family who appreciates his protective nature and adventurous spirit."
+  },
+];
+
 export {
   tabs,
   reasons,
@@ -301,4 +401,7 @@ export {
   injuryStatus,
   careStatus,
   successStories,
+  browseAnimalSections,
+  upForAdoptions,
+  adoptedPets,
 };
