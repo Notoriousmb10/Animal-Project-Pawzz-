@@ -23,3 +23,16 @@ export const fetchPets = async () => {
   }
   return data;
 };
+
+export const fetchAnimalForAdoption = async () => {
+  const response = await fetch("/api/fetch-AnimalForAdoption", {
+    method: "GET",
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log(data);
+  } else {
+    console.error("Failed to fetch animals for adoption: ", data);
+  }
+  return data;
+};

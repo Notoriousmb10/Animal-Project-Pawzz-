@@ -7,7 +7,7 @@ import GetLocation from "../LocationFetch";
 import { healthStatus, adoptionUrgency } from "@/app/dataArray";
 import { useAdoptionStore, useImagesStore } from "@/app/Store/useStore";
 import NormalButton from "../NormalButton";
-import { toast } from "sonner";
+import { toast } from "sonner";``
 
 const AnimalUpload = () => {
   const { adoptionDetails, setAdoptionDetails } = useAdoptionStore();
@@ -91,15 +91,26 @@ const AnimalUpload = () => {
   };
 
   const handleAdoptionSubmit = async () => {
+    const formData = new FormData();
+
+    formData.append("adoptionDetails", JSON.stringify(adoptionDetails));
+    console.log(formData.get("adoptionDetails"))
+    const images = getImages("/post-animal");
+    images.forEach((image) => {
+      formData.append("images", image);
+
+    });
+    console.log(formData.getAll("images")); // Should log the array of images
+    console.log(formData); // Should log the array of images
     try {
       const resp = await fetch(
         "http://localhost:3000/api/post-AnimalForAdoption",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(adoptionDetails),
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          body: formData,
         }
       );
       const data = await resp.json();
@@ -211,7 +222,7 @@ const AnimalUpload = () => {
             <Input
               className="border focus:border-none focus:outline-none outline-none text-[12px]  w-[500px]"
               placeholder="Enter Animal Name"
-              value={currentTag}
+              onChange={(e) => {setAdoptionDetails({...adoptionDetails, name: e.target.value})}}
             />
             <GetLocation
               label="Enter Animal Location"

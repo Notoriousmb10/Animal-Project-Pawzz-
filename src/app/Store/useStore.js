@@ -99,6 +99,7 @@ export const useAdoptionStore = create(
       adoptionDetails: {
         type: "",
         gender: "",
+        name: "",
         tags: [],
         location: "",
         age: "",

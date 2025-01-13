@@ -50,12 +50,15 @@ const emergencyReportSchema = new mongoose.Schema({
 
 const adoptionSchema = new mongoose.Schema({
   type: { type: String, required: true },
+  name: { type: String, required: true },
+ images:  { type: [String], required: true },
+
   gender: { type: String, required: true },
-  tags: { type: [String], required: true },
+  tags: { type: [String], required: false },
   location: { type: String, required: true },
-  age: { type: String, required: true },
+  age: { type: String, required: false },
   healthStatus: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: false },
   urgency: { type: String, required: true },
 });
 
