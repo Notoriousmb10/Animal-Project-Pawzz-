@@ -94,22 +94,15 @@ const AnimalUpload = () => {
     const formData = new FormData();
 
     formData.append("adoptionDetails", JSON.stringify(adoptionDetails));
-    console.log(formData.get("adoptionDetails"))
     const images = getImages("/post-animal");
     images.forEach((image) => {
       formData.append("images", image);
-
     });
-    console.log(formData.getAll("images")); // Should log the array of images
-    console.log(formData); // Should log the array of images
     try {
       const resp = await fetch(
         "http://localhost:3000/api/post-AnimalForAdoption",
         {
           method: "POST",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
           body: formData,
         }
       );

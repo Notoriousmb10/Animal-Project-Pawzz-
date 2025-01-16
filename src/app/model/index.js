@@ -51,7 +51,7 @@ const emergencyReportSchema = new mongoose.Schema({
 const adoptionSchema = new mongoose.Schema({
   type: { type: String, required: true },
   name: { type: String, required: true },
- images:  { type: [String], required: true },
+ images:  { type: [mongoose.Schema.Types.ObjectId], ref:'GridFSFile', required: true },
 
   gender: { type: String, required: true },
   tags: { type: [String], required: false },
