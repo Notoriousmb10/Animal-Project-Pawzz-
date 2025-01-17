@@ -1,5 +1,5 @@
 const connectToDatabase = require("../../database");
-const {Appointment} = require("../../model");
+const { User } = require("../../model");
 
 export const POST = async (req) => {
   if (req.method === "POST") {
@@ -8,26 +8,38 @@ export const POST = async (req) => {
       await connectToDatabase();
       console.log("Database connected.");
 
-      const { petName, clinicName, date, reason } = await req.json();
-      console.log("Request payload:", { petName, clinicName, date, reason });
+      const { petName, clinicName, date, reason, userId } = await req.json();
 
-      if (!petName || !clinicName || !date || !reason) {
+      if ((!petName || !clinicName || !date || !reason, !userId)) {
         console.error("Missing required fields");
-        return new Response(JSON.stringify({ error: "Missing required fields" }), {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        });
+        return new Response(
+          JSON.stringify({ error: "Missing required fields" }),
+          {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("User not found!");
       }
 
-      const newAppointment = new Appointment({
+
+
+      const newAppointment ={
         petName,
         clinicName,
         date,
         reason,
         approval: "Pending",
-      });
+      };
 
-      await newAppointment.save();
+      User.appointments.push(newAppointment);
+
+
+
+      await user.save();
       console.log("New appointment:", newAppointment);
       console.log("Appointment saved.");
 

@@ -1,8 +1,20 @@
-import details from "@/components/uicomponents/ReportPage/ReportDetails";
-import { set } from "mongoose";
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { healthStatus } from "../dataArray";
+
+
+export const useUserStore = create(
+  persist(
+    (set) => ({
+      userId: null,
+      setUser: (userId) => set({ userId }),
+    }),
+    {
+      name: "userId",
+      getStorage: () => sessionStorage,
+    }
+  )
+)
 
 export const useSidebarStore = create(
   persist(
@@ -17,6 +29,8 @@ export const useSidebarStore = create(
     }
   )
 );
+
+
 
 export const useDetailsStore = create(
   persist(

@@ -1,14 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Noty from "@/components/ui/notification";
 import { useRouter } from "next/navigation";
 import { useScheduleCountStore } from "@/app/Store/useStore";
+import { useUserStore } from "@/app/Store/useStore";
 const HomeHeader = () => {
   const { user } = useUser();
   const router = useRouter();
+  const {setUser} = useUserStore();
   const { scheduleCount } = useScheduleCountStore();
+
+  useEffect(() => {
+    try {
+      const resp = fetch("/api/create-User", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user }),
+      });
+      const data = resp.json();
+      setUser(user.sub);
+      
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  }, [user]);
 
   return (
     <div className="px-20 py-10 flex flex-row gap-6">

@@ -7,7 +7,7 @@ import { ImageUp } from "lucide-react";
 import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
 import { dogList, catList, birdList, animalList } from "@/app/dataArray";
-
+import { useUserStore } from "@/app/Store/useStore";
 const AddPets = ({loadPets}) => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
@@ -16,7 +16,8 @@ const AddPets = ({loadPets}) => {
   const [petName, setPetName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [isPhoto, setIsPhoto] = React.useState(false);
-
+  const { userId } = useUserStore();
+  
   const createPet = async () => {
     if (!petName || !animal || !breed || !description || !photo) {
       alert("Please fill all the fields");
@@ -26,7 +27,7 @@ const AddPets = ({loadPets}) => {
         const resp = await fetch("/api/create-Pet", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ petName, animal, breed, description }),
+          body: JSON.stringify({ petName, animal, breed, description, userId }),
         });
 
         sessionStorage.setItem(`${petName}`, JSON.stringify(photo));
@@ -69,6 +70,7 @@ const AddPets = ({loadPets}) => {
   };
 
   useEffect(() => {
+    alert(userId)
     console.log("Animal : ", animal);
     console.log("Breed : ", breed);
   }, [animal, breed]);

@@ -8,7 +8,10 @@ import DropDown from "../../../components/uicomponents/Select";
 import { reasons } from "../../../app/dataArray";
 import { CalendarForm } from "../../../components/uicomponents/Calendar";
 import { fetchPets } from "../../../app/serverfetching";
+import { useUserStore } from "@/app/Store/useStore";
+
 const Schedules = ({ loadAppointments, loadPets }) => {
+  const { userId } = useUserStore();
   const [petNames, setPetNames] = useState([]);
   const [petDetails, setPetDetails] = useState({
     petName: "",
@@ -37,6 +40,7 @@ const Schedules = ({ loadAppointments, loadPets }) => {
       return;
     } else {
       console.log(petDetails);
+      petDetails.userId = userId;
       const response = await fetch("/api/create-Appointment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
