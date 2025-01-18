@@ -14,8 +14,8 @@ export const POST = async (req) => {
       throw new Error("User not found!");
     }
 
-    const newPet = new Pet({ petName, animal, breed, description });
-    User.pets.push(newPet);
+    const newPet = { petName, animal, breed, description };
+    user.pets.push(newPet);
     await user.save();
     console.log("New pet added successfully:", newPet);
 

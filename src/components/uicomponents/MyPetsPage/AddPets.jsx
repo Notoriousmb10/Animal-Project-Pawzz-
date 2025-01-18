@@ -69,11 +69,6 @@ const AddPets = ({loadPets}) => {
     }
   };
 
-  useEffect(() => {
-    alert(userId)
-    console.log("Animal : ", animal);
-    console.log("Breed : ", breed);
-  }, [animal, breed]);
 
   return (
     <div className="p-20 ">

@@ -13,20 +13,26 @@ const HomeHeader = () => {
   const { scheduleCount } = useScheduleCountStore();
 
   useEffect(() => {
-    try {
-      const resp = fetch("/api/create-User", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user }),
-      });
-      const data = resp.json();
-      setUser(user.sub);
-      
-      return data;
-    } catch (err) {
-      console.error(err);
-    }
-  }, [user]);
+    const createUser = async () => {
+      if (user) {
+        try {
+          const resp = await fetch("/api/create-User", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ user }),
+          });
+          const data = await resp.json();
+          setUser(user.sub);
+          
+          return data;
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
+    createUser();
+  }, [user, setUser]);
 
   return (
     <div className="px-20 py-10 flex flex-row gap-6">

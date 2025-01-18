@@ -6,14 +6,16 @@ import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
 import { fetchPets } from "../serverfetching";
 import DogFallBack from "../../../public/DogFallBack.jpg";
 import {useSidebarStore} from "../Store/useStore";
+import {useUserStore} from "../Store/useStore";
 
 const MyPetsPage = () => {
   const { setSidebarState } = useSidebarStore(); // Access Zustand store action
   const [pets, setPets] = useState([]);
+  const { userId } = useUserStore(); 
 
   // Load pet details
   const loadPets = async () => {
-    const petDetails = await fetchPets();
+    const petDetails = await fetchPets(userId);
     console.log(petDetails); // Log the pet details
     const petArray = petDetails.map((pet) => {
       const photo = sessionStorage.getItem(`${pet.petName}`);

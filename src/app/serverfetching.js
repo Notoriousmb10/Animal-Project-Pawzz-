@@ -11,8 +11,8 @@ export const fetchAppointments = async () => {
   return data;
 };
 
-export const fetchPets = async () => {
-  const response = await fetch("/api/fetch-Pets", {
+export const fetchPets = async (userId) => {
+  const response = await fetch(`/api/fetch-Pets?userId=${userId}`, {
     method: "GET",
   });
   const data = await response.json();
