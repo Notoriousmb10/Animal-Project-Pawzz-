@@ -19,7 +19,7 @@ const HomeNavbar = () => {
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => router.push("/home")}
       >
-        <Image src={paw} height={48} width={48} alt="" />
+        <Image src={paw} height={48} width={48} alt="s" />
 
         <h1 className="text-2xl font-bold">Pawzz</h1>
       </div>

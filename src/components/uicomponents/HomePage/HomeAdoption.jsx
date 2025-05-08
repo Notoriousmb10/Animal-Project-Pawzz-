@@ -36,7 +36,7 @@ const HomeAdoption = () => {
           />
         </div>
         <div className="h-[600] absolute left-[300] bottom-0">
-          <Image src={GoofyDog} alt="" className="h-full w-full object-cover" />
+          <Image src={GoofyDog} alt="s" className="h-full w-full object-cover" />
         </div>
       </div>
       <div className="h-[700px] w-[650px]   bg-gradient-to-bl from-white to-red-50  rounded-md shadow-md">

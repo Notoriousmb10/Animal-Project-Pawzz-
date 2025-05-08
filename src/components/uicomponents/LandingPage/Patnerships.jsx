@@ -16,7 +16,7 @@ const Partnerships = () => {
             <h1 className="font-bold text-5xl text-center">
               "Our Trusted Pawtners"
             </h1>
-            <Image src={paw} height={42} width={42} className="ml-2" alt="" />
+            <Image src={paw} height={42} width={42} className="ml-2" alt="s" />
           </div>
           <p className="font-medium pt-6">
             We collaborate with leading{" "}

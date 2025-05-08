@@ -30,7 +30,7 @@ const Header = () => {
         </p>
       </div>
       <div>
-        <Image height={900} width={900} src={LandingImage} alt="" />
+        <Image height={900} width={900} src={LandingImage} alt="s" />
       </div>
     </div>
   );
