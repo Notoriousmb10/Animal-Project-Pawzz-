@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import DropDown from "../../../components/uicomponents/Select";
 import { ImageUp } from "lucide-react";
 import { useRef } from "react";
-import Image from "next/image";
-
 import { UiButton } from "../../../components/uicomponents/Button";
 import { dogList, catList, birdList, animalList } from "@/app/dataArray";
 import { useUserStore } from "@/app/Store/useStore";
