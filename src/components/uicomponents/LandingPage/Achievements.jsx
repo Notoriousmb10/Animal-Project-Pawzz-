@@ -13,7 +13,7 @@ const Achievements = () => {
             </div>
             <div className="flex flex-col justify-center items-center gap-20">
                 <h1 className="font-bold text-4xl gap-4 flex flex-col justify-center items-center whitespace-nowrap">
-                    "Because every tail deserves to <br />
+                    &quot;Because every tail deserves to <br />
                     <p className="text-pink-500 rounded-lg px-2 w-max text-center">
                         wag
                     </p>
@@ -27,7 +27,7 @@ const Achievements = () => {
                                 <span className="text-xl"> Animals Rescued</span>
                             </h1>
                             <p className="font-medium  pt-2 text-slate-500">
-                                "Be a part of our <br /> rescue missions."
+                                &quot;Be a part of our <br /> rescue missions.&quot;
                             </p>
                         </div>
                         <div className="text-center">
@@ -38,7 +38,7 @@ const Achievements = () => {
                                 </span>
                             </h1>
                             <p className="font-medium pt-2 text-slate-500">
-                                "Join our dedicated <br /> team of volunteers."
+                                &quot;Join our dedicated <br /> team of volunteers.&quot;
                             </p>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ const Achievements = () => {
                                 </span>
                             </h1>
                             <p className="font-medium pt-2 text-slate-500">
-                                "Participate in our events <br /> to support animal welfare."
+                                &quot;Participate in our events <br /> to support animal welfare.&quot;
                             </p>
                         </div>
                         <div className="text-center">
@@ -62,8 +62,8 @@ const Achievements = () => {
                                 </span>
                             </h1>
                             <p className="font-medium pt-2 text-slate-500">
-                                "Collaborating with organizations <br /> for a greater
-                                impact."
+                                &quot;Collaborating with organizations <br /> for a greater
+                                impact.&quot;
                             </p>
                         </div>
                     </div>
