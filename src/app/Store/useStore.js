@@ -3,18 +3,19 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 
-export const useUserStore = create(
-  persist(
-    (set) => ({
-      userId: null,
-      setUser: (userId) => set({ userId }),
-    }),
-    {
-      name: "userId",
-      getStorage: () => sessionStorage,
+export const useUserStore = create((set) => ({
+  userId: null,
+  setUser: (userId) => {
+    localStorage.setItem("userId", userId);
+    set({ userId });
+  },
+  loadUser: () => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      set({ userId });
     }
-  )
-)
+  },
+}));
 
 export const useSidebarStore = create(
   persist(

@@ -18,10 +18,11 @@ export const fetchPets = async (userId) => {
   const data = await response.json();
   if (response.ok) {
     console.log(data);
+    return data.pets;
   } else {
     console.error("Failed to fetch pets: ", data);
+    return [];
   }
-  return data;
 };
 
 export const fetchAnimalForAdoption = async () => {

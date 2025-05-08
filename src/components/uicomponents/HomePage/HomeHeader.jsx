@@ -9,10 +9,11 @@ import { useUserStore } from "@/app/Store/useStore";
 const HomeHeader = () => {
   const { user } = useUser();
   const router = useRouter();
-  const {setUser} = useUserStore();
+  const {setUser, loadUser} = useUserStore();
   const { scheduleCount } = useScheduleCountStore();
 
   useEffect(() => {
+
     const createUser = async () => {
       if (user) {
         try {
@@ -22,7 +23,8 @@ const HomeHeader = () => {
             body: JSON.stringify({ user }),
           });
           const data = await resp.json();
-          setUser(user.sub);
+          await setUser(user.sub);
+          console.log(user.sub)
           
           return data;
         } catch (err) {
@@ -30,9 +32,11 @@ const HomeHeader = () => {
         }
       }
     };
-
     createUser();
+
   }, [user, setUser]);
+
+
 
   return (
     <div className="px-20 py-10 flex flex-row gap-6">

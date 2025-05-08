@@ -5,21 +5,27 @@ import AddPets from "../../components/uicomponents/MyPetsPage/AddPets";
 import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
 import { fetchPets } from "../serverfetching";
 import DogFallBack from "../../../public/DogFallBack.jpg";
-import {useSidebarStore} from "../Store/useStore";
-import {useUserStore} from "../Store/useStore";
+import { useUserStore } from "../Store/useStore";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const MyPetsPage = () => {
-  const { setSidebarState } = useSidebarStore(); // Access Zustand store action
+  const { user } = useUser();
   const [pets, setPets] = useState([]);
-  const { userId } = useUserStore(); 
+  const { userId, setUser } = useUserStore();
 
-  // Load pet details
+  useEffect(() => {
+    const loadUserId = async () => {
+      setUser(user.sub);
+    };
+    loadUserId();
+  }, [user, setUser]);
+
   const loadPets = async () => {
     const petDetails = await fetchPets(userId);
-    console.log(petDetails); // Log the pet details
+    console.log(petDetails);
     const petArray = petDetails.map((pet) => {
       const photo = sessionStorage.getItem(`${pet.petName}`);
-      console.log(`Pet Name: ${pet.petName}, Photo: ${photo}`); // Log the photo
+      console.log(`Pet Name: ${pet.petName}, Photo: ${photo}`);
 
       return {
         ...pet,

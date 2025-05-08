@@ -334,6 +334,7 @@ const upForAdoptions = [
       "Bella is a gentle and affectionate dog. She enjoys quiet time and is very well-behaved.",
   },
 ];
+
 const adoptedPets = [
   {
     id: 1,
@@ -375,6 +376,10 @@ const adoptedPets = [
     description: "Rocky is a brave and strong dog. He loves adventures and is very protective of his family.",
     adoptionStory: "Rocky was rescued from a dangerous situation. He has been adopted by a family who appreciates his protective nature and adventurous spirit."
   },
+];
+
+const appointments = [
+  // Add your appointment data here
 ];
 
 export {

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pencil } from "lucide-react";
-import DogFallBack from '../../../../public/DogFallBack.jpg'
+
 const MyPets = ({myPets}) => {
-  useEffect(() => {
-    console.log(myPets);
-  }, [myPets]);
   return (
     <div className="flex flex-col items-center justify-center mb-40 ">
       <h2 className="text-2xl font-semibold text-left px-52 py-4">Your Paws</h2>

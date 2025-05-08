@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import DogSchedule from "../../../../public/DogSchedule.jpg";
 import { Search } from "lucide-react";
 import React from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import DropDown from "../../../components/uicomponents/Select";
 import { reasons } from "../../../app/dataArray";
 import { CalendarForm } from "../../../components/uicomponents/Calendar";
-import { fetchPets } from "../../../app/serverfetching";
 import { useUserStore } from "@/app/Store/useStore";
 
 const Schedules = ({ loadAppointments, loadPets }) => {
-  const { userId } = useUserStore();
+  const { user } = useUser();
+  const { userId, setUser } = useUserStore();
   const [petNames, setPetNames] = useState([]);
   const [petDetails, setPetDetails] = useState({
     petName: "",
@@ -40,7 +41,7 @@ const Schedules = ({ loadAppointments, loadPets }) => {
       return;
     } else {
       console.log(petDetails);
-      petDetails.userId = userId;
+      {user && user.sub ? petDetails.userId = userId: null}
       const response = await fetch("/api/create-Appointment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
