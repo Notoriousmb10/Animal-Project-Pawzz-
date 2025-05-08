@@ -7,13 +7,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { toast } from "@/components/hooks/use-toast";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -31,26 +30,28 @@ const FormSchema = z.object({
   }),
 });
 
+
 export function CalendarForm({ label, onDateChange }) {
   const [selectedDate, setSelectedDate] = useState(null);
-
+  const { addToast } = useToast();
+  
   const form = useForm({
     resolver: zodResolver(FormSchema),
   });
-
+  
   function onSubmit(data) {
-    toast({
+    addToast({
       title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
-
-  return (
-    <Form {...form}>
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
+      });
+    }
+    
+    return (
+      <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -58,7 +59,7 @@ export function CalendarForm({ label, onDateChange }) {
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>{label}</FormLabel>
-              <Popover c>
+              <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
@@ -67,7 +68,7 @@ export function CalendarForm({ label, onDateChange }) {
                         " pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground",
                       )}
-                    >
+                      >
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (
@@ -87,14 +88,14 @@ export function CalendarForm({ label, onDateChange }) {
                     }}
                     disabled={(date) => date < new Date()}
                     initialFocus
-                  />
+                    />
                 </PopoverContent>
               </Popover>
 
               <FormMessage />
             </FormItem>
           )}
-        />
+          />
       </form>
     </Form>
   );
