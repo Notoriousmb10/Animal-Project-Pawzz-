@@ -11,24 +11,24 @@ const userSchema = new mongoose.Schema({
   _id: {
     type: String,
   },
-  appointments: [  
+  appointments: [
     {
       petName: { type: String, required: true },
       clinicName: { type: String, required: true },
       date: { type: String, required: true },
       reason: { type: String, required: true },
       approval: { type: String, required: true },
-    }
+    },
   ],
-  pets: [  
+  pets: [
     {
       petName: { type: String, required: true },
       animal: { type: String, required: true },
       breed: { type: String, required: true },
       description: { type: String, required: true },
-    }
+    },
   ],
-  emergencyReports: [ 
+  emergencyReports: [
     {
       advanceOptions: {
         methodOfContact: { type: String, required: true },
@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
         date: { type: String, required: true },
         time: { type: String, required: true },
       },
-    }
+    },
   ],
 });
 
@@ -68,6 +68,7 @@ const adoptionSchema = new mongoose.Schema({
 
 // Models
 const User = mongoose.models.User || mongoose.model("User", userSchema);
-const Adoption = mongoose.models.Adoption || mongoose.model("Adoption", adoptionSchema);
+const Adoption =
+  mongoose.models.Adoption || mongoose.model("Adoption", adoptionSchema);
 
 module.exports = { User, Adoption };

@@ -7,16 +7,14 @@ import { useProgressStore } from "@/app/Store/useStore";
 const UploadImage = () => {
   const { setProgress } = useProgressStore();
   const [images, setImages] = React.useState(
-    JSON.parse(sessionStorage.getItem("images")) || []
+    JSON.parse(sessionStorage.getItem("images")) || [],
   );
   const [photoRemoval, setPhotoRemoval] = React.useState(false);
   const fileInputRef = useRef(null);
 
-
   useEffect(() => {
     setProgress(50);
   }, []);
-
 
   const handleNavigation = () => {
     if (images.length === 0) {
@@ -102,12 +100,10 @@ const UploadImage = () => {
             route="/emergency/report"
             label="Drag and drop images here"
             className="w-[450px] py-4"
-
           />
         </div>
       </div>
       <div className="absolute bottom-14 right-[360px] flex gap-48  ">
-        
         <NormalButton
           label={"Next"}
           className="text-[14px] rounded-[5] w-16 hover:bg-blue-400 h-8 bg-blue-500"

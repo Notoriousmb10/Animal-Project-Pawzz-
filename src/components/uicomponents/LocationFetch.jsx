@@ -25,7 +25,7 @@ export default function GetLocation({ onLocationChange, label }) {
           setCurrentLocation(newLocation);
           setFetching("fetched");
           setError("");
-          onLocationChange(newLocation) 
+          onLocationChange(newLocation);
           Sonner(newLocation.latitude, newLocation.longitude);
         },
         (error) => {
@@ -42,7 +42,7 @@ export default function GetLocation({ onLocationChange, label }) {
             default:
               setError("An unknown error occurred.");
           }
-        }
+        },
       );
     } else {
       setError("Geolocation is not supported by this browser.");
@@ -85,15 +85,14 @@ export default function GetLocation({ onLocationChange, label }) {
             fetching === "fetching"
               ? "bg-yellow-200"
               : fetching === "fetched"
-              ? "bg-green-200"
-              : "bg-[#F5F5F5]"
+                ? "bg-green-200"
+                : "bg-[#F5F5F5]"
           }`}
         >
           Get Location
         </button>
         <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
       </div>
-      
     </div>
   );
 }

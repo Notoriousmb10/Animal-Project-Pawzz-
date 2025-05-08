@@ -21,18 +21,30 @@ export const POST = async (req) => {
       upload.array("images")(req, {}, async (err) => {
         if (err) {
           console.error(err);
-          return reject(NextResponse.json({ error: "Upload failed" }, { status: 500 }));
+          return reject(
+            NextResponse.json({ error: "Upload failed" }, { status: 500 }),
+          );
         }
 
         if (!req.body.adoptionDetails) {
-          return resolve(NextResponse.json({ error: "adoptionDetails is required" }, { status: 400 }));
+          return resolve(
+            NextResponse.json(
+              { error: "adoptionDetails is required" },
+              { status: 400 },
+            ),
+          );
         }
 
         let adoptionDetails;
         try {
           adoptionDetails = JSON.parse(req.body.adoptionDetails);
         } catch (e) {
-          return resolve(NextResponse.json({ error: "Invalid JSON in adoptionDetails" }, { status: 400 }));
+          return resolve(
+            NextResponse.json(
+              { error: "Invalid JSON in adoptionDetails" },
+              { status: 400 },
+            ),
+          );
         }
 
         const files = req.files;
@@ -59,6 +71,9 @@ export const POST = async (req) => {
     });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 };

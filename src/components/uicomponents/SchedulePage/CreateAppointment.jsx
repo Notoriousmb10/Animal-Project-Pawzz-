@@ -41,7 +41,9 @@ const Schedules = ({ loadAppointments, loadPets }) => {
       return;
     } else {
       console.log(petDetails);
-      {user && user.sub ? petDetails.userId = userId: null}
+      {
+        user && user.sub ? (petDetails.userId = userId) : null;
+      }
       const response = await fetch("/api/create-Appointment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -128,7 +130,7 @@ const Schedules = ({ loadAppointments, loadPets }) => {
             </div>
 
             <div>
-              <CalendarForm label={"Date"}/>
+              <CalendarForm label={"Date"} />
             </div>
           </div>
         </div>

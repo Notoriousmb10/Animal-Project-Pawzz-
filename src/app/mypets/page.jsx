@@ -20,8 +20,8 @@ const MyPetsPage = () => {
     loadUserId();
   }, [user, setUser]);
 
-  const loadPets = async () => {
-    const petDetails = await fetchPets(userId);
+  const loadPets = useCallback(() => {
+    const petDetails = fetchPets(userId);
     console.log(petDetails);
     const petArray = petDetails.map((pet) => {
       const photo = sessionStorage.getItem(`${pet.petName}`);
@@ -33,7 +33,7 @@ const MyPetsPage = () => {
       };
     });
     setPets(petArray);
-  };
+  }, []);
 
   useEffect(() => {
     loadPets();

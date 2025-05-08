@@ -1,7 +1,5 @@
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
 
 export const useUserStore = create((set) => ({
   userId: null,
@@ -27,11 +25,9 @@ export const useSidebarStore = create(
     {
       name: "sidebar",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
-
-
 
 export const useDetailsStore = create(
   persist(
@@ -61,8 +57,8 @@ export const useDetailsStore = create(
     {
       name: "details",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
 
 export const useImagesStore = create(
@@ -78,8 +74,8 @@ export const useImagesStore = create(
     {
       name: "route-images",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
 
 export const useProgressStore = create(
@@ -91,8 +87,8 @@ export const useProgressStore = create(
     {
       name: "progress",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
 
 export const useScheduleCountStore = create(
@@ -104,8 +100,8 @@ export const useScheduleCountStore = create(
     {
       name: "scheduleCount",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
 
 export const useAdoptionStore = create(
@@ -130,6 +126,6 @@ export const useAdoptionStore = create(
     {
       name: "adoption-details",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );

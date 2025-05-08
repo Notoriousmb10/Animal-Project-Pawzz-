@@ -9,13 +9,13 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
-    <Navbar/>
-    <Header/>
-    <Achievements/>
-    <OurServices/>
-    <Partnerships/>
-    
-    <HomeAdoption />
+      <Navbar />
+      <Header />
+      <Achievements />
+      <OurServices />
+      <Partnerships />
+
+      <HomeAdoption />
     </>
   );
 };

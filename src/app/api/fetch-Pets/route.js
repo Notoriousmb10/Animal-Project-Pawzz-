@@ -12,7 +12,7 @@ export const GET = async (req) => {
     await connectToDatabase();
     const url = new URL(req.url);
     const userId = url.searchParams.get("userId");
-    console.log(userId)
+    console.log(userId);
     if (!userId) {
       return new Response(JSON.stringify({ error: "User ID is required" }), {
         status: 400,

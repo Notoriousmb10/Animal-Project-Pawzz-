@@ -51,7 +51,7 @@ const DragAndDropUpload = ({ route, className, label, onClick }) => {
   const deleteImage = (index) => () => {
     setImages(
       route,
-      images.filter((_, i) => i !== index)
+      images.filter((_, i) => i !== index),
     );
   };
 

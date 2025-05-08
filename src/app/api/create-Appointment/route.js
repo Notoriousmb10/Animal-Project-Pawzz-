@@ -17,7 +17,7 @@ export const POST = async (req) => {
           {
             status: 400,
             headers: { "Content-Type": "application/json" },
-          }
+          },
         );
       }
       const user = await User.findById(userId);
@@ -25,9 +25,7 @@ export const POST = async (req) => {
         throw new Error("User not found!");
       }
 
-
-
-      const newAppointment ={
+      const newAppointment = {
         petName,
         clinicName,
         date,
@@ -36,8 +34,6 @@ export const POST = async (req) => {
       };
 
       User.appointments.push(newAppointment);
-
-
 
       await user.save();
       console.log("New appointment:", newAppointment);
@@ -48,7 +44,7 @@ export const POST = async (req) => {
         {
           status: 200,
           headers: { "Content-Type": "application/json" },
-        }
+        },
       );
     } catch (err) {
       console.error("Failed to create appointment:", err);

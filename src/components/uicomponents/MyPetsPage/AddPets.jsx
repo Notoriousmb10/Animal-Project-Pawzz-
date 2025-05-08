@@ -8,7 +8,7 @@ import { useRef } from "react";
 import { UiButton } from "../../../components/uicomponents/Button";
 import { dogList, catList, birdList, animalList } from "@/app/dataArray";
 import { useUserStore } from "@/app/Store/useStore";
-const AddPets = ({loadPets}) => {
+const AddPets = ({ loadPets }) => {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = React.useState(null);
   const [animal, setAnimal] = React.useState("");
@@ -17,7 +17,7 @@ const AddPets = ({loadPets}) => {
   const [description, setDescription] = React.useState("");
   const [isPhoto, setIsPhoto] = React.useState(false);
   const { userId } = useUserStore();
-  
+
   const createPet = async () => {
     if (!petName || !animal || !breed || !description || !photo) {
       alert("Please fill all the fields");
@@ -69,7 +69,6 @@ const AddPets = ({loadPets}) => {
     }
   };
 
-
   return (
     <div className="p-20 ">
       <div className="flex flex-row gap-16  justify-center items-center">
@@ -109,8 +108,8 @@ const AddPets = ({loadPets}) => {
                 animal === "Dog"
                   ? dogList
                   : animal === "Cat"
-                  ? catList
-                  : birdList
+                    ? catList
+                    : birdList
               }
             />
             <textarea

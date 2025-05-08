@@ -10,13 +10,9 @@ import {
 import { useEffect } from "react";
 
 export default function ReportDetailsTable({ data }) {
-
-  
   useEffect(() => {
     console.log(data);
   }, [data]);
-
-
 
   const renderDetails = (details) => {
     if (typeof details === "object" && details !== null) {

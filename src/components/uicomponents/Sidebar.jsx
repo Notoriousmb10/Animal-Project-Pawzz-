@@ -28,9 +28,8 @@ const items = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export default function AppSidebar({  }) {
+export default function AppSidebar({}) {
   const { toggleSidebar } = useSidebarStore();
-
 
   return (
     <SidebarProvider>

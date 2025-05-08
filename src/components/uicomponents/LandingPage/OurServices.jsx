@@ -20,49 +20,49 @@ const OurServices = () => {
           </p>
         </div>
         <div className="grid grid-cols-2 p-10 gap-10">
-        <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-br-3xl p-4 flex flex-col items-center gap-2">
-          <Image
-            height={250}
-            width={250}
-            src={AnimalDoc}
-            className="rounded-full shadow-lg"
-          />
-          <h1 className="font-medium text-xl text-center">
-            Book Veterinary <br /> Appointments
-          </h1>
+          <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-br-3xl p-4 flex flex-col items-center gap-2">
+            <Image
+              height={250}
+              width={250}
+              src={AnimalDoc}
+              className="rounded-full shadow-lg"
+            />
+            <h1 className="font-medium text-xl text-center">
+              Book Veterinary <br /> Appointments
+            </h1>
+          </div>
+          <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-bl-3xl p-4 flex flex-col items-center gap-2">
+            <Image
+              height={250}
+              width={250}
+              src={AnimalLove}
+              className="rounded-full shadow-lg"
+            />
+            <h1 className="font-medium text-xl text-center pt-3">
+              Find Nearby Animal <br /> Shelters and NGOs
+            </h1>
+          </div>
+          <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-tr-3xl p-4 flex flex-col items-center gap-2">
+            <Image
+              height={250}
+              width={250}
+              src={StrayDogs}
+              className="rounded-full shadow-lg"
+            />
+            <h1 className="font-medium text-xl"> Support Stray Animals</h1>
+          </div>
+          <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-tl-3xl p-4 flex flex-col items-center gap-2">
+            <Image
+              height={300}
+              width={250}
+              src={AnimalShelter}
+              className="rounded-full shadow-lg"
+            />
+            <h1 className="font-medium text-xl text-center max-w-40 pt-3">
+              Rescue/Adoption Resources
+            </h1>
+          </div>
         </div>
-        <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-bl-3xl p-4 flex flex-col items-center gap-2">
-          <Image
-            height={250}
-            width={250}
-            src={AnimalLove}
-            className="rounded-full shadow-lg"
-          />
-          <h1 className="font-medium text-xl text-center pt-3">
-            Find Nearby Animal <br /> Shelters and NGOs
-          </h1>
-        </div>
-        <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-tr-3xl p-4 flex flex-col items-center gap-2">
-          <Image
-            height={250}
-            width={250}
-            src={StrayDogs}
-            className="rounded-full shadow-lg"
-          />
-          <h1 className="font-medium text-xl"> Support Stray Animals</h1>
-        </div>
-        <div className="border border-blue-100 shadow-md hover:shadow-lg bg-blue-50 rounded-tl-3xl p-4 flex flex-col items-center gap-2">
-          <Image
-            height={300}
-            width={250}
-            src={AnimalShelter}
-            className="rounded-full shadow-lg"
-          />
-          <h1 className="font-medium text-xl text-center max-w-40 pt-3">
-            Rescue/Adoption Resources
-          </h1>
-        </div>
-      </div>
       </div>
     </div>
   );

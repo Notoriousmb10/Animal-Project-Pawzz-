@@ -11,7 +11,7 @@ export const POST = async (req) => {
       console.error("Missing required fields");
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const loggedInUser = {
@@ -25,7 +25,7 @@ export const POST = async (req) => {
     console.error("Failed to create User:", err);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

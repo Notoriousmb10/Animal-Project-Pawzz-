@@ -10,9 +10,8 @@ import DropDownOptions from "../DropDownMenu";
 import { useRouter } from "next/navigation";
 const HomeNavbar = () => {
   const router = useRouter();
- 
-  const { user } = useUser();
 
+  const { user } = useUser();
 
   return (
     <div className="flex flex-row justify-between items-center px-20 py-6">

@@ -7,7 +7,8 @@ import GetLocation from "../LocationFetch";
 import { healthStatus, adoptionUrgency } from "@/app/dataArray";
 import { useAdoptionStore, useImagesStore } from "@/app/Store/useStore";
 import NormalButton from "../NormalButton";
-import { toast } from "sonner";``
+import { toast } from "sonner";
+``;
 
 const AnimalUpload = () => {
   const { adoptionDetails, setAdoptionDetails } = useAdoptionStore();
@@ -104,7 +105,7 @@ const AnimalUpload = () => {
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
       const data = await resp.json();
       console.log(data);
@@ -215,7 +216,12 @@ const AnimalUpload = () => {
             <Input
               className="border focus:border-none focus:outline-none outline-none text-[12px]  w-[500px]"
               placeholder="Enter Animal Name"
-              onChange={(e) => {setAdoptionDetails({...adoptionDetails, name: e.target.value})}}
+              onChange={(e) => {
+                setAdoptionDetails({
+                  ...adoptionDetails,
+                  name: e.target.value,
+                });
+              }}
             />
             <GetLocation
               label="Enter Animal Location"

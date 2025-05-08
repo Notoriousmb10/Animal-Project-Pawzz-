@@ -40,7 +40,7 @@ const HomeEmergency = () => {
 
       <div className="h-[400] w-[600] relative border rounded-[50] bg-[#fafaf6] flex justify-start gap-10  flex-col overflow-hidden">
         <div className="absolute h-60 w-56 -right-4 bottom-0">
-          <Image src={DogDonation}/>
+          <Image src={DogDonation} />
         </div>
         <div className="relative left-4 top-4">
           <h1 className="font-bold text-xl ml-7 text-left">

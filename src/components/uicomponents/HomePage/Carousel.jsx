@@ -2,8 +2,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-    CarouselPrevious,
-    CarouselNext,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 
 import Image from "next/image";
@@ -16,7 +16,7 @@ const HomeCarousel = () => {
   return (
     <Carousel className="ml-10">
       <CarouselContent className="">
-        <CarouselItem> 
+        <CarouselItem>
           <Image
             src={AnimalHelp1}
             alt="Animal Help 1"

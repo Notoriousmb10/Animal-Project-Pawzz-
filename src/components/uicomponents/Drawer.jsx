@@ -30,7 +30,10 @@ const AppDrawer = ({ isOpen, onClose, displayData }) => {
         </DrawerHeader>
         <DrawerFooter className="flex flex-row justify-end">
           <DrawerClose>
-            <Button className="w-[100px] bg-blue-500 hover:bg-blue-700" onClick={onClose}>
+            <Button
+              className="w-[100px] bg-blue-500 hover:bg-blue-700"
+              onClick={onClose}
+            >
               OK
             </Button>
           </DrawerClose>

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import NormalButton from "@/components/uicomponents/NormalButton";
 import { CalendarForm } from "@/components/uicomponents/Calendar";
 import { useDetailsStore } from "@/app/Store/useStore";
@@ -17,8 +17,8 @@ const SchedulePickup = () => {
   };
 
   useEffect(() => {
-      setProgress(75);
-    }, [setProgress]);
+    setProgress(75);
+  }, [setProgress]);
 
   const handleNavigation = async () => {
     if (
@@ -26,13 +26,12 @@ const SchedulePickup = () => {
       details.scheduledPickup.time !== ""
     ) {
       sessionStorage.setItem("selectedTab", "Advance Options");
-      window.location.reload()
+      window.location.reload();
       setProgress(90);
     } else {
       alert("Please fill in the date and time for the pickup");
     }
   };
-  
 
   return (
     <>
@@ -55,7 +54,6 @@ const SchedulePickup = () => {
             <CalendarForm
               label={"Schedule Date"}
               onDateChange={handleDateChange}
-              
             />
             <div className="flex flex-col gap-2">
               <label

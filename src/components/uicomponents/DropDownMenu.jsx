@@ -8,14 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-
-const DropDownOptions = ({user}) => {
+const DropDownOptions = ({ user }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar
-          className="hover:ring-4 cursor-pointer"
-        >
+        <Avatar className="hover:ring-4 cursor-pointer">
           {user && user.picture ? (
             <AvatarImage src={user.picture} />
           ) : (

@@ -61,10 +61,10 @@ const SubmitReport = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(displayData),
-        }
+        },
       );
       const data = await resp.json();
-      
+
       console.log(data);
       setTimeout(() => {
         setSubmitState(false);
@@ -74,7 +74,6 @@ const SubmitReport = () => {
       console.log(err);
     }
   };
-
 
   const Sonner = async () => {
     toast("Animal Report Submitted Successfully", {

@@ -1,5 +1,5 @@
 const connectToDatabase = require("../../database");
-const {Appointment} = require("../../model");
+const { Appointment } = require("../../model");
 export const GET = async (req, res) => {
   if (req.method === "GET") {
     try {

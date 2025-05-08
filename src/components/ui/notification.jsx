@@ -2,7 +2,7 @@ import React from "react";
 
 const notyIconStyle = {
   position: "relative",
-  display: "inline"
+  display: "inline",
 };
 const notyNumStyle = {
   position: "absolute",
@@ -12,7 +12,7 @@ const notyNumStyle = {
   color: "white",
   display: "inline",
   padding: "3px 5px",
-  borderRadius: "20px"
+  borderRadius: "20px",
 };
 export default function Noty({ width, color, count, className }) {
   return (

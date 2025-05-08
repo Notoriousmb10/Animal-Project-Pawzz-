@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import DropDown from "@/components/uicomponents/Select";
 import { contactMethods } from "@/app/dataArray";
 import { useDetailsStore } from "../../../app/Store/useStore";

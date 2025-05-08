@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox";
 
-export function CheckboxWithText({ label, description , onChange}) {
+export function CheckboxWithText({ label, description, onChange }) {
   const [checked, setChecked] = useState(false);
 
   const handleChange = (checked) => {
@@ -13,7 +13,7 @@ export function CheckboxWithText({ label, description , onChange}) {
 
   return (
     <div className="flex flex-row gap-2 ">
-      <Checkbox id="terms1" checked={checked} onCheckedChange={handleChange}/>
+      <Checkbox id="terms1" checked={checked} onCheckedChange={handleChange} />
       <div className="grid gap-1.5 leading-no2ne mt-0.5">
         <label
           htmlFor="terms1"
@@ -21,10 +21,8 @@ export function CheckboxWithText({ label, description , onChange}) {
         >
           {label}
         </label>
-        <p className="text-[12px] text-muted-foreground">
-          {description}
-        </p>
+        <p className="text-[12px] text-muted-foreground">{description}</p>
       </div>
     </div>
-  )
+  );
 }

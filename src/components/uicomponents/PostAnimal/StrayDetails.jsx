@@ -92,16 +92,16 @@ const StrayDetails = () => {
             className="w-48"
           />
         </div>
-          <div className="flex flex-row gap-4 items-center mt-4">
-            <p className="text-[16px] font-bold w-[500px]">
-              If No? Contact Nearby Animal Shelter or NGO 
-            </p>
+        <div className="flex flex-row gap-4 items-center mt-4">
+          <p className="text-[16px] font-bold w-[500px]">
+            If No? Contact Nearby Animal Shelter or NGO
+          </p>
 
-            <DropDown
-              placeholder="Care status"
-              data={careStatus}
-              className="w-48"
-            />
+          <DropDown
+            placeholder="Care status"
+            data={careStatus}
+            className="w-48"
+          />
         </div>
       </div>
     </div>

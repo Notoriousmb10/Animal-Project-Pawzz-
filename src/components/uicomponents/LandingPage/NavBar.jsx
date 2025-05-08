@@ -18,7 +18,6 @@ const NavBar = () => {
     // const user = null;
   }, [user, hasLoggedIn]);
 
-
   return (
     <div className="flex flex-row justify-between p-10">
       <div className="flex items-center gap-2">
