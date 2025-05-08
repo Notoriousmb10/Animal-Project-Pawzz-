@@ -22,7 +22,6 @@ export function useToast() {
   };
 }
 
-export function toast({ title, description }) {
-  const { addToast } = useToast();
+export function toast(addToast, { title, description }) {
   addToast({ title, description });
 }

@@ -10,7 +10,7 @@ import Adoption from "@/components/uicomponents/BrowseAnimals/Adoption";
 import SuccessStories from "@/components/uicomponents/BrowseAnimals/SuccessStories";
 import AdoptionSidebar from "@/components/uicomponents/BrowseAnimals/AdoptionSidebar";
 import HomeNavbar from "@/components/uicomponents/HomePage/HomeNavbar";
-const page = () => {
+const Page = () => {
   const [selectedTab, setSelectedTab] = useState("Adoptions");
 
   return (
@@ -32,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
