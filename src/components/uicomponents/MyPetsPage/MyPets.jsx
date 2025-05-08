@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pencil } from "lucide-react";
+import Image from "next/image";
 
 const MyPets = ({myPets}) => {
   return (
@@ -15,7 +16,7 @@ const MyPets = ({myPets}) => {
               <div className="flex items-center justify-end relative right-4 z- top-4">
                 <Pencil className="text-slate-400 hover:bg-slate-300 z-20 bg-white p-1 cursor-pointer rounded-md" />
               </div>
-              <img
+              <Image
                 src={pet.photo} 
                 alt={pet.petName}
                 className="h-[200px] w-[200px] object-cover relative hover:opacity-70 cursor-pointer bottom-5 rounded-[50px]"

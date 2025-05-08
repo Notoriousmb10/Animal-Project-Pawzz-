@@ -37,7 +37,7 @@ const MyPetsPage = () => {
 
   useEffect(() => {
     loadPets();
-  }, []);
+  }, [loadPets]);
 
   return (
     <>

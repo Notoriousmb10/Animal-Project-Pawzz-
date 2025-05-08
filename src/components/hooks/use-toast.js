@@ -22,6 +22,6 @@ export function useToast() {
   };
 }
 
-export function toast(addToast, { title, description }) {
+export function useToastNotification(addToast, { title, description }) {
   addToast({ title, description });
 }

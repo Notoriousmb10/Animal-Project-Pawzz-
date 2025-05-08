@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import DropDown from "../../../components/uicomponents/Select";
 import { ImageUp } from "lucide-react";
 import { useRef } from "react";
+import Image from "next/image";
+
 import { UiButton } from "../../../components/uicomponents/Button";
 import { dogList, catList, birdList, animalList } from "@/app/dataArray";
 import { useUserStore } from "@/app/Store/useStore";
@@ -133,7 +135,7 @@ const AddPets = ({loadPets}) => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center relative top-0">
-                    <img
+                    <Image
                       src={photo}
                       alt="Uploaded"
                       className="h-[200] w-[200] object-cover  rounded-[40px]"
