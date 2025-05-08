@@ -7,12 +7,12 @@ import NormalButton from "../NormalButton";
 import { useDetailsStore, useProgressStore } from "@/app/Store/useStore";
 import { useRouter } from "next/navigation";
 
-const details = () => {
+const Details = () => {
   const router = useRouter();
   const { progress, setProgress } = useProgressStore();
   useEffect(() => {
     setProgress(25);
-  }, []);
+  }, [setProgress]);
 
   const { details, setDetails } = useDetailsStore();
   const handleAnimalChange = (value) => {
@@ -57,7 +57,7 @@ const details = () => {
         <div className="flex flex-col gap-10">
           <div>
             <h2 className="text-[14px] font-medium text-left mb-2  italic">
-              Describe the animal's condition
+              Describe the animal&apos;s condition
             </h2>
             <textarea
               className="focus:outline-none border-[#94A3B8] text-[16px] rounded-[10] px-2 w-[480px] max-h-[80px] h-[100px]  shadow-md border resize-y"
@@ -153,4 +153,4 @@ const details = () => {
   );
 };
 
-export default details;
+export default Details;

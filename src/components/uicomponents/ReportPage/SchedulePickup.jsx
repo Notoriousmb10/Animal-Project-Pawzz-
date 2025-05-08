@@ -18,7 +18,7 @@ const SchedulePickup = () => {
 
   useEffect(() => {
       setProgress(75);
-    }, []);
+    }, [setProgress]);
 
   const handleNavigation = async () => {
     if (

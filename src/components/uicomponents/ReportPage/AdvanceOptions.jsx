@@ -10,7 +10,7 @@ const AdvanceOptions = () => {
   const { setProgress } = useProgressStore();
   useEffect(() => {
     setProgress(90);
-  }, []);
+  }, [setProgress]);
 
   const handleMethodOfContactChange = (value) => {
     setDetails({
