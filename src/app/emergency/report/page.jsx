@@ -6,17 +6,18 @@ import UploadImages from "@/components/uicomponents/ReportPage/UploadImages";
 import SchedulePickup from "@/components/uicomponents/ReportPage/SchedulePickup";
 import AdvanceOptions from "@/components/uicomponents/ReportPage/AdvanceOptions";
 import SubmitReport from "@/components/uicomponents/ReportPage/SubmitReport";
-const Page = () => {
-  const [selectedTab, setSelectedTab] = useState(
-    sessionStorage.getItem("selectedTab") || "Report Details",
-  );
 
+const Page = () => {
+  // Initialize the state to a default value
+  const [selectedTab, setSelectedTab] = useState("Report Details");
+
+  // Use useEffect to set the state after the component has mounted
   useEffect(() => {
     const tab = sessionStorage.getItem("selectedTab");
     if (tab) {
-      setSelectedTab(tab);
+      setSelectedTab(tab); // Set state based on sessionStorage only after mount
     }
-  }, []);
+  }, []); // This will only run once when the component mounts
 
   const handleClick = (tab) => {
     setSelectedTab(tab);
